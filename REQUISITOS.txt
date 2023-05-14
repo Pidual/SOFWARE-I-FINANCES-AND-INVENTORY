@@ -1,0 +1,17 @@
+REQUISITOS DEL SISTEMA
+
+Requisitos funcionales:
+•	Agregar, modificar, Eliminar, Buscar y mostrar productos
+•	Establecer niveles mínimos y máximos para un producto.
+•	La aplicación enviara alertas automáticas cuando los niveles de inventario de un producto lleguen al mínimo establecido.
+•	Cuando se haga la salida de un producto debe ser registrado: removiendo del inventario los
+ingredientes necesarios, además de registrar la venta
+•	Enviar una alerta cuando los ingredientes/productos lleguen a valores mínimos.
+•	Interfaz de usuario.
+
+Requisitos no funcionales
+•	Rendimiento: veamos que el software sea capaz de manejar grandes cantidades de dato, con tiempos de respuesta rápidos.
+•	BASE DE DATOS en (MySQL, Oracle SQL, No se nos toca decidir)
+•	Llevar las finanzas en la misma base de datos.
+
+

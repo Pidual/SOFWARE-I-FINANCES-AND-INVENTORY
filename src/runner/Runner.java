@@ -1,5 +1,4 @@
 package runner;
-
 import presenter.Presenter;
 
 public class Runner {

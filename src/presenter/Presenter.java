@@ -1,19 +1,32 @@
 package presenter;
 
-import models.Restaurant;
-import views.Views;
+import models.User;
+import views.GUI;
 
-public class Presenter {
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Objects;
 
-    Restaurant guaranii; //Clase principal del modelo
-    Views view; //La vista jua jua jua
-    public Presenter() {
-        guaranii = new Restaurant();
-        mainThread();
+public class Presenter implements ActionListener{
+
+    private User user;
+    private GUI gui;
+    public Presenter(){
+        user = new User("carlos","123");
+        gui = new GUI(this);
     }
 
-    private void mainThread(){
-        guaranii.login(view.getInput("Escriba el user"), view.getInput("Escriba la clave: "));
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String command = e.getActionCommand();
+        switch (command){
+            case "INGRESAR":
+                if(Objects.equals(gui.getUser(), user.getName()) && Objects.equals(gui.getPassword(), user.getPassword())){
+                   gui.changePanel("mainMenu");
+                }
+                break;
 
+        }
     }
 }
+

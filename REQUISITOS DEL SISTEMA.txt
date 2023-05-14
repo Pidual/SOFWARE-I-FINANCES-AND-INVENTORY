@@ -1,0 +1,7 @@
+REQUISITOS DEL SISTEMA:
+1. registrar el inventario () SQL lite
+2. Cuando se venda
+3. enviar alertas dentro del mismo programa (una campanita o algo)
+4. que se permita ver el historial de ventas y eso
+5. contabilidad (SECCION: contabilidad )
+6.   
