@@ -12,7 +12,7 @@ public class Presenter implements ActionListener{
     private User user;
     private GUI gui;
     public Presenter(){
-        user = new User("carlos","123");
+        user = new User("123","123");
         gui = new GUI(this);
     }
 
@@ -21,9 +21,10 @@ public class Presenter implements ActionListener{
         String command = e.getActionCommand();
         switch (command){
             case "INGRESAR":
-                if(Objects.equals(gui.getUser(), user.getName()) && Objects.equals(gui.getPassword(), user.getPassword())){
+                if(Objects.equals(gui.getUser(), user.getUser()) && Objects.equals(gui.getPassword(), user.getPassword())){
                    gui.changePanel("mainMenu");
                 }
+                System.out.println("cambiando panel...");
                 break;
 
         }
