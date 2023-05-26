@@ -17,12 +17,11 @@ public class Inventory<T> {
         return items;
     }
 
-    public void createItem(int id, String name, int quantity) {
+    public void createItem(T item) {
         // Crear un nuevo objeto del tipo T con los parámetros proporcionados
         // y añadirlo a la lista items
         // Suponiendo que T tenga un constructor que acepte los parámetros id, name y quantity
-        T newItem = createNewItem(id, name, quantity);
-        items.add(newItem);
+        items.add(item);
     }
 
     public void addQuantity(int id, int quantity) {
@@ -50,9 +49,9 @@ public class Inventory<T> {
     }
 
     // Métodos abstractos que deben ser implementados en subclases de Inventory<T>
-    protected T createNewItem(int id, String name, int quantity) {
-        return null;
-    }
+//    protected T createNewItem(int id, String name, int quantity) {
+//        return null;
+//    }
 
     protected int getItemId(T item) {
         return -1;

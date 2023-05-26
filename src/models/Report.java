@@ -14,8 +14,18 @@ public class Report {
         this.expenses = expenses;
         this.profit = profit;
     }
+    
+    
 
-    public float calculateDifference() {
+    public Report(Date dateInit, Date dateEnd) {
+		super();
+		this.dateInit = dateInit;
+		this.dateEnd = dateEnd;
+	}
+
+
+
+	public float calculateDifference() {
         return profit - expenses;
     }
 
