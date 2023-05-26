@@ -11,8 +11,17 @@ public class Product {
     public Product(int id2, int type) {
 		// TODO Auto-generated constructor stub
 	}
-    
-    
+
+	public Product(int id, String name, Long value) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.value = value;
+	}
+
+
+
+
 
 	public String getName() {
         return name;
@@ -34,8 +43,7 @@ public class Product {
         return value;
     }
 
-    public void setIngredients(int id, int quantity) {
-        Ingredient ingredient = new Ingredient(id, quantity);
+    public void setIngredients(Ingredient ingredient) {
         ingredients.add(ingredient);
     }
 

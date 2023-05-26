@@ -14,7 +14,11 @@ public class Order {
         this.products = products;
     }
 
-    public int getId() {
+    public Order() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public int getId() {
         return id;
     }
 
