@@ -15,11 +15,7 @@ public class Product {
 		this.name = name;
 		this.value = value;
 	}
-
-
-
-
-
+	
 	public String getName() {
         return name;
     }
@@ -80,7 +76,7 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", name=" + name + ", value=" + value + ", ingredients=" + ingredients + "]";
+		return "Product [id=" + id + ", name=" + name + ", value=" + value + ", ingredients=" + ingredients.toString() + "]";
 	}
     
     

@@ -31,50 +31,34 @@ public class PaymentDesk {
      * Agrega un objeto ProductOrder a la lista products de la variable order.
      * 
      * @param id       ID del producto a agregar.
-     * @param type     Tipo de operación (1: agregar envasado, 2: agregar desde cookedProducts).
+     * @param type     Tipo de producto a agregar (1: envasado, 2: cocinado).
      * @param quantity Cantidad del producto a agregar.
      */
-    public void addProductOrder(int id, int type, int quantity) {
+    public boolean addProductOrder(int id, int type, int quantity) {
         if (type == 1) {
-        	if(Connect.checkInvertoryProduct(6,1)) {
+        	//Si es envasado consulta disponibilidad en inventario de productos
+        	if(Connect.checkInvertoryProduct(id,quantity)) {
 //        		Connect.updateInventoryProducts(id, -1*quantity);
         		ProductOrder newProductOrder = Connect.getProductOrder(id);
         		newProductOrder.setQuantity(quantity);
         		order.getProducts().add(newProductOrder);
+        		return true;
         	}
         } else if (type == 2) {
-        	
-        	
-            // Buscar un producto en cookedProducts
-            for (Product cookedProduct : cookedProducts) {
-                if (cookedProduct.getId() == id) {
-                    // Verificar la disponibilidad de ingredientes en ingredientInventory
-                    boolean ingredientsAvailable = true;
-                    for (Ingredient ingredient : cookedProduct.getIngredients()) {
-                        ArrayList<Ingredient> ingredientItems = ingredientInventory.getItems();
-                        boolean ingredientFound = false;
-                        for (Ingredient ingredientItem : ingredientItems) {
-                            if (ingredientItem.getId() == ingredient.getId()
-                                    && ingredientItem.getQuantity() >= ingredient.getQuantity()) {
-                                ingredientFound = true;
-                                break;
-                            }
-                        }
-                        if (!ingredientFound) {
-                            ingredientsAvailable = false;
-                            break;
-                        }
+        	//Si es cosinado consulta la disponibilidad de ingredientes en inventario de ingredientes
+        	ProductOrder newProductOrder = Connect.getProductOrder(id);
+        	if(newProductOrder != null ) {
+        		for (Ingredient ingredient : newProductOrder.getIngredients()) {
+                    if (!Connect.checkInvertoryIngredient(ingredient.getId(), ingredient.getQuantity())) {
+                        return false;
                     }
-                    if (ingredientsAvailable) {
-                        // Agregar un nuevo ProductOrder a la lista products de la variable order
-                        ProductOrder newProductOrder = new ProductOrder(cookedProduct.getId(),
-                                cookedProduct.getName(), cookedProduct.getValue(), quantity);
-                        order.getProducts().add(newProductOrder);
-                    }
-                    break;
                 }
-            }
+        		
+        		order.getProducts().add(newProductOrder);
+        		return true;
+        	}
         }
+        return false;
     }
 
     /**

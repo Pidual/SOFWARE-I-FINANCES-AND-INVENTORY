@@ -7,10 +7,12 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.sqlite.JDBC;
 
+import models.Ingredient;
 import models.ProductOrder;
 
 public class Connect {
@@ -116,8 +118,16 @@ public class Connect {
 	
 	public static ProductOrder getProductOrder(int id) {
 		ProductOrder productOrder = null;
+		ArrayList<Ingredient> ingredients = new ArrayList<>();
+		
 		String sql = "SELECT * FROM PRODUCTS WHERE ID_PRODUCTS ="+id;
+		String sqlIngredients = "SELECT i.ID_INGREDIENTS, i.NAME_INGREDIENS, ip.QUANTITY_INGREDIENT_PRODUCTS " +
+				"FROM INGREDIENTS i " +
+				"JOIN INGREDIENTS_PRODUCTS ip ON i.ID_INGREDIENTS = ip.ID_INGREDIENTS " +
+				"WHERE ip.ID_PRODUCTS ="+id;
+		
 		ResultSet resultSet = selectFromObject(sql);
+		ResultSet resultSetIngredients = selectFromObject(sqlIngredients);
 		
 		 try {
 			 
@@ -129,15 +139,36 @@ public class Connect {
 
 			     // Crear el objeto ProductOrder
 			     productOrder = new ProductOrder(productId, productName, productValue, 1);
-			     
-			     resultSet.close();
-			     connection.close();
+			    
 			 }
+			
+			while (resultSetIngredients.next()) {
+                int ingredientId = resultSetIngredients.getInt("ID_INGREDIENTS");
+                String ingredientName = resultSetIngredients.getString("NAME_INGREDIENS");
+                int ingredientQuantity = resultSetIngredients.getInt("QUANTITY_INGREDIENT_PRODUCTS");
+
+                Ingredient ingredient = new Ingredient(ingredientId, ingredientName, ingredientQuantity);
+                ingredients.add(ingredient);
+            }
+			
+			productOrder.setIngredients(ingredients);
+			
+			resultSetIngredients.close();
+			resultSet.close();
+		    connection.close();
+		    
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 		return productOrder;
 	}
-	
+
+	public static boolean checkInvertoryIngredient(int ingredientId, int quantity) {
+        // Construir la consulta 
+	   String query = "SELECT * FROM INGREDIENS_INVENTORY WHERE ID_INGREDIENTS = " + ingredientId +
+	                       " AND QUANTITY_INGREDIENTS_INVENTORY >= " + quantity;
+	      
+	   return selectFrom(query);
+	} 
 }

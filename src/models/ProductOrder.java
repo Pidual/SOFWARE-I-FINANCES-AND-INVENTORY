@@ -3,7 +3,7 @@ package models;
 public class ProductOrder extends Product {
 	
 	private int quantity;
-	
+	private TypeProduct type;
     
 
 	public ProductOrder(int id, String name, double value, int quantity2) {
@@ -23,13 +23,11 @@ public class ProductOrder extends Product {
     public double getValue() {
         return super.getValue();
     }
-
+    
 	@Override
 	public String toString() {
-		return "ProductOrder [quantity=" + quantity + ", getQuantity()=" + getQuantity() + ", getValue()=" + getValue()
-				+ "]";
+		return "ProductOrder [quantity=" + quantity + " " +super.toString() + "]";
 	}
-    
     
     
 }

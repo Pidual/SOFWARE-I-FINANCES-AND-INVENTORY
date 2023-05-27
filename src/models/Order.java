@@ -17,6 +17,7 @@ public class Order {
 
     public Order() {
         // TODO Auto-generated constructor stub
+    	this.products = new ArrayList<>();
     }
 
     public int getId() {
@@ -50,5 +51,12 @@ public class Order {
         }
         return totalValue;
     }
+
+	@Override
+	public String toString() {
+		return "Order [id=" + id + ", date=" + date + ", products=" + products.toString() + "]";
+	}
+    
+    
 }
 

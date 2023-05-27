@@ -60,12 +60,11 @@ public class Restaurant {
      * variable paymentDesk.
      * 
      * @param id       ID del producto a agregar.
-     * @param type     Tipo de operación (1: agregar desde packagedInventory, 2:
-     *                 agregar desde cookedProducts).
+     * @param type     Tipo de producto a agregar (1: envasado, 2: cocinado).
      * @param quantity Cantidad del producto a agregar.
      */
-    public void addProductOrder(int id, int type, int quantity) {
-        paymentDesk.addProductOrder(id, type, quantity);
+    public boolean addProductOrder(int id, int type, int quantity) {
+        return paymentDesk.addProductOrder(id, type, quantity);
     }
 
     /**
