@@ -3,6 +3,7 @@ package presenter;
 import models.User;
 import views.MainFrame;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -26,11 +27,11 @@ public class Presenter implements ActionListener{
             case "GESTIONAR_PRODUCTOS":
                     break;
             case "EXIT":
-//                JOptionPane JOptionPane = null;
-//                int opcion = JOptionPane.showConfirmDialog(null, "¿Deseas cerrar la aplicación?", "Confirmar cierre", JOptionPane.YES_NO_OPTION);
-//                if (opcion == JOptionPane.YES_OPTION) {
-//                    System.exit(0);
-//                }
+                JOptionPane JOptionPane = null;
+                int opcion = javax.swing.JOptionPane.showConfirmDialog(null, "¿Deseas cerrar la aplicación?", "Confirmar cierre", JOptionPane.YES_NO_OPTION);
+                if (opcion == javax.swing.JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                }
                 break;
             case "BUSCAR_PRODUCTO":
 
