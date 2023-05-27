@@ -18,7 +18,6 @@ public class Connect {
 	public static void connect() {
 		try {
 			connection = DriverManager.getConnection(url);
-			
 			if(connection != null) {
 			 System.out.println("Conectados");
 			}
@@ -27,13 +26,12 @@ public class Connect {
 		}
 	}
 	
-	private static bo	olean consult(String query) {
+	private static boolean consult(String query) {
 		try {	
     		// Crear un objeto PreparedStatement}
-		PreparedStatement pstmt = conn.prepareStatement(sql);
+		PreparedStatement pstmt = connection.prepareStatement(query);
 		pstmt.executeUpdate();    
             // Ejecutar la consulta
-         
          return true;
 	    } catch (SQLException e) {
 	        System.out.println(e.getMessage());
@@ -71,7 +69,6 @@ public class Connect {
 	
 	public static boolean ExpenseCreation (String category, String description, float value) {
 		connect();
-		
 		String sql = "INSERT INTO EXPENSE (ID_CATEGORY, DESCRIPTION, VALUE) VALUES ('"+category+"','"+
 				description+"','"+value+"')";
 
