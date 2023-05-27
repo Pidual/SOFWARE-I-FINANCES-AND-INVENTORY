@@ -7,8 +7,8 @@ import connect.Connect;
 public class PaymentDesk {
     private Order order;
     private ArrayList<Product> cookedProducts;
-    private Inventory<ProductOrder> packagedInventory;
-    private Inventory<Ingredient> ingredientInventory;
+//    private Inventory<ProductOrder> packagedInventory;
+//    private Inventory<Ingredient> ingredientInventory;
 
     /**
      * Constructor de la clase PaymentDesk.
@@ -16,8 +16,8 @@ public class PaymentDesk {
     public PaymentDesk() {
         order = new Order();
         cookedProducts = new ArrayList<>();
-        packagedInventory = new Inventory<>();
-        ingredientInventory = new Inventory<>();
+//        packagedInventory = new Inventory<>();
+//        ingredientInventory = new Inventory<>();
     }
 
     /**
@@ -114,19 +114,4 @@ public class PaymentDesk {
         this.cookedProducts = cookedProducts;
     }
 
-    public Inventory<ProductOrder> getPackagedInventory() {
-        return packagedInventory;
-    }
-
-    public void setPackagedInventory(Inventory<ProductOrder> packagedInventory) {
-        this.packagedInventory = packagedInventory;
-    }
-
-    public Inventory<Ingredient> getIngredientInventory() {
-        return ingredientInventory;
-    }
-
-    public void setIngredientInventory(Inventory<Ingredient> ingredientInventory) {
-        this.ingredientInventory = ingredientInventory;
-    }
 }

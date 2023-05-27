@@ -6,23 +6,21 @@ import java.util.Date;
 import connect.Connect;
 
 public class Restaurant {
-    private Order order;
     private PaymentDesk paymentDesk;
     private ArrayList<Product> products;
     private ArrayList<User> users;
-    private Inventory<Ingredient> ingredientInventory;
-    private Inventory<Product> packagedInventory;
+//    private Inventory<Ingredient> ingredientInventory;
+//    private Inventory<Product> packagedInventory;
 
     /**
      * Constructor de la clase Restaurant.
      */
     public Restaurant() {
-        order = new Order();
         paymentDesk = new PaymentDesk();
         products = new ArrayList<>();
         users = new ArrayList<>();
-        ingredientInventory = new Inventory<>();
-        packagedInventory = new Inventory<>();
+//        ingredientInventory = new Inventory<>();
+//        packagedInventory = new Inventory<>();
     }
 
     /**
@@ -157,11 +155,7 @@ public class Restaurant {
     // Getters y setters
 
     public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
+        return paymentDesk.getOrder();
     }
 
     public PaymentDesk getPaymentDesk() {
@@ -188,20 +182,6 @@ public class Restaurant {
         this.users = users;
     }
 
-    public Inventory<Ingredient> getIngredientInventory() {
-        return ingredientInventory;
-    }
-
-    public void setIngredientInventory(Inventory<Ingredient> ingredientInventory) {
-        this.ingredientInventory = ingredientInventory;
-    }
-
-    public Inventory<Product> getPackagedInventory() {
-        return packagedInventory;
-    }
-
-    public void setPackagedInventory(Inventory<Product> packagedInventory) {
-        this.packagedInventory = packagedInventory;
-    }
+    
 }
 
