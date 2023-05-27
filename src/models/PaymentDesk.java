@@ -86,10 +86,9 @@ public class PaymentDesk {
         ArrayList<ProductOrder> products = order.getProducts();
         if (products.isEmpty()) {
             return null;
+        }else {
+        	
         }
-
-        float totalValue = order.calculateValue();
-        boolean isPositive = totalValue >= 0;
 
         // Realizar operaciones adicionales según la lógica requerida
 

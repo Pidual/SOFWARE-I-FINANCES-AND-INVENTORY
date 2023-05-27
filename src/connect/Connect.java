@@ -31,7 +31,6 @@ public class Connect {
 		}
 	}
 	
-
 	private static boolean insertInto(String query) {
 		connect();
 		try {	
@@ -92,12 +91,51 @@ public class Connect {
             return selectFrom(query);
     }
 	
-
 	public static boolean ExpenseCreation (String category, String description, float value, Date date) {
 		String sql = "INSERT INTO EXPENSE (ID_CATEGORY, DESCRIPTION_EXPENSE, VALUE_EXPENSE, DATE_EXPENSE) VALUES ('"+category+"','"+
 				description+"','"+value+"','"+date+"')";
 
         return insertInto(sql);
+	}
+	
+	public static int getKeyInsert(String query) {
+		connect();
+		int ingredientId = 0;
+		ResultSet generatedKeys;
+		try {
+			
+			PreparedStatement ingredientStatement = connection.prepareStatement(query,
+	                PreparedStatement.RETURN_GENERATED_KEYS);
+			ingredientStatement.executeUpdate();
+			
+			generatedKeys = ingredientStatement.getGeneratedKeys();
+			
+	        if (generatedKeys.next()) {
+	            ingredientId = generatedKeys.getInt(1);
+	        } else {
+	            throw new SQLException("Failed to retrieve the generated ID for the ingredient");
+	        }
+	        
+	        generatedKeys.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return ingredientId;
+	}
+	
+	public static boolean createIngrediet(String name, int quantity) {
+		connect();
+		
+		String queryIngredient = "INSERT INTO INGREDIENTS (NAME_INGREDIENTS) VALUES ('" + name + "');";
+
+		int ingredientId = getKeyInsert(queryIngredient); 
+	        
+	    String queryIngredientInventory = "INSERT INTO INGREDIENS_INVENTORY (ID_INGREDIENTS,"
+	        		+ " QUANTITY_INGREDIENTS_INVENTORY) VALUES ("+ingredientId+", "+quantity+")";
+	        
+	    return insertInto(queryIngredientInventory);
 	}
 	
 	public static boolean checkInvertoryProduct(int productId, int quantity) {

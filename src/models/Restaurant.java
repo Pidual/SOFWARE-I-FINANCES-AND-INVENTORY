@@ -86,14 +86,13 @@ public class Restaurant {
     /**
      * Agrega un ingrediente al inventario de ingredientes.
      * 
-     * @param id       ID del ingrediente a agregar.
+     * ID del ingrediente se genera auto incremental en base de datos.
      * @param name     Nombre del ingrediente.
      * @param quantity Cantidad del ingrediente a agregar.
      */
-//    public void createIngredients(int id, String name, int quantity) {
-//        Ingredient ingredient = new Ingredient(id, name, quantity);
-//        ingredientInventory.createItem(ingredient);
-//    }
+    public boolean createIngredients( String name, int quantity) {
+    	return Connect.createIngrediet(name, quantity);
+    }
 
     /**
      * Resta una cantidad de un ingrediente del inventario de ingredientes.
