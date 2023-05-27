@@ -27,7 +27,7 @@ public class Connect {
 		}
 	}
 	
-	private static boolean consult(String query) {
+	private static bo	olean consult(String query) {
 		try {	
     		// Crear un objeto PreparedStatement}
 		PreparedStatement pstmt = conn.prepareStatement(sql);

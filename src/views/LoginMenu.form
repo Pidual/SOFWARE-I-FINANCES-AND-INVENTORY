@@ -92,6 +92,8 @@
           <gridbag weightx="1.0" weighty="1.0"/>
         </constraints>
         <properties>
+          <background color="-16777216"/>
+          <foreground color="-131587"/>
           <text value="AYUDA (?)"/>
         </properties>
       </component>
@@ -102,6 +104,8 @@
         </constraints>
         <properties>
           <actionCommand value="INGRESAR"/>
+          <background color="-16777216"/>
+          <foreground color="-131587"/>
           <text value="INGRESAR"/>
         </properties>
       </component>
