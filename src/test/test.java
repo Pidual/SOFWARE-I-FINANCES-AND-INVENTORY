@@ -12,8 +12,9 @@ public class test {
 		System.out.println(new Date());
 		Restaurant restaurant = new Restaurant();
 		
-		System.out.println( restaurant.login("cesarc", "12345678"));
-		System.out.println( Category.valueOf("SALARY").getCategoryName());
-		System.out.println( restaurant.payExpense(Category.valueOf("SALARY"),"Salario Gerente",(float) 1200000));
+//		System.out.println( restaurant.login("cesarc", "12345678"));
+//		System.out.println( Category.valueOf("SALARY").getCategoryName());
+//		System.out.println( restaurant.payExpense(Category.valueOf("SALARY"),"Salario Gerente",(float) 1200000));
+		System.out.println(Connect.getProductOrder(6));
 	}
 }

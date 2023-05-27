@@ -2,6 +2,8 @@ package models;
 
 import java.util.ArrayList;
 
+import connect.Connect;
+
 public class PaymentDesk {
     private Order order;
     private ArrayList<Product> cookedProducts;
@@ -29,23 +31,20 @@ public class PaymentDesk {
      * Agrega un objeto ProductOrder a la lista products de la variable order.
      * 
      * @param id       ID del producto a agregar.
-     * @param type     Tipo de operación (1: agregar desde packagedInventory, 2: agregar desde cookedProducts).
+     * @param type     Tipo de operación (1: agregar envasado, 2: agregar desde cookedProducts).
      * @param quantity Cantidad del producto a agregar.
      */
     public void addProductOrder(int id, int type, int quantity) {
         if (type == 1) {
-            // Consultar un producto del packagedInventory
-            ArrayList<ProductOrder> packagedItems = packagedInventory.getItems();
-            for (ProductOrder packagedItem : packagedItems) {
-                if (packagedItem.getId() == id && packagedItem.getQuantity() >= quantity) {
-                    // Agregar un nuevo ProductOrder a la lista products de la variable order
-                    ProductOrder newProductOrder = new ProductOrder(packagedItem.getId(), packagedItem.getName(), 
-                    		packagedItem.getValue(),quantity);
-                    order.getProducts().add(newProductOrder);
-                    break;
-                }
-            }
+        	if(Connect.checkInvertoryProduct(6,1)) {
+//        		Connect.updateInventoryProducts(id, -1*quantity);
+        		ProductOrder newProductOrder = Connect.getProductOrder(id);
+        		newProductOrder.setQuantity(quantity);
+        		order.getProducts().add(newProductOrder);
+        	}
         } else if (type == 2) {
+        	
+        	
             // Buscar un producto en cookedProducts
             for (Product cookedProduct : cookedProducts) {
                 if (cookedProduct.getId() == id) {

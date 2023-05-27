@@ -5,14 +5,11 @@ import java.util.ArrayList;
 public class Product {
     private int id;
     private String name;
-    private Long value;
+    private double value;
     private ArrayList<Ingredient> ingredients;
 
-    public Product(int id2, int type) {
-		// TODO Auto-generated constructor stub
-	}
 
-	public Product(int id, String name, Long value) {
+	public Product(int id, String name, double value) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -39,7 +36,7 @@ public class Product {
         this.value = value;
     }
 
-    public Long getValue() {
+    public double getValue() {
         return value;
     }
 
@@ -75,6 +72,15 @@ public class Product {
 
 	public void setIngredients(ArrayList<Ingredient> ingredients) {
 		this.ingredients = ingredients;
+	}
+
+
+
+
+
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", value=" + value + ", ingredients=" + ingredients + "]";
 	}
     
     

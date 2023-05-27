@@ -6,7 +6,7 @@ public class ProductOrder extends Product {
 	
     
 
-	public ProductOrder(int id, String name, Long value, int quantity2) {
+	public ProductOrder(int id, String name, double value, int quantity2) {
 		// TODO Auto-generated constructor stub
 		super(id,name,value);
 		this.quantity = quantity2;
@@ -20,8 +20,17 @@ public class ProductOrder extends Product {
         this.quantity = quantity;
     }
     
-    public Long getValue() {
+    public double getValue() {
         return super.getValue();
     }
+
+	@Override
+	public String toString() {
+		return "ProductOrder [quantity=" + quantity + ", getQuantity()=" + getQuantity() + ", getValue()=" + getValue()
+				+ "]";
+	}
+    
+    
+    
 }
 

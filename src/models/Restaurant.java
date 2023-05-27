@@ -52,7 +52,7 @@ public class Restaurant {
      * @param value       Valor del gasto.
      */
     public boolean payExpense(Category category, String description, Float value) {
-        return Connect.ExpenseCreation(category.getCategoryName(), description, value);
+        return Connect.ExpenseCreation(category.getCategoryName(), description, value, new Date());
     }
 
     /**
