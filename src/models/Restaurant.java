@@ -90,10 +90,10 @@ public class Restaurant {
      * @param name     Nombre del ingrediente.
      * @param quantity Cantidad del ingrediente a agregar.
      */
-    public void createIngredients(int id, String name, int quantity) {
-        Ingredient ingredient = new Ingredient(id, name, quantity);
-        ingredientInventory.createItem(ingredient);
-    }
+//    public void createIngredients(int id, String name, int quantity) {
+//        Ingredient ingredient = new Ingredient(id, name, quantity);
+//        ingredientInventory.createItem(ingredient);
+//    }
 
     /**
      * Resta una cantidad de un ingrediente del inventario de ingredientes.
@@ -101,9 +101,9 @@ public class Restaurant {
      * @param id       ID del ingrediente.
      * @param quantity Cantidad a restar del ingrediente.
      */
-    public void subtractQuantityIngredients(int id, int quantity) {
-        ingredientInventory.subtractQuantity(id, quantity);
-    }
+//    public void subtractQuantityIngredients(int id, int quantity) {
+//        ingredientInventory.subtractQuantity(id, quantity);
+//    }
 
     /**
      * Agrega una cantidad a un ingrediente del inventario de ingredientes.
@@ -111,9 +111,9 @@ public class Restaurant {
      * @param id       ID del ingrediente.
      * @param quantity Cantidad a agregar al ingrediente.
      */
-    public void addQuantityIngredients(int id, int quantity) {
-        ingredientInventory.addQuantity(id, quantity);
-    }
+//    public void addQuantityIngredients(int id, int quantity) {
+//        ingredientInventory.addQuantity(id, quantity);
+//    }
 
     /**
      * Genera un informe de ventas y cálculo de diferencia entre profit y expenses en

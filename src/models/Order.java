@@ -18,6 +18,7 @@ public class Order {
     public Order() {
         // TODO Auto-generated constructor stub
     	this.products = new ArrayList<>();
+    	this.date = new Date();
     }
 
     public int getId() {
