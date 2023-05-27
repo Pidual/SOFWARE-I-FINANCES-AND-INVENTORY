@@ -21,7 +21,6 @@ public class Connect {
 	public static void connect() {
 		try {
 			connection = DriverManager.getConnection(url);
-			
 			if(connection != null) {
 			 System.out.println("Conectados");
 			}
@@ -30,12 +29,14 @@ public class Connect {
 		}
 	}
 	
+
 	private static boolean insertInto(String query) {
 		connect();
 		try {	
 			PreparedStatement pstmt = connection.prepareStatement(query);
             pstmt.executeUpdate();
             return true;
+
 	    } catch (SQLException e) {
 	        System.out.println(e.getMessage());
 	        return false;
@@ -89,6 +90,7 @@ public class Connect {
             return selectFrom(query);
     }
 	
+
 	public static boolean ExpenseCreation (String category, String description, float value, Date date) {
 		String sql = "INSERT INTO EXPENSE (ID_CATEGORY, DESCRIPTION_EXPENSE, VALUE_EXPENSE, DATE_EXPENSE) VALUES ('"+category+"','"+
 				description+"','"+value+"','"+date+"')";
