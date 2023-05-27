@@ -1,13 +1,17 @@
 package views;
 
 import javax.swing.*;
+import java.awt.event.ActionListener;
 
 public class AddProductPanel {
+    private JTextField ESOTILINTextField;
+    private JPanel searchProductPanel;
 
+    public AddProductPanel(ActionListener presenterListener) {
 
-    private JPanel addProductPanel;
+    }
 
-    public JPanel getAddProductPanel() {
-        return addProductPanel;
+    public JPanel getSearchProductPanel() {
+        return searchProductPanel;
     }
 }

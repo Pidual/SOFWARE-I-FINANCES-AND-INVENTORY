@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="views.MainMenu">
-  <grid id="27dc6" binding="mainMenu" layout-manager="GridLayoutManager" row-count="6" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="mainMenu" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
       <xy x="20" y="20" width="577" height="400"/>
     </constraints>
     <properties>
-      <background color="-4671592"/>
+      <background color="-2565928"/>
     </properties>
     <border type="none"/>
     <children>
@@ -24,67 +24,69 @@
           <horizontalAlignment value="0"/>
           <horizontalTextPosition value="0"/>
           <opaque value="true"/>
-          <text value="Menu Principal"/>
+          <text value="Bienvenido Usuario"/>
         </properties>
       </component>
-      <component id="85300" class="javax.swing.JButton" binding="GESTIONARPRODUCTOSButton" default-binding="true">
+      <grid id="63360" binding="dummyPanel" layout-manager="CardLayout" hgap="0" vgap="0">
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="4" hsize-policy="3" anchor="0" fill="1" indent="1" use-parent-layout="false">
-            <preferred-size width="106" height="53"/>
-          </grid>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <background color="-1383754"/>
-          <focusPainted value="false"/>
-          <foreground color="-16777216"/>
-          <text value="&lt;html&gt;GESTIONAR&lt;br/&gt;PRODUCTOS&lt;/html&gt;"/>
+          <background color="-2565928"/>
         </properties>
-      </component>
-      <grid id="63360" binding="subMenus" layout-manager="CardLayout" hgap="0" vgap="0">
-        <constraints>
-          <grid row="1" column="1" row-span="5" col-span="1" vsize-policy="3" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties/>
         <border type="none"/>
         <children/>
       </grid>
-      <component id="aa905" class="javax.swing.JButton" binding="SALIRButton" default-binding="true">
+      <grid id="54372" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="1" use-parent-layout="false">
-            <preferred-size width="78" height="33"/>
-          </grid>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <background color="-1383754"/>
-          <focusPainted value="false"/>
-          <foreground color="-16777216"/>
-          <text value="SALIR"/>
+          <background color="-4671592"/>
         </properties>
-      </component>
-      <component id="3df72" class="javax.swing.JButton" binding="AGREGARPRODUCTOButton" default-binding="true">
-        <constraints>
-          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="4" hsize-policy="3" anchor="0" fill="1" indent="1" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-1383754"/>
-          <focusPainted value="false"/>
-          <foreground color="-16777216"/>
-          <margin top="0" left="0" bottom="0" right="0"/>
-          <text value="&lt;html&gt;AGREGAR&lt;br/&gt;PRODUCTO&lt;/html&gt;"/>
-        </properties>
-      </component>
-      <vspacer id="b2537">
-        <constraints>
-          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-        </constraints>
-      </vspacer>
-      <vspacer id="59693">
-        <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
-            <preferred-size width="11" height="63"/>
-          </grid>
-        </constraints>
-      </vspacer>
+        <border type="none"/>
+        <children>
+          <component id="85300" class="javax.swing.JButton" binding="gestionarProductosButton" default-binding="true">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="4" hsize-policy="3" anchor="0" fill="1" indent="1" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-1383754"/>
+              <focusPainted value="false"/>
+              <foreground color="-16777216"/>
+              <text value="&lt;html&gt;GESTIONAR/BUSCAR&lt;br/&gt;PRODUCTOS&lt;/html&gt;"/>
+            </properties>
+          </component>
+          <component id="3df72" class="javax.swing.JButton" binding="agregarProductosButton" default-binding="true">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="4" hsize-policy="3" anchor="0" fill="1" indent="1" use-parent-layout="false">
+                <preferred-size width="117" height="38"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-1383754"/>
+              <focusPainted value="false"/>
+              <foreground color="-16777216"/>
+              <margin top="0" left="0" bottom="0" right="0"/>
+              <text value="&lt;html&gt;AGREGAR&lt;br/&gt;PRODUCTO&lt;/html&gt;"/>
+            </properties>
+          </component>
+          <component id="aa905" class="javax.swing.JButton" binding="exitButton">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="1" use-parent-layout="false">
+                <preferred-size width="117" height="33"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-1383754"/>
+              <focusPainted value="false"/>
+              <foreground color="-16777216"/>
+              <text value="SALIR"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
     </children>
   </grid>
 </form>
