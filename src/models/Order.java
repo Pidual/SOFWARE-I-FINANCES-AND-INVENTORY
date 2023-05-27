@@ -6,6 +6,7 @@ import java.util.Date;
 public class Order {
     private int id;
     private Date date;
+
     private ArrayList<ProductOrder> products;
 
     public Order(int id, Date date, ArrayList<ProductOrder> products) {
@@ -15,10 +16,10 @@ public class Order {
     }
 
     public Order() {
-		// TODO Auto-generated constructor stub
-	}
+        // TODO Auto-generated constructor stub
+    }
 
-	public int getId() {
+    public int getId() {
         return id;
     }
 

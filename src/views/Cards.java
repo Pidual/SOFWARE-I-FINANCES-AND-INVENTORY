@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class Cards extends JPanel {
-    private MainFrame mainMenu;
+    private MainMenu mainMenu;
     private LoginMenu loginMenu;
     private CardLayout cardLayout;
 
@@ -15,10 +15,10 @@ public class Cards extends JPanel {
     private void initComponents(ActionListener presenterListener) {
         cardLayout = new CardLayout();
         this.setLayout(cardLayout); //Card Layout
-        mainMenu = new MainFrame();
+        mainMenu = new MainMenu(presenterListener);
         loginMenu = new LoginMenu(presenterListener);
         add(loginMenu.getLoginMenu(), "loginMenu");
-        add(mainMenu, "mainMenu");
+        add(mainMenu.getMainMenu(), "mainMenu");
         cardLayout.show(this, "loginMenu");
     }
 
@@ -31,14 +31,10 @@ public class Cards extends JPanel {
     }
 
     public void changePanel(String panel) {
+        System.out.println("camvbinado panelelelelel");
         switch (panel) {
-
-            case "mainMenu":
-                cardLayout.show(this, "mainMenu");
-                break;
-            case "loginMenu":
-                cardLayout.show(this, "loginMenu");
-                break;
+            case "mainMenu" -> cardLayout.show(this, "mainMenu");
+            case "loginMenu" -> cardLayout.show(this, "loginMenu");
         }
     }
 }
