@@ -12,7 +12,8 @@ public class Presenter implements ActionListener{
     private User user;
     private GUI gui;
     public Presenter(){
-        user = new User("carlos","123");
+    	
+        user = new User("carlos","carlos","123");
         gui = new GUI(this);
     }
 

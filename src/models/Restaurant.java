@@ -3,6 +3,8 @@ package models;
 import java.util.ArrayList;
 import java.util.Date;
 
+import connect.Connect;
+
 public class Restaurant {
     private Order order;
     private PaymentDesk paymentDesk;
@@ -31,12 +33,7 @@ public class Restaurant {
      * @return true si las credenciales son válidas, false de lo contrario.
      */
     public boolean login(String user, String password) {
-        for (User u : users) {
-            if (u.getUser().equals(user) && u.getPassword().equals(password)) {
-                return true;
-            }
-        }
-        return false;
+    	return Connect.verifyUser(user, password);
     }
 
     /**
@@ -47,17 +44,15 @@ public class Restaurant {
     }
 
     /**
-     * Realiza el pago de un gasto creando un nuevo objeto Expense y agregándole la
+     * Realiza el pago de un gasto creando un nuevo registro en la base de datos y agregándole la
      * fecha actual.
      * 
      * @param category    Categoría del gasto.
      * @param description Descripción del gasto.
      * @param value       Valor del gasto.
      */
-    public void payExpense(Category category, String description, Long value) {
-        Expense expense = new Expense(category, description, value);
-        expense.setDate(new Date());
-        // Realizar operaciones adicionales según la lógica requerida
+    public boolean payExpense(Category category, String description, Float value) {
+        return Connect.ExpenseCreation(category.getCategoryName(), description, value);
     }
 
     /**

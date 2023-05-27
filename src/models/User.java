@@ -4,13 +4,11 @@ public class User {
     private String user;
     private String name;
     private String password;
-    private Rol rol;
     
-    public User(String user, String name, String password, Rol rol) {
+    public User(String user, String name, String password) {
         this.user = user;
         this.name = name;
         this.password = password;
-        this.rol = rol;
     }
     
     public String getUser() {
@@ -37,12 +35,5 @@ public class User {
         this.password = password;
     }
     
-    public Rol getRol() {
-        return rol;
-    }
-    
-    public void setRol(Rol rol) {
-        this.rol = rol;
-    }
 }
 
