@@ -99,10 +99,11 @@ public class Restaurant {
      * 
      * @param id       ID del ingrediente.
      * @param quantity Cantidad a restar del ingrediente.
+     * Se multiplica quantity por -1 para realizar una resta en @meted updateInventoryIngredients()
      */
-//    public void subtractQuantityIngredients(int id, int quantity) {
-//        ingredientInventory.subtractQuantity(id, quantity);
-//    }
+    public void subtractQuantityIngredients(int id, int quantity) {
+        Connect.updateInventoryIngredients(id, -1*quantity);
+    }
 
     /**
      * Agrega una cantidad a un ingrediente del inventario de ingredientes.
@@ -110,9 +111,9 @@ public class Restaurant {
      * @param id       ID del ingrediente.
      * @param quantity Cantidad a agregar al ingrediente.
      */
-//    public void addQuantityIngredients(int id, int quantity) {
-//        ingredientInventory.addQuantity(id, quantity);
-//    }
+    public void addQuantityIngredients(int id, int quantity) {
+    	Connect.updateInventoryIngredients(id,quantity);
+    }
 
     /**
      * Genera un informe de ventas y cálculo de diferencia entre profit y expenses en

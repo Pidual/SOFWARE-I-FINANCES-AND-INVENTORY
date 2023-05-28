@@ -154,6 +154,14 @@ public class Connect {
 		return insertInto(sql);
 	}
 	
+	public static boolean updateInventoryIngredients(int ingredientId, int quantity) {
+		String sql = "UPDATE INGREDIENS_INVENTORY SET QUANTITY_INGREDIENTS_INVENTORY = QUANTITY_INGREDIENTS_INVENTORY + "
+				+quantity
+				+ " WHERE ID_INGREDIENTS =" + ingredientId;
+				
+		return insertInto(sql);
+	}
+	
 	public static ProductOrder getProductOrder(int id) {
 		ProductOrder productOrder = null;
 		ArrayList<Ingredient> ingredients = new ArrayList<>();
