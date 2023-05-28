@@ -189,7 +189,7 @@ public class Connect {
 		ArrayList<Ingredient> ingredients = new ArrayList<>();
 		
 		String sql = "SELECT * FROM PRODUCTS WHERE ID_PRODUCTS ="+id;
-		String sqlIngredients = "SELECT i.ID_INGREDIENTS, i.NAME_INGREDIENS, ip.QUANTITY_INGREDIENT_PRODUCTS " +
+		String sqlIngredients = "SELECT i.ID_INGREDIENTS, i.NAME_INGREDIENTS, ip.QUANTITY_INGREDIENT_PRODUCTS " +
 				"FROM INGREDIENTS i " +
 				"JOIN INGREDIENTS_PRODUCTS ip ON i.ID_INGREDIENTS = ip.ID_INGREDIENTS " +
 				"WHERE ip.ID_PRODUCTS ="+id;
