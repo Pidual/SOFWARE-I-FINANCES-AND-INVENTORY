@@ -5,3 +5,8 @@ out/production/SOFWARE-I-FINANCES-AND-INVENTORY/com/intellij/uiDesigner/core/Abs
 out/production/SOFWARE-I-FINANCES-AND-INVENTORY/com/intellij/uiDesigner/core/DimensionInfo.class
 out/production/SOFWARE-I-FINANCES-AND-INVENTORY/com/intellij/uiDesigner/core/GridLayoutManager.class
 out/production/SOFWARE-I-FINANCES-AND-INVENTORY/com/intellij/uiDesigner/core/HorizontalInfo.class
+lib/sqlite-jdbc-3.8.11.2.jar
+*.class
+*.jar
+*.db-journal
+*.db

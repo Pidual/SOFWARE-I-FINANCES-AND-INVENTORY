@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import connect.Connect;
+import models.User;
 
 public class Restaurant {
     private PaymentDesk paymentDesk;
     private ArrayList<Product> products;
     private ArrayList<User> users;
+
 //    private Inventory<Ingredient> ingredientInventory;
 //    private Inventory<Product> packagedInventory;
 
