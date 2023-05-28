@@ -125,6 +125,26 @@ public class Connect {
 		return ingredientId;
 	}
 	
+	public static double calculateTotalSales(Date dateInit, Date dateEnd) {
+		// Crear una sentencia SQL para obtener la suma de los valores totales
+        String querySumSales = "SELECT SUM(VALUE_PRODUCT_SALES * QUANTITY_PRODUCT_SALES) AS TOTAL_SALES "
+                   + " FROM PRODUCTS_SALES "
+                   + " JOIN SALES ON PRODUCTS_SALES.ID_SALES = SALES.ID_SALES "
+                   + " WHERE DATE_SALES >= '"+dateInit+"' AND DATE_SALES < '"+dateEnd+"'";
+
+        
+        try (ResultSet resultSet = selectFromObject(querySumSales)) {
+        	System.out.print(resultSet.next());
+            if (resultSet.next()) {
+                return resultSet.getDouble("TOTAL_SALES");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return 0;
+	}
+	
 	public static boolean createIngrediet(String name, int quantity) {
 		connect();
 		
