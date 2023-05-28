@@ -4,13 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Order {
-    private int id;
     private Date date;
-
     private ArrayList<ProductOrder> products;
 
-    public Order(int id, Date date, ArrayList<ProductOrder> products) {
-        this.id = id;
+    public Order(Date date, ArrayList<ProductOrder> products) {
         this.date = date;
         this.products = products;
     }
@@ -19,14 +16,6 @@ public class Order {
         // TODO Auto-generated constructor stub
     	this.products = new ArrayList<>();
     	this.date = new Date();
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public Date getDate() {
@@ -55,7 +44,7 @@ public class Order {
 
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", date=" + date + ", products=" + products.toString() + "]";
+		return "Order [ date=" + date + ", products=" + products.toString() + "]";
 	}
     
     

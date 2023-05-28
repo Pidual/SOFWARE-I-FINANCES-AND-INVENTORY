@@ -16,15 +16,9 @@ public class test {
 //		System.out.println( restaurant.login("cesarc", "12345678"));
 //		System.out.println( Category.valueOf("SALARY").getCategoryName());
 //		System.out.println( restaurant.payExpense(Category.valueOf("SALARY"),"Salario Gerente",(float) 1200000));
-		System.out.println(Connect.getProductOrder(6));
-//		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-//        try {
-//            Date dateInit = dateFormat.parse("01-02-2023");
-//            Date dateEnd = new Date();
-//
-//            System.out.println(dateInit+" "+Connect.calculateTotalSales(dateInit, dateEnd)+dateEnd);
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
+//		System.out.println(Connect.getProductOrder(6));
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        System.out.println(restaurant.addProductOrder(3, 2, 2));
+        System.out.println(restaurant.payOrder());
 	}
 }

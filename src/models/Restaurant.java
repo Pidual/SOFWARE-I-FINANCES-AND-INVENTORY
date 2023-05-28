@@ -63,8 +63,8 @@ public class Restaurant {
      * @param type     Tipo de producto a agregar (1: envasado, 2: cocinado).
      * @param quantity Cantidad del producto a agregar.
      */
-    public boolean addProductOrder(int id, int type, int quantity) {
-        return paymentDesk.addProductOrder(id, type, quantity);
+    public boolean addProductOrder(int idProduct, int type, int quantity) {
+        return paymentDesk.addProductOrder(idProduct, type, quantity);
     }
 
     /**
@@ -81,8 +81,8 @@ public class Restaurant {
      * Realiza el pago del pedido utilizando el método payOrder() de la variable
      * paymentDesk.
      */
-    public void payOrder() {
-        paymentDesk.payOrder();
+    public boolean payOrder() {
+        return paymentDesk.payOrder();
     }
 
     /**
@@ -124,10 +124,11 @@ public class Restaurant {
      * @param dateInit Fecha inicial del período.
      * @param dateEnd  Fecha final del período.
      */
-    public void totalReport(Date dateInit, Date dateEnd) {
-        Report report = new Report(dateInit, dateEnd);
-        float difference = report.calculateDifference();
+    public double totalReport(Date dateInit, Date dateEnd) {
+        double profit = Connect.calculateTotalSales(dateInit, dateEnd);
+        double expenses = Connect.calculateTotalExpenses(dateInit, dateEnd);
         // Realizar operaciones adicionales según la lógica requerida
+        return profit - expenses;
     }
 
     /**
@@ -136,9 +137,8 @@ public class Restaurant {
      * @param dateInit Fecha inicial del período.
      * @param dateEnd  Fecha final del período.
      */
-    public Long salesReport(Date dateInit, Date dateEnd) {
-        Report report = new Report(dateInit, dateEnd);
-        return report.getProfit();
+    public double salesReport(Date dateInit, Date dateEnd) {
+        return Connect.calculateTotalSales(dateInit, dateEnd);
         // Realizar operaciones adicionales según la lógica requerida
     }
 
@@ -148,9 +148,8 @@ public class Restaurant {
      * @param dateInit Fecha inicial del período.
      * @param dateEnd  Fecha final del período.
      */
-    public Long costReport(Date dateInit, Date dateEnd) {
-        Report report = new Report(dateInit, dateEnd);
-        return report.getExpenses();
+    public Double costReport(Date dateInit, Date dateEnd) {
+        return Connect.calculateTotalExpenses(dateInit, dateEnd);
         // Realizar operaciones adicionales según la lógica requerida
     }
 

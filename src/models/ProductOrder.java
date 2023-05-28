@@ -24,6 +24,14 @@ public class ProductOrder extends Product {
         return super.getValue();
     }
     
+	public TypeProduct getType() {
+		return type;
+	}
+
+	public void setType(TypeProduct type) {
+		this.type = type;
+	}
+
 	@Override
 	public String toString() {
 		return "ProductOrder [quantity=" + quantity + " " +super.toString() + "]";

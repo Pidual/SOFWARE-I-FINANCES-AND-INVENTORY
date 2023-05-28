@@ -1,14 +1,13 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import connect.Connect;
 
 public class PaymentDesk {
     private Order order;
     private ArrayList<Product> cookedProducts;
-//    private Inventory<ProductOrder> packagedInventory;
-//    private Inventory<Ingredient> ingredientInventory;
 
     /**
      * Constructor de la clase PaymentDesk.
@@ -16,8 +15,6 @@ public class PaymentDesk {
     public PaymentDesk() {
         order = new Order();
         cookedProducts = new ArrayList<>();
-//        packagedInventory = new Inventory<>();
-//        ingredientInventory = new Inventory<>();
     }
 
     /**
@@ -38,7 +35,6 @@ public class PaymentDesk {
         if (type == 1) {
         	//Si es envasado consulta disponibilidad en inventario de productos
         	if(Connect.checkInvertoryProduct(id,quantity)) {
-//        		Connect.updateInventoryProducts(id, -1*quantity);
         		ProductOrder newProductOrder = Connect.getProductOrder(id);
         		newProductOrder.setQuantity(quantity);
         		order.getProducts().add(newProductOrder);
@@ -49,8 +45,8 @@ public class PaymentDesk {
         	ProductOrder newProductOrder = Connect.getProductOrder(id);
         	if(newProductOrder != null ) {
         		for (Ingredient ingredient : newProductOrder.getIngredients()) {
-                    if (!Connect.checkInvertoryIngredient(ingredient.getId(), ingredient.getQuantity())) {
-                        return false;
+        			if (!Connect.checkInvertoryIngredient(ingredient.getId(), ingredient.getQuantity())) {
+                    	return false;
                     }
                 }
         		
@@ -62,7 +58,7 @@ public class PaymentDesk {
     }
 
     /**
-     * Elimina un objeto ProductOrder de la lista products de la variable order que
+     * Elimina un ProductOrder de la lista products de la variable order que
      * tenga el ID especificado.
      * 
      * @param id ID del producto a eliminar.
@@ -82,17 +78,26 @@ public class PaymentDesk {
      * 
      * @return Objeto Order correspondiente al pago realizado.
      */
-    public Order payOrder() {
+    public boolean payOrder() {
         ArrayList<ProductOrder> products = order.getProducts();
         if (products.isEmpty()) {
-            return null;
+            return false;
         }else {
-        	
+        	for (ProductOrder product : products) {
+        	    // Accede a los atributos del objeto ProductOrder
+        	    int id = product.getId();
+        	    String name = product.getName();
+        	    double value = product.getValue();
+        	    int quantity = product.getQuantity();
+        	    
+        	    if(product.getType()== TypeProduct.COCINADO) {
+            		Connect.updateInventoryProducts(id, -1*quantity);
+        	    }
+        	    return Connect.insertIntoSales(new Date(), id, value, quantity);
+        	}
         }
 
-        // Realizar operaciones adicionales según la lógica requerida
-
-        return order;
+        return false;
     }
 
     // Getters y setters

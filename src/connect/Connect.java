@@ -21,13 +21,11 @@ public class Connect {
 	
 	static String url ="jdbc:sqlite:src/connect/database/database.db";
 	static Connection connection;
+	static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	public static void connect() {
 		try {
 			connection = DriverManager.getConnection(url);
-			if(connection != null) {
-			 System.out.println("Conectados");
-			}
 		}catch( SQLException x) {
 			System.out.println(x);
 		}
@@ -95,7 +93,7 @@ public class Connect {
 	
 	public static boolean ExpenseCreation (String category, String description, float value, Date date) {
 		String sql = "INSERT INTO EXPENSE (ID_CATEGORY, DESCRIPTION_EXPENSE, VALUE_EXPENSE, DATE_EXPENSE) VALUES ('"+category+"','"+
-				description+"','"+value+"','"+date+"')";
+				description+"','"+value+"','"+dateFormat.format(date)+"')";
 
         return insertInto(sql);
 	}
@@ -128,12 +126,11 @@ public class Connect {
 	}
 	
 	public static double calculateTotalSales(Date dateInit, Date dateEnd) {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		// Crear una sentencia SQL para obtener la suma de los valores totales
         String querySumSales = "SELECT SUM(VALUE_PRODUCT_SALES * QUANTITY_PRODUCT_SALES) AS TOTAL_SALES "
                    + " FROM PRODUCTS_SALES "
                    + " JOIN SALES ON PRODUCTS_SALES.ID_SALES = SALES.ID_SALES "
-                   + " WHERE DATE_SALES >= '"+dateFormat.format(dateInit)+"' AND DATE_SALES < '"+dateFormat.format(dateEnd)+"'";
+                   + " WHERE DATE_SALES >= '"+dateFormat.format(dateInit)+"' AND DATE_SALES <= '"+dateFormat.format(dateEnd)+"'";
 
         
         try (ResultSet resultSet = selectFromObject(querySumSales)) {
@@ -212,7 +209,7 @@ public class Connect {
 			
 			while (resultSetIngredients.next()) {
                 int ingredientId = resultSetIngredients.getInt("ID_INGREDIENTS");
-                String ingredientName = resultSetIngredients.getString("NAME_INGREDIENS");
+                String ingredientName = resultSetIngredients.getString("NAME_INGREDIENTS");
                 int ingredientQuantity = resultSetIngredients.getInt("QUANTITY_INGREDIENT_PRODUCTS");
 
                 Ingredient ingredient = new Ingredient(ingredientId, ingredientName, ingredientQuantity);
@@ -238,5 +235,35 @@ public class Connect {
 	                       " AND QUANTITY_INGREDIENTS_INVENTORY >= " + quantity;
 	      
 	   return selectFrom(query);
+	}
+
+	
+	public static double calculateTotalExpenses(Date dateInit, Date dateEnd) {
+		// Crear una sentencia SQL para obtener la suma de los valores totales
+        String querySum = "SELECT SUM(VALUE_EXPENSE) AS TOTAL_SALES "
+                   + " FROM EXPENSE "
+                   + " WHERE DATE_EXPENSE >= '"+dateFormat.format(dateInit)+"' AND DATE_EXPENSE <= '"+dateFormat.format(dateEnd)+"'";
+
+        System.out.println(querySum);
+        try (ResultSet resultSet = selectFromObject(querySum)) {
+            if (resultSet.next()) {
+                return resultSet.getDouble("TOTAL_SALES");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return 0;
 	} 
+
+	public static boolean insertIntoSales(Date date,int idProduct, double valueProduct, int quantity) {
+		String insertSalesQuery = "INSERT INTO SALES (DATE_SALES) VALUES ('"+dateFormat.format(date)+"')";
+		
+		int keySale = getKeyInsert(insertSalesQuery);
+		
+		String insertProductsSalesQuery = "INSERT INTO PRODUCTS_SALES (ID_PRODUCTS, ID_SALES, VALUE_PRODUCT_SALES,"
+				+ " QUANTITY_PRODUCT_SALES) VALUES ("+idProduct+", "+keySale+", "+valueProduct+", "+quantity+")";
+		System.out.println(insertProductsSalesQuery);
+		return insertInto(insertProductsSalesQuery);
+	}
 }

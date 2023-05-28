@@ -71,8 +71,9 @@ public class Product {
 	}
 
 
-
-
+	public void setValue(double value) {
+		this.value = value;
+	}
 
 	@Override
 	public String toString() {
