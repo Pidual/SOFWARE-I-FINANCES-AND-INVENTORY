@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -126,15 +128,15 @@ public class Connect {
 	}
 	
 	public static double calculateTotalSales(Date dateInit, Date dateEnd) {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		// Crear una sentencia SQL para obtener la suma de los valores totales
         String querySumSales = "SELECT SUM(VALUE_PRODUCT_SALES * QUANTITY_PRODUCT_SALES) AS TOTAL_SALES "
                    + " FROM PRODUCTS_SALES "
                    + " JOIN SALES ON PRODUCTS_SALES.ID_SALES = SALES.ID_SALES "
-                   + " WHERE DATE_SALES >= '"+dateInit+"' AND DATE_SALES < '"+dateEnd+"'";
+                   + " WHERE DATE_SALES >= '"+dateFormat.format(dateInit)+"' AND DATE_SALES < '"+dateFormat.format(dateEnd)+"'";
 
         
         try (ResultSet resultSet = selectFromObject(querySumSales)) {
-        	System.out.print(resultSet.next());
             if (resultSet.next()) {
                 return resultSet.getDouble("TOTAL_SALES");
             }
