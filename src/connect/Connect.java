@@ -267,4 +267,32 @@ public class Connect {
 		System.out.println(insertProductsSalesQuery);
 		return insertInto(insertProductsSalesQuery);
 	}
+
+	
+	public static boolean insertUser(String name, String user, String password) {
+		String query = "INSERT INTO USER (ID_USER, NAME_USER, PASSWORD_USER) VALUES ('"+user+"', "+name+", '"+password+"')";
+
+		return insertInto(query);
+	}
+
+	
+	public static boolean insertProduct( int typeProduct, String nameProduct, float valueProduct,
+			ArrayList<Ingredient> ingredients) {
+		String query = "INSERT INTO PRODUCTS ( ID_TYPE_PRODUCT, NAME_PRODUCTS, VALUE_PRODUCTS) VALUES ("+typeProduct+", '"+nameProduct+"', "+valueProduct+")";
+		
+		int keyProduct = getKeyInsert(query);
+		
+		boolean validateInsertIngredients = true;
+		
+		if(!ingredients.isEmpty()) {
+			for (Ingredient ingredient : ingredients) {
+	            String insertQuery = "INSERT INTO INGREDIENTS_PRODUCTS (ID_PRODUCTS, ID_INGREDIENTS, QUANTITY_INGREDIENT_PRODUCTS) VALUES ("+keyProduct+", "+ingredient.getId()+", "+ingredient.getQuantity()+")";
+	            if(!insertInto(insertQuery)) {
+	            	validateInsertIngredients = false;
+	            }
+			} 
+		}	   
+		
+		return validateInsertIngredients;
+	}
 }

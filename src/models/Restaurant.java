@@ -8,8 +8,6 @@ import models.User;
 
 public class Restaurant {
     private PaymentDesk paymentDesk;
-    private ArrayList<Product> products;
-    private ArrayList<User> users;
 
 //    private Inventory<Ingredient> ingredientInventory;
 //    private Inventory<Product> packagedInventory;
@@ -19,10 +17,6 @@ public class Restaurant {
      */
     public Restaurant() {
         paymentDesk = new PaymentDesk();
-        products = new ArrayList<>();
-        users = new ArrayList<>();
-//        ingredientInventory = new Inventory<>();
-//        packagedInventory = new Inventory<>();
     }
 
     /**
@@ -36,6 +30,18 @@ public class Restaurant {
     	return Connect.verifyUser(user, password);
     }
 
+    /**
+
+    Crea un nuevo usuario en la base de datos.
+    @param name El nombre del usuario.
+    @param user El nombre de usuario del usuario.
+    @param password La contraseña del usuario.
+    @return true si se crea el usuario correctamente, false en caso contrario.
+    */
+    public boolean createUser(String name, String user, String password) {
+    	return Connect.insertUser(name, user, password);
+    }
+    
     /**
      * Crea un nuevo pedido utilizando el método createOrder() de la clase PaymentDesk.
      */
@@ -68,7 +74,7 @@ public class Restaurant {
     }
 
     /**
-     * Resta un producto del pedido utilizando el método subtractProductOrder() de
+     * Elimina un producto del pedido utilizando el método subtractProductOrder() de
      * la variable paymentDesk.
      * 
      * @param id ID del producto a restar.
@@ -97,14 +103,29 @@ public class Restaurant {
     }
 
     /**
+     * Crea un nuevo producto en la base de datos con los datos proporcionados.
+     *
+     * @param typeProduct  el ID del tipo de producto.
+     * @param nameProduct  el nombre del producto.
+     * @param valueProduct el valor del producto.
+     * @param ingredients  la lista de ingredientes asociados al producto.
+     * @return true si se crea el producto correctamente, false en caso contrario.
+     */
+    public boolean createProduct(int typeProduct, String nameProduct, float valueProduct, 
+    		ArrayList<Ingredient> ingredients) {
+    	return Connect.insertProduct( typeProduct,  nameProduct,  valueProduct, 
+        		 ingredients);
+    }
+    
+    /**
      * Resta una cantidad de un ingrediente del inventario de ingredientes.
      * 
      * @param id       ID del ingrediente.
      * @param quantity Cantidad a restar del ingrediente.
      * Se multiplica quantity por -1 para realizar una resta en @meted updateInventoryIngredients()
      */
-    public void subtractQuantityIngredients(int id, int quantity) {
-        Connect.updateInventoryIngredients(id, -1*quantity);
+    public boolean subtractQuantityIngredients(int id, int quantity) {
+        return Connect.updateInventoryIngredients(id, -1*quantity);
     }
 
     /**
@@ -113,8 +134,30 @@ public class Restaurant {
      * @param id       ID del ingrediente.
      * @param quantity Cantidad a agregar al ingrediente.
      */
-    public void addQuantityIngredients(int id, int quantity) {
-    	Connect.updateInventoryIngredients(id,quantity);
+    public boolean addQuantityIngredients(int id, int quantity) {
+    	return Connect.updateInventoryIngredients(id,quantity);
+    }
+    
+    /**
+     * Disminuye la cantidad de un producto en el inventario.
+     *
+     * @param id       el ID del producto.
+     * @param quantity la cantidad a disminuir.
+     * @return true si la actualización del inventario se realiza correctamente, false en caso contrario.
+     */
+    public boolean subtractQuantityProduct(int id, int quantity) {
+        return Connect.updateInventoryProducts(id, -1*quantity);
+    }
+    
+    /**
+     * Aumenta la cantidad de un producto en el inventario.
+     *
+     * @param id       el ID del producto.
+     * @param quantity la cantidad a aumentar.
+     * @return true si la actualización del inventario se realiza correctamente, false en caso contrario.
+     */
+    public boolean addQuantityProduct(int id, int quantity) {
+    	return Connect.updateInventoryProducts(id,quantity);
     }
 
     /**
@@ -167,21 +210,6 @@ public class Restaurant {
         this.paymentDesk = paymentDesk;
     }
 
-    public ArrayList<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(ArrayList<Product> products) {
-        this.products = products;
-    }
-
-    public ArrayList<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(ArrayList<User> users) {
-        this.users = users;
-    }
 
     
 }

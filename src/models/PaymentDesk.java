@@ -95,11 +95,52 @@ public class PaymentDesk {
             			Connect.updateInventoryIngredients(ingredient.getId(), -1* (ingredient.getQuantity()*quantity) );
                     }
         	    }
+        	    order = new Order();
         	    return Connect.insertIntoSales(new Date(), id, value, quantity);
         	}
         }
-
         return false;
+    }
+
+    /**
+     * Disminuye en 1 la cantidad de un ProductOrder en la lista de productos de la orden.
+     *
+     * @param id ID del producto cuya cantidad se va a disminuir.
+     */
+    public void decreaseProductQuantity(int id) {
+        ArrayList<ProductOrder> products = order.getProducts();
+
+        // Iterar sobre cada ProductOrder en la lista de productos
+        for (ProductOrder product : products) {
+            if (product.getId() == id) {
+                int quantity = product.getQuantity();
+
+                // Verificar que la cantidad sea mayor que cero antes de disminuir
+                if (quantity > 0) {
+                    product.setQuantity(quantity - 1);  // Disminuir la cantidad en 1
+                }
+                
+                break;  // Romper el bucle ya que se ha encontrado el producto correspondiente
+            }
+        }
+    }
+
+    /**
+     * Aumenta en 1 la cantidad de un ProductOrder en la lista de productos de la orden.
+     *
+     * @param id ID del producto cuya cantidad se va a aumentar.
+     */
+    public void increaseProductQuantity(int id) {
+        ArrayList<ProductOrder> products = order.getProducts();
+
+        // Iterar sobre cada ProductOrder en la lista de productos
+        for (ProductOrder product : products) {
+            if (product.getId() == id) {
+                int quantity = product.getQuantity();
+                product.setQuantity(quantity + 1);  // Aumentar la cantidad en 1
+                break;  // Romper el bucle ya que se ha encontrado el producto correspondiente
+            }
+        }
     }
 
     // Getters y setters
