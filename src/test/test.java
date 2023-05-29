@@ -18,7 +18,7 @@ public class test {
 //		System.out.println( restaurant.payExpense(Category.valueOf("SALARY"),"Salario Gerente",(float) 1200000));
 //		System.out.println(Connect.getProductOrder(6));
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        System.out.println(restaurant.addProductOrder(3, 2, 2));
+        System.out.println(restaurant.addProductOrder(2, 2, 3));
         System.out.println(restaurant.payOrder());
 	}
 }

@@ -45,7 +45,7 @@ public class PaymentDesk {
         	ProductOrder newProductOrder = Connect.getProductOrder(id);
         	if(newProductOrder != null ) {
         		for (Ingredient ingredient : newProductOrder.getIngredients()) {
-        			if (!Connect.checkInvertoryIngredient(ingredient.getId(), ingredient.getQuantity())) {
+        			if (!Connect.checkInvertoryIngredient(ingredient.getId(), ingredient.getQuantity()*quantity )) {
                     	return false;
                     }
                 }
@@ -90,8 +90,13 @@ public class PaymentDesk {
         	    double value = product.getValue();
         	    int quantity = product.getQuantity();
         	    
-        	    if(product.getType()== TypeProduct.COCINADO) {
+        	    if(product.getType()== TypeProduct.ENVASADO) {
             		Connect.updateInventoryProducts(id, -1*quantity);
+        	    }
+        	    if(product.getType()== TypeProduct.COCINADO) {
+        	    	for (Ingredient ingredient : product.getIngredients()) {
+            			Connect.updateInventoryIngredients(ingredient.getId(), -1* (ingredient.getQuantity()*quantity) );
+                    }
         	    }
         	    return Connect.insertIntoSales(new Date(), id, value, quantity);
         	}
