@@ -567,5 +567,18 @@ public class Connect {
 
 	      return insertInto(updateQuery);
 	  }
+	  
+	  /**
+	   * Modifica los campos de un usuario en la base de datos.
+	   * 
+	   * @param userId        ID del usuario que se desea modificar.
+	   * @param newName       Nuevo nombre del usuario.
+	   * @param newPassword   Nueva contraseña del usuario.
+	   * @return true si la modificación se realiza correctamente, false en caso contrario.
+	   */
+	  public static boolean updateUser(String userId, String newName, String newPassword) {
+	      String query = "UPDATE USER SET NAME_USER = '" + newName + "', PASSWORD_USER = '" + newPassword + "' WHERE ID_USER = '" + userId + "'";
+	      return insertInto(query);
+	  }
 
 }
