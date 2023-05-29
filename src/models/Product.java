@@ -4,16 +4,18 @@ import java.util.ArrayList;
 
 public class Product {
     private int id;
+    private TypeProduct type;
     private String name;
     private double value;
     private ArrayList<Ingredient> ingredients;
 
 
-	public Product(int id, String name, double value) {
+	public Product(int id, int typeProductId, String name, double value) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.value = value;
+		this.type = TypeProduct.getTypeProductFromNumber(String.valueOf(typeProductId));
 	}
 	
 	public String getName() {
@@ -73,6 +75,16 @@ public class Product {
 
 	public void setValue(double value) {
 		this.value = value;
+	}
+	
+	
+
+	public TypeProduct getType() {
+		return type;
+	}
+
+	public void setType(TypeProduct type) {
+		this.type = type;
 	}
 
 	@Override

@@ -8,6 +8,7 @@ import java.util.Date;
 import connect.Connect;
 import models.Category;
 import models.Restaurant;
+import models.TypeProduct;
 
 public class test {
 	public static void main(String[] args) throws ClassNotFoundException {
@@ -17,8 +18,8 @@ public class test {
 //		System.out.println( Category.valueOf("SALARY").getCategoryName());
 //		System.out.println( restaurant.payExpense(Category.valueOf("SALARY"),"Salario Gerente",(float) 1200000));
 //		System.out.println(Connect.getProductOrder(6));
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        System.out.println(restaurant.addProductOrder(2, 2, 3));
+//		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        System.out.println(restaurant.addProductOrder(6, 2));
         System.out.println(restaurant.payOrder());
 	}
 }

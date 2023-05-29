@@ -63,8 +63,8 @@ public class Restaurant {
      * @param type     Tipo de producto a agregar (1: envasado, 2: cocinado).
      * @param quantity Cantidad del producto a agregar.
      */
-    public boolean addProductOrder(int idProduct, int type, int quantity) {
-        return paymentDesk.addProductOrder(idProduct, type, quantity);
+    public boolean addProductOrder(int idProduct, int quantity) {
+        return paymentDesk.addProductOrder(idProduct, quantity);
     }
 
     /**

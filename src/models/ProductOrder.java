@@ -3,12 +3,11 @@ package models;
 public class ProductOrder extends Product {
 	
 	private int quantity;
-	private TypeProduct type;
     
 
-	public ProductOrder(int id, String name, double value, int quantity2) {
+	public ProductOrder(int id, int typeProductId, String name, double value, int quantity2) {
 		// TODO Auto-generated constructor stub
-		super(id,name,value);
+		super(id,typeProductId,name,value);
 		this.quantity = quantity2;
 	}
 
@@ -23,14 +22,6 @@ public class ProductOrder extends Product {
     public double getValue() {
         return super.getValue();
     }
-    
-	public TypeProduct getType() {
-		return type;
-	}
-
-	public void setType(TypeProduct type) {
-		this.type = type;
-	}
 
 	@Override
 	public String toString() {

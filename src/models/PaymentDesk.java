@@ -28,22 +28,20 @@ public class PaymentDesk {
      * Agrega un objeto ProductOrder a la lista products de la variable order.
      * 
      * @param id       ID del producto a agregar.
-     * @param type     Tipo de producto a agregar (1: envasado, 2: cocinado).
      * @param quantity Cantidad del producto a agregar.
      */
-    public boolean addProductOrder(int id, int type, int quantity) {
-        if (type == 1) {
+    public boolean addProductOrder(int id, int quantity) {
+    	ProductOrder newProductOrder = Connect.getProductOrder(id);
+        if (newProductOrder.getType() == TypeProduct.ENVASADO) {
         	//Si es envasado consulta disponibilidad en inventario de productos
         	if(Connect.checkInvertoryProduct(id,quantity)) {
-        		ProductOrder newProductOrder = Connect.getProductOrder(id);
+        		
         		newProductOrder.setQuantity(quantity);
         		order.getProducts().add(newProductOrder);
         		return true;
         	}
-        } else if (type == 2) {
+        } else if (newProductOrder.getType() == TypeProduct.COCINADO) {
         	//Si es cosinado consulta la disponibilidad de ingredientes en inventario de ingredientes
-        	ProductOrder newProductOrder = Connect.getProductOrder(id);
-        	if(newProductOrder != null ) {
         		for (Ingredient ingredient : newProductOrder.getIngredients()) {
         			if (!Connect.checkInvertoryIngredient(ingredient.getId(), ingredient.getQuantity()*quantity )) {
                     	return false;
@@ -52,7 +50,6 @@ public class PaymentDesk {
         		
         		order.getProducts().add(newProductOrder);
         		return true;
-        	}
         }
         return false;
     }

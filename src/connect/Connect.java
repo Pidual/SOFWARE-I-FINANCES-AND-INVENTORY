@@ -199,11 +199,12 @@ public class Connect {
 			if (resultSet.next()) {
 				
 			     int productId = resultSet.getInt("ID_PRODUCTS");
+			     int productTypeId =resultSet.getInt("ID_TYPE_PRODUCT");
 			     String productName = resultSet.getString("NAME_PRODUCTS");
 			     double productValue = resultSet.getDouble("VALUE_PRODUCTS");
 
 			     // Crear el objeto ProductOrder
-			     productOrder = new ProductOrder(productId, productName, productValue, 1);
+			     productOrder = new ProductOrder(productId, productTypeId,productName, productValue, 1);
 			    
 			 }
 			
