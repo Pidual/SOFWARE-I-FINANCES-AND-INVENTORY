@@ -268,5 +268,16 @@ public class Restaurant {
     	
     	return result;
     }
+
+    /**
+     * Actualiza el nombre de un ingrediente en la base de datos.
+     * 
+     * @param ingredientId     ID del ingrediente que se desea modificar.
+     * @param newIngredientName Nuevo nombre del ingrediente.
+     * @return true si la actualización se realiza correctamente, false en caso contrario.
+     */
+    public boolean updateIngredient(int ingredientId, String newIngredientName) {
+    	return Connect.updateIngredient(ingredientId, newIngredientName);
+    }
 }
 

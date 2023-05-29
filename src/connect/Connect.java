@@ -25,6 +25,9 @@ public class Connect {
 	static Connection connection;
 	static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
+	/**
+	 * Establece una conexión con la base de datos.
+	 */
 	public static void connect() {
 		try {
 			connection = DriverManager.getConnection(url);
@@ -33,6 +36,12 @@ public class Connect {
 		}
 	}
 	
+	/**
+	 * Ejecuta una consulta de inserción en la base de datos.
+	 *
+	 * @param query la consulta SQL PreparedStatement que permite operaciones como inserciones, update.
+	 * @return true si la inserción se realiza correctamente, false en caso contrario.
+	 */
 	private static boolean insertInto(String query) {
 		connect();
 		try {	
@@ -46,6 +55,12 @@ public class Connect {
 	    }
 	}
 	
+	/**
+	 * Ejecuta una consulta de selección en la base de datos y verifica si se obtuvo algún resultado.
+	 *
+	 * @param query la consulta SQL de selección.
+	 * @return true si se obtuvo un resultado, false en caso contrario.
+	 */
 	private static boolean selectFrom(String query) {
 		connect();
 		 try  {
@@ -69,6 +84,12 @@ public class Connect {
 	        }
 	}
 
+	/**
+	 * Ejecuta una consulta de selección en la base de datos y devuelve el objeto ResultSet correspondiente.
+	 *
+	 * @param query la consulta SQL de selección.
+	 * @return el objeto ResultSet que contiene los resultados de la consulta, o null si ocurre un error.
+	 */
 	private static ResultSet selectFromObject(String query) {
 		connect();
 		 try  {
@@ -85,6 +106,13 @@ public class Connect {
 	        }
 	}
 	
+	/**
+	 * Verifica si existe un usuario con el nombre de usuario y contraseña especificados en la base de datos.
+	 *
+	 * @param username el nombre de usuario.
+	 * @param password la contraseña.
+	 * @return true si el usuario existe, false en caso contrario.
+	 */
 	public static boolean verifyUser(String username, String password) {
 		
             // Crear la consulta SQL con parámetros
@@ -93,6 +121,15 @@ public class Connect {
             return selectFrom(query);
     }
 	
+	/**
+	 * Crea un gasto en la base de datos con la categoría, descripción, valor y fecha especificados.
+	 *
+	 * @param category    la categoría del gasto.
+	 * @param description la descripción del gasto.
+	 * @param value       el valor del gasto.
+	 * @param date        la fecha del gasto.
+	 * @return true si el gasto se crea correctamente, false en caso contrario.
+	 */
 	public static boolean ExpenseCreation (String category, String description, float value, Date date) {
 		String sql = "INSERT INTO EXPENSE (ID_CATEGORY, DESCRIPTION_EXPENSE, VALUE_EXPENSE, DATE_EXPENSE) VALUES ('"+category+"','"+
 				description+"','"+value+"','"+dateFormat.format(date)+"')";
@@ -100,6 +137,12 @@ public class Connect {
         return insertInto(sql);
 	}
 	
+	/**
+	 * Ejecuta una consulta de inserción en la base de datos y devuelve la clave generada para el registro insertado.
+	 *
+	 * @param query la consulta SQL de inserción.
+	 * @return la clave generada para el registro insertado, o 0 si ocurre un error.
+	 */
 	public static int getKeyInsert(String query) {
 		connect();
 		int ingredientId = 0;
@@ -127,6 +170,13 @@ public class Connect {
 		return ingredientId;
 	}
 	
+	/**
+	 * Calcula el total de ventas en un rango de fechas específico.
+	 *
+	 * @param dateInit la fecha inicial del rango.
+	 * @param dateEnd  la fecha final del rango.
+	 * @return el total de ventas en el rango de fechas especificado.
+	 */
 	public static double calculateTotalSales(Date dateInit, Date dateEnd) {
 		// Crear una sentencia SQL para obtener la suma de los valores totales
         String querySumSales = "SELECT SUM(VALUE_PRODUCT_SALES * QUANTITY_PRODUCT_SALES) AS TOTAL_SALES "
@@ -146,6 +196,13 @@ public class Connect {
         return 0;
 	}
 	
+	/**
+	 * Crea un ingrediente en la base de datos con el nombre y cantidad especificados.
+	 *
+	 * @param name     el nombre del ingrediente.
+	 * @param quantity la cantidad del ingrediente.
+	 * @return true si el ingrediente se crea correctamente, false en caso contrario.
+	 */
 	public static boolean createIngrediet(String name, int quantity) {
 		connect();
 		
@@ -159,6 +216,14 @@ public class Connect {
 	    return insertInto(queryIngredientInventory);
 	}
 	
+	
+	/**
+	 * Verifica si hay suficiente cantidad de un producto en el inventario.
+	 *
+	 * @param productId el ID del producto.
+	 * @param quantity  la cantidad requerida del producto.
+	 * @return true si hay suficiente cantidad en el inventario, false en caso contrario.
+	 */
 	public static boolean checkInvertoryProduct(int productId, int quantity) {
             // Construir la consulta 
        String query = "SELECT * FROM PRODUCT_INVENTORY WHERE ID_PRODUCTS = " + productId +
@@ -167,6 +232,13 @@ public class Connect {
        return selectFrom(query);
 	}   
 
+	/**
+	 * Actualiza la cantidad de un producto en el inventario sumando la cantidad especificada.
+	 *
+	 * @param productId el ID del producto.
+	 * @param quantity  la cantidad a sumar al inventario.
+	 * @return true si la actualización se realiza correctamente, false en caso contrario.
+	 */
 	public static boolean updateInventoryProducts(int productId, int quantity) {
 		String sql = "UPDATE PRODUCT_INVENTORY SET QUANTITY_PRODUCT_INVENTORY = QUANTITY_PRODUCT_INVENTORY + "
 				+quantity
@@ -175,6 +247,13 @@ public class Connect {
 		return insertInto(sql);
 	}
 	
+	/**
+	 * Actualiza la cantidad de un ingrediente en el inventario sumando la cantidad especificada.
+	 *
+	 * @param ingredientId el ID del ingrediente.
+	 * @param quantity     la cantidad a sumar al inventario.
+	 * @return true si la actualización se realiza correctamente, false en caso contrario.
+	 */
 	public static boolean updateInventoryIngredients(int ingredientId, float quantity) {
 		String sql = "UPDATE INGREDIENS_INVENTORY SET QUANTITY_INGREDIENTS_INVENTORY = QUANTITY_INGREDIENTS_INVENTORY + "
 				+quantity
@@ -183,6 +262,12 @@ public class Connect {
 		return insertInto(sql);
 	}
 	
+	/**
+	 * Obtiene un pedido de producto por su ID.
+	 *
+	 * @param id el ID del pedido de producto.
+	 * @return el objeto ProductOrder correspondiente al ID especificado, o null si no se encuentra.
+	 */
 	public static ProductOrder getProductOrder(int id) {
 		ProductOrder productOrder = null;
 		ArrayList<Ingredient> ingredients = new ArrayList<>();
@@ -232,6 +317,13 @@ public class Connect {
 		return productOrder;
 	}
 
+	/**
+	 * Verifica si hay suficiente cantidad de un ingrediente en el inventario.
+	 *
+	 * @param ingredientId el ID del ingrediente.
+	 * @param quantity     la cantidad requerida del ingrediente.
+	 * @return true si hay suficiente cantidad en el inventario, false en caso contrario.
+	 */
 	public static boolean checkInvertoryIngredient(int ingredientId, float quantity) {
         // Construir la consulta 
 	   String query = "SELECT * FROM INGREDIENS_INVENTORY WHERE ID_INGREDIENTS = " + ingredientId +
@@ -240,7 +332,13 @@ public class Connect {
 	   return selectFrom(query);
 	}
 
-	
+	/**
+	 * Calcula el total de gastos en un rango de fechas específico.
+	 *
+	 * @param dateInit la fecha inicial del rango.
+	 * @param dateEnd  la fecha final del rango.
+	 * @return el total de gastos en el rango de fechas especificado.
+	 */
 	public static double calculateTotalExpenses(Date dateInit, Date dateEnd) {
 		// Crear una sentencia SQL para obtener la suma de los valores totales
         String querySum = "SELECT SUM(VALUE_EXPENSE) AS TOTAL_SALES "
@@ -259,6 +357,15 @@ public class Connect {
         return 0;
 	} 
 
+	/**
+	 * Inserta una venta en la base de datos.
+	 *
+	 * @param date         la fecha de la venta.
+	 * @param idProduct    el ID del producto vendido.
+	 * @param valueProduct el valor del producto vendido.
+	 * @param quantity     la cantidad del producto vendido.
+	 * @return true si la inserción se realiza correctamente, false en caso contrario.
+	 */
 	public static boolean insertIntoSales(Date date,int idProduct, double valueProduct, int quantity) {
 		String insertSalesQuery = "INSERT INTO SALES (DATE_SALES) VALUES ('"+dateFormat.format(date)+"')";
 		
@@ -270,14 +377,29 @@ public class Connect {
 		return insertInto(insertProductsSalesQuery);
 	}
 
-	
+	/**
+	 * Inserta un usuario en la base de datos.
+	 *
+	 * @param name     el nombre del usuario.
+	 * @param user     el nombre de usuario del usuario.
+	 * @param password la contraseña del usuario.
+	 * @return true si la inserción se realiza correctamente, false en caso contrario.
+	 */
 	public static boolean insertUser(String name, String user, String password) {
 		String query = "INSERT INTO USER (ID_USER, NAME_USER, PASSWORD_USER) VALUES (' " + user + "', ' " + name +  "', ' " + password +  "')";
 
 		return insertInto(query);
 	}
 
-	
+	/**
+	 * Inserta un producto en la base de datos.
+	 *
+	 * @param typeProduct  el ID del tipo de producto.
+	 * @param nameProduct  el nombre del producto.
+	 * @param valueProduct el valor del producto.
+	 * @param ...
+	 * @return true si la inserción se realiza correctamente, false en caso contrario.
+	 */
 	public static boolean insertProduct( int typeProduct, String nameProduct, float valueProduct,
 			ArrayList<Ingredient> ingredients) {
 		String query = "INSERT INTO PRODUCTS ( ID_TYPE_PRODUCT, NAME_PRODUCTS, VALUE_PRODUCTS) VALUES ("+typeProduct+", '"+nameProduct+"', "+valueProduct+")";
@@ -402,6 +524,15 @@ public class Connect {
 	        return saleableProducts;
 	  }
 	  
+	  /**
+	   * Actualiza los campos de un producto en la base de datos.
+	   *
+	   * @param productId    el ID del producto a actualizar.
+	   * @param typeProduct  el nuevo ID del tipo de producto uno(1). si es envasado, dos (2) si es cosinado
+	   * @param nameProduct  el nuevo nombre del producto.
+	   * @param valueProduct el nuevo valor del producto.
+	   * @return true si la actualización se realiza correctamente, false en caso contrario.
+	   */
 	  public static boolean updateProduct(int productId, int typeProduct, String nameProduct, float valueProduct) {
 		// Actualizar los campos de la tabla PRODUCTS
 		  String updateProductQuery = "UPDATE PRODUCTS SET ID_TYPE_PRODUCT = " +typeProduct+ ", NAME_PRODUCTS = '" 
@@ -410,6 +541,13 @@ public class Connect {
 		return insertInto(updateProductQuery);
 	  }
 	  
+	  /**
+	   * Actualiza la cantidad de un ingrediente asociado a un producto en la base de datos.
+	   *
+	   * @param ingredient el objeto Ingredient que representa el ingrediente a actualizar.
+	   * @param productId  el ID del producto al que está asociado el ingrediente.
+	   * @return true si la actualización se realiza correctamente, false en caso contrario.
+	   */
 	  public static boolean updateIngredientProduct(Ingredient ingredient, int productId) {
 		  String updateIngredientsQuery = "UPDATE INGREDIENTS_PRODUCTS SET QUANTITY_INGREDIENT_PRODUCTS = " 
 				  + ingredient.getQuantity() + " WHERE ID_PRODUCTS = " + productId + " AND ID_INGREDIENTS = " + ingredient.getId();
@@ -417,4 +555,17 @@ public class Connect {
 		  return insertInto(updateIngredientsQuery);
 	  }
 	  
+	  /**
+	   * Actualiza el nombre de un ingrediente en la tabla "INGREDIENTS".
+	   * 
+	   * @param ingredientId     ID del ingrediente que se desea modificar.
+	   * @param newIngredientName Nuevo nombre del ingrediente.
+	   * @return true si la actualización se realiza correctamente, false en caso contrario.
+	   */
+	  public static boolean updateIngredient(int ingredientId, String newIngredientName) {
+	      String updateQuery = "UPDATE INGREDIENTS SET NAME_INGREDIENTS = '" + newIngredientName + "' WHERE ID_INGREDIENTS = " + ingredientId;
+
+	      return insertInto(updateQuery);
+	  }
+
 }
