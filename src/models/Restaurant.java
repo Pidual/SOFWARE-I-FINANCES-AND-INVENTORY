@@ -9,9 +9,6 @@ import models.User;
 public class Restaurant {
     private PaymentDesk paymentDesk;
 
-//    private Inventory<Ingredient> ingredientInventory;
-//    private Inventory<Product> packagedInventory;
-
     /**
      * Constructor de la clase Restaurant.
      */
@@ -210,7 +207,32 @@ public class Restaurant {
         this.paymentDesk = paymentDesk;
     }
 
-
+    /**
+     * Obtiene el inventario de ingredientes desde la base de datos.
+     *
+     * @return ArrayList de Ingredientes que representa el inventario de ingredientes.
+     */
+    public ArrayList<Ingredient> getInventoryIngredients(){
+    	return Connect.getInventoryIngredients();
+    }
     
+    /**
+     * Obtiene el inventario de productos desde la base de datos.
+     *
+     * @return ArrayList de ProductOrder que representa el inventario de productos.
+     */
+    public ArrayList<ProductOrder> getInventoryProducts(){
+    	return Connect.getInventoryProducts();
+    }
+    
+    /**
+     * Obtiene una lista de productos que se pueden vender, pero no están inventariados 
+     * debido a que algunos son combinaciones de ingredientes.
+     *
+     * @return ArrayList de Productos que representa los productos disponibles para la venta.
+     */
+    public ArrayList<Product> getSaleableProducts(){
+    	return Connect.getSaleableProducts();
+    }
 }
 

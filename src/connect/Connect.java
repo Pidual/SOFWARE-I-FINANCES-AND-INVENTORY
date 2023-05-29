@@ -15,7 +15,9 @@ import java.util.Date;
 import org.sqlite.JDBC;
 
 import models.Ingredient;
+import models.Product;
 import models.ProductOrder;
+import models.TypeProduct;
 
 public class Connect {
 	
@@ -173,7 +175,7 @@ public class Connect {
 		return insertInto(sql);
 	}
 	
-	public static boolean updateInventoryIngredients(int ingredientId, int quantity) {
+	public static boolean updateInventoryIngredients(int ingredientId, float quantity) {
 		String sql = "UPDATE INGREDIENS_INVENTORY SET QUANTITY_INGREDIENTS_INVENTORY = QUANTITY_INGREDIENTS_INVENTORY + "
 				+quantity
 				+ " WHERE ID_INGREDIENTS =" + ingredientId;
@@ -230,7 +232,7 @@ public class Connect {
 		return productOrder;
 	}
 
-	public static boolean checkInvertoryIngredient(int ingredientId, int quantity) {
+	public static boolean checkInvertoryIngredient(int ingredientId, float quantity) {
         // Construir la consulta 
 	   String query = "SELECT * FROM INGREDIENS_INVENTORY WHERE ID_INGREDIENTS = " + ingredientId +
 	                       " AND QUANTITY_INGREDIENTS_INVENTORY >= " + quantity;
@@ -270,7 +272,7 @@ public class Connect {
 
 	
 	public static boolean insertUser(String name, String user, String password) {
-		String query = "INSERT INTO USER (ID_USER, NAME_USER, PASSWORD_USER) VALUES ('"+user+"', "+name+", '"+password+"')";
+		String query = "INSERT INTO USER (ID_USER, NAME_USER, PASSWORD_USER) VALUES (' " + user + "', ' " + name +  "', ' " + password +  "')";
 
 		return insertInto(query);
 	}
@@ -295,4 +297,108 @@ public class Connect {
 		
 		return validateInsertIngredients;
 	}
+
+	/**
+	 * Obtiene el inventario de ingredientes desde la base de datos.
+	 * 
+	 * @return ArrayList de Ingredientes que representa el inventario de ingredientes.
+	 */
+	public static ArrayList<Ingredient> getInventoryIngredients() {
+		ArrayList<Ingredient> ingredients = new ArrayList<>();
+		 // Consultar los ingredientes y su inventario
+        String query = "SELECT I.ID_INGREDIENTS, I.NAME_INGREDIENTS, II.QUANTITY_INGREDIENTS_INVENTORY " +
+                "FROM INGREDIENTS I " +
+                "INNER JOIN INGREDIENS_INVENTORY II ON I.ID_INGREDIENTS = II.ID_INGREDIENTS";
+        
+        ResultSet resultSet = selectFromObject(query);
+        
+        try {
+			while (resultSet.next()) {
+			    int id = resultSet.getInt("ID_INGREDIENTS");
+			    String name = resultSet.getString("NAME_INGREDIENTS");
+			    float quantity = resultSet.getFloat("QUANTITY_INGREDIENTS_INVENTORY");
+
+			    Ingredient ingredient = new Ingredient(id, name, quantity);
+			    ingredients.add(ingredient);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+        return ingredients;
+	}
+	
+	/**
+	 * Obtiene el inventario de productos desde la base de datos.
+	 *
+	 * @return ArrayList de ProductOrder que representa el inventario de productos.
+	 */
+	public static ArrayList<ProductOrder> getInventoryProducts() {
+
+		ArrayList<ProductOrder> inventoryProducts = new ArrayList<>();
+		// Consultar los productos y su inventario
+        String query = "SELECT P.ID_PRODUCTS, P.ID_TYPE_PRODUCT, P.NAME_PRODUCTS, P.VALUE_PRODUCTS, PI.QUANTITY_PRODUCT_INVENTORY " +
+                "FROM PRODUCTS P " +
+                "INNER JOIN PRODUCT_INVENTORY PI ON P.ID_PRODUCTS = PI.ID_PRODUCTS";
+        
+        ResultSet resultSet = selectFromObject(query);
+        
+        try {
+            while (resultSet.next()) {
+                int id = resultSet.getInt("ID_PRODUCTS");
+                int typeProductId = resultSet.getInt("ID_TYPE_PRODUCT");
+                String name = resultSet.getString("NAME_PRODUCTS");
+                double value = resultSet.getDouble("VALUE_PRODUCTS");
+                int quantity = resultSet.getInt("QUANTITY_PRODUCT_INVENTORY");
+
+                // Crear el objeto Product
+                ProductOrder product = new ProductOrder(id, typeProductId, name, value,quantity);
+
+                // Agregar el producto a la lista
+                inventoryProducts.add(product);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return inventoryProducts;
+	}
+	
+	/**
+	 * Obtiene una lista de productos que se pueden vender, pero no están inventariados 
+	 * debido a que algunos son combinaciones de ingredientes.
+	 *
+	 * @return ArrayList de Productos que representa los productos disponibles para la venta.
+	 */
+	  public static ArrayList<Product> getSaleableProducts(){
+		  ArrayList<Product> saleableProducts = new ArrayList<>();
+		  
+		// Consultar los productos que se pueden vender
+	        String query = "SELECT ID_PRODUCTS, ID_TYPE_PRODUCT, NAME_PRODUCTS, VALUE_PRODUCTS " +
+	                "FROM PRODUCTS";
+	        
+	        ResultSet resultSet = selectFromObject(query);
+	        
+	        try {
+	               
+	               while (resultSet.next()) {
+	                   int id = resultSet.getInt("ID_PRODUCTS");
+	                   int typeProductId = resultSet.getInt("ID_TYPE_PRODUCT");
+	                   String name = resultSet.getString("NAME_PRODUCTS");
+	                   double value = resultSet.getDouble("VALUE_PRODUCTS");
+
+	                   Product product = new Product(id, typeProductId, name, value);
+	                   
+	                   if(product.getType() == TypeProduct.COCINADO ) {
+	                	   product = getProductOrder(product.getId());
+	                   }
+	                   saleableProducts.add(product);
+	               }
+	           } catch (SQLException e) {
+	               e.printStackTrace();
+	           }
+	        
+	        return saleableProducts;
+	  }
 }

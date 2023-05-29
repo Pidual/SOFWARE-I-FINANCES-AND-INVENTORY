@@ -3,24 +3,28 @@ package test;
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import connect.Connect;
 import models.Category;
+import models.Ingredient;
+import models.Product;
+import models.ProductOrder;
 import models.Restaurant;
 import models.TypeProduct;
 
 public class test {
 	public static void main(String[] args) throws ClassNotFoundException {
-		Restaurant restaurant = new Restaurant();
-		
-		System.out.println( restaurant.login("cesarc", "12345678"));
-		
-//		System.out.println( Category.valueOf("SALARY").getCategoryName());
-//		System.out.println( restaurant.payExpense(Category.valueOf("SALARY"),"Salario Gerente",(float) 1200000));
-//		System.out.println(Connect.getProductOrder(6));
-//		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        System.out.println(restaurant.addProductOrder(6, 2));
-        System.out.println(restaurant.payOrder());
+        // Crear una instancia de la clase Restaurant
+        Restaurant restaurant = new Restaurant();
+
+        ArrayList<Product> saleableProducts = restaurant.getSaleableProducts();
+        
+     // Imprimir los detalles de cada producto
+        for (Product product : saleableProducts) {
+            System.out.println(product.toString());
+        }
+
 	}
 }

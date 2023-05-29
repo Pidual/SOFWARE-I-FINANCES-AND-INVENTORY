@@ -16,6 +16,7 @@ public class Product {
 		this.name = name;
 		this.value = value;
 		this.type = TypeProduct.getTypeProductFromNumber(String.valueOf(typeProductId));
+		this.ingredients = new ArrayList<>();
 	}
 	
 	public String getName() {

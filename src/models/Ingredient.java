@@ -3,9 +3,9 @@ package models;
 public class Ingredient {
     private int id;
     private String name;
-    private int quantity;
+    private float quantity;
 
-    public Ingredient(int id, String name, int quantity) {
+    public Ingredient(int id, String name, float quantity) {
     	this.id = id;
         this.name = name;
         this.quantity = quantity;
@@ -27,7 +27,7 @@ public class Ingredient {
         this.name = name;
     }
 
-    public int getQuantity() {
+    public float getQuantity() {
         return quantity;
     }
 
