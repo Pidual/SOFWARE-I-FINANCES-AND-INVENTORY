@@ -102,7 +102,7 @@ public class Restaurant {
     /**
      * Crea un nuevo producto en la base de datos con los datos proporcionados.
      *
-     * @param typeProduct  el ID del tipo de producto.
+     * @param typeProduct  el ID del tipo de producto 1. Producto envasado 2.Producto Cosinado.
      * @param nameProduct  el nombre del producto.
      * @param valueProduct el valor del producto.
      * @param ingredients  la lista de ingredientes asociados al producto.
@@ -115,7 +115,7 @@ public class Restaurant {
     }
     
     /**
-     * Resta una cantidad de un ingrediente del inventario de ingredientes.
+     * Resta una cantidad en Gramos de un ingrediente del inventario de ingredientes.
      * 
      * @param id       ID del ingrediente.
      * @param quantity Cantidad a restar del ingrediente.
@@ -126,7 +126,7 @@ public class Restaurant {
     }
 
     /**
-     * Agrega una cantidad a un ingrediente del inventario de ingredientes.
+     * Agrega una cantidad en gramos a un ingrediente del inventario de ingredientes.
      * 
      * @param id       ID del ingrediente.
      * @param quantity Cantidad a agregar al ingrediente.
@@ -136,7 +136,7 @@ public class Restaurant {
     }
     
     /**
-     * Disminuye la cantidad de un producto en el inventario.
+     * Disminuye la cantidad de Unidades de un producto en el inventario.
      *
      * @param id       el ID del producto.
      * @param quantity la cantidad a disminuir.
@@ -233,6 +233,40 @@ public class Restaurant {
      */
     public ArrayList<Product> getSaleableProducts(){
     	return Connect.getSaleableProducts();
+    }
+
+    /**
+     * Actualiza los campos de un producto en la base de datos.
+     *
+     * @param productId    el ID del producto a actualizar.
+     * @param typeProduct  el nuevo ID del tipo de producto Envasado o Cosinado.
+     * @param nameProduct  el nuevo nombre del producto.
+     * @param valueProduct el nuevo valor del producto.
+     * @return true si la actualización se realiza correctamente, false en caso contrario.
+     */
+    public boolean updateProduct(int productId, int typeProduct, String nameProduct, float valueProduct) {
+    	return Connect.updateProduct(productId, typeProduct, nameProduct, valueProduct);
+    }
+    
+    /**
+     * Actualiza los ingredientes asociados a un producto en la base de datos.
+     *
+     * @param productId   el ID del producto al que se van a actualizar los ingredientes.
+     * @param ingredients lista de ingredientes que seran modificados.
+     * @return true si la actualización se realiza correctamente para todos los ingredientes, false si se produce algún error.
+     */
+    public boolean updateIngredientsProduct(int productId, ArrayList<Ingredient> ingredients) {
+    	boolean result = true;
+
+    	// Actualizar los ingredientes asociados al producto
+    	for (Ingredient ingredient : ingredients) {
+            boolean ingredientResult = Connect.updateIngredientProduct(ingredient, productId);
+            if (!ingredientResult) {
+                result = false;
+            }
+        }
+    	
+    	return result;
     }
 }
 

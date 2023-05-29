@@ -401,4 +401,20 @@ public class Connect {
 	        
 	        return saleableProducts;
 	  }
+	  
+	  public static boolean updateProduct(int productId, int typeProduct, String nameProduct, float valueProduct) {
+		// Actualizar los campos de la tabla PRODUCTS
+		  String updateProductQuery = "UPDATE PRODUCTS SET ID_TYPE_PRODUCT = " +typeProduct+ ", NAME_PRODUCTS = '" 
+				  +nameProduct+ "', VALUE_PRODUCTS = " +valueProduct + " WHERE ID_PRODUCTS = "+ productId;
+
+		return insertInto(updateProductQuery);
+	  }
+	  
+	  public static boolean updateIngredientProduct(Ingredient ingredient, int productId) {
+		  String updateIngredientsQuery = "UPDATE INGREDIENTS_PRODUCTS SET QUANTITY_INGREDIENT_PRODUCTS = " 
+				  + ingredient.getQuantity() + " WHERE ID_PRODUCTS = " + productId + " AND ID_INGREDIENTS = " + ingredient.getId();
+		  
+		  return insertInto(updateIngredientsQuery);
+	  }
+	  
 }

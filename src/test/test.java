@@ -18,13 +18,18 @@ public class test {
 	public static void main(String[] args) throws ClassNotFoundException {
         // Crear una instancia de la clase Restaurant
         Restaurant restaurant = new Restaurant();
-
-        ArrayList<Product> saleableProducts = restaurant.getSaleableProducts();
         
-     // Imprimir los detalles de cada producto
-        for (Product product : saleableProducts) {
-            System.out.println(product.toString());
-        }
+        int productId = 12;
+        int typeProduct = 2;
+        String nameProduct = "Hamburguesa pequeña";
+        float valueProduct = 5000;
+
+        // Act
+        boolean result = Connect.updateProduct(productId, typeProduct, nameProduct, valueProduct);
+
+
+        // Assert
+        System.out.println(result);
 
 	}
 }
