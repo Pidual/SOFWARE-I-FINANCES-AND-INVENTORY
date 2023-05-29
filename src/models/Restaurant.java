@@ -288,8 +288,18 @@ public class Restaurant {
 	   * @param newPassword   Nueva contraseña del usuario.
 	   * @return true si la modificación se realiza correctamente, false en caso contrario.
 	   */
-	  public static boolean updateUser(String userId, String newName, String newPassword) {
-	      return Connect.updateUser(userId,newName,newPassword);
-	  }
+    public boolean updateUser(String userId, String newName, String newPassword) {
+    	return Connect.updateUser(userId,newName,newPassword);
+	}
+    
+    /**
+     * Verifica si existen productos con cantidad baja en el inventario o ingredientes con cantidad baja en el inventario.
+     *
+     * @return true si hay productos o ingredientes con cantidad baja en el inventario, false en caso contrario.
+     */
+    public boolean AlertLowQuatity() {
+    	return (Connect.hasRowsWithLowInventoryProducts() || Connect.hasRowsWithLowQuantityIngredients());
+    }
+    
 }
 

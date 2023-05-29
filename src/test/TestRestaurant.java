@@ -26,7 +26,7 @@ public class TestRestaurant {
         System.out.println("Pedido creado");
 
         // Caso de prueba para el método payExpense
-        boolean expensePaid = restaurant.payExpense(Category.NEWS, "Comida para la cena", 50.0f);
+        boolean expensePaid = restaurant.payExpense(Category.NOVEDADES, "Comida para la cena", 50.0f);
         System.out.println("Gasto pagado: " + expensePaid);
 
         // Caso de prueba para el método addProductOrder

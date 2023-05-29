@@ -293,6 +293,8 @@ public class Connect {
 			     // Crear el objeto ProductOrder
 			     productOrder = new ProductOrder(productId, productTypeId,productName, productValue, 1);
 			    
+			 }else {
+				 return null;
 			 }
 			
 			while (resultSetIngredients.next()) {
@@ -580,5 +582,64 @@ public class Connect {
 	      String query = "UPDATE USER SET NAME_USER = '" + newName + "', PASSWORD_USER = '" + newPassword + "' WHERE ID_USER = '" + userId + "'";
 	      return insertInto(query);
 	  }
+	  
+	  
+	  /**
+	   * Este metodo deber ser invocado en cada: Apertura del Programa y Venta de productos
+	   * Comprueba si existen filas en la tabla INGREDIENS_INVENTORY con cantidades <= 2000.
+	   * @return true si existen filas con QUANTITY_INGREDIENTS_INVENTORY  <= 2000, false en caso contrario.
+	   */
+	  public static boolean hasRowsWithLowQuantityIngredients() {
+		  String query = "SELECT COUNT(*) AS ROW_COUNT FROM INGREDIENS_INVENTORY WHERE "
+		  		+ "QUANTITY_INGREDIENTS_INVENTORY <= 2000";
+	      
+		  ResultSet resultSet = selectFromObject(query);
+		  
+		  try {
+			if (resultSet.next()) {
+			      int rowCount = resultSet.getInt("ROW_COUNT");
+			      return rowCount > 0;
+			  }
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		  
+		return false;
+	  }
+	  
+	  /**
+	   * Este metodo deber ser invocado en cada: Apertura del Programa y Venta de productos
+	   * Verifica si existen filas en la tabla "PRODUCT_INVENTORY" con QUANTITY_PRODUCT_INVENTORY <= 10.
+	   *
+	   * @return true si hay filas con una cantidad baja de inventario, false en caso contrario.
+	   */
+	  public static boolean hasRowsWithLowInventoryProducts() {
+	      // Construir la consulta SQL para contar las filas con QUANTITY_PRODUCT_INVENTORY <= 10
+	      String query = "SELECT COUNT(*) AS ROW_COUNT FROM PRODUCT_INVENTORY WHERE "
+	      		+ "QUANTITY_PRODUCT_INVENTORY <= 10";
+
+	      // Ejecutar la consulta y obtener el resultado
+	      ResultSet resultSet = selectFromObject(query);
+
+	      try {
+	          // Verificar si el resultado tiene una siguiente fila
+	          if (resultSet.next()) {
+	              // Obtener el valor del contador de filas
+	              int rowCount = resultSet.getInt("ROW_COUNT");
+	              // Retornar true si hay filas con cantidad baja de inventario, false en caso contrario
+	              return rowCount > 0;
+	          }
+	      } catch (SQLException e) {
+	          // Manejar cualquier excepción ocurrida durante el procesamiento de la consulta
+	          e.printStackTrace();
+	      }
+
+	      // Retornar false si no se encontraron filas con cantidad baja de inventario
+	      return false;
+	  }
+
+	  
+	  
 
 }

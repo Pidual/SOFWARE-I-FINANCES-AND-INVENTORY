@@ -32,7 +32,13 @@ public class PaymentDesk {
      */
     public boolean addProductOrder(int id, int quantity) {
     	ProductOrder newProductOrder = Connect.getProductOrder(id);
-    	newProductOrder.setQuantity(quantity);
+    	
+    	if (newProductOrder != null) {
+    	    newProductOrder.setQuantity(quantity);
+    	} else {
+    	    return false;
+    	}
+    	
         if (newProductOrder.getType() == TypeProduct.ENVASADO) {
         	//Si es envasado consulta disponibilidad en inventario de productos
         	if(Connect.checkInvertoryProduct(id,quantity)) {

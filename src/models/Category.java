@@ -1,12 +1,12 @@
 package models;
 
 public enum Category {
-    SALARY("1"),
-    RECEIPTS("2"),
-    RENT("3"),
-    NEWS("4"),
-    INPUTS("5"),
-    INVESTMENT("6");
+    SALARIO("1"),
+    SERVICIOS_PUBLICOS("2"),
+    RENTA("3"),
+    NOVEDADES("4"),
+    INSUMOS("5"),
+    INVERSIONES("6");
     
     private String categoryName;
     
