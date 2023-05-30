@@ -29,11 +29,12 @@ public class Presenter implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
         switch (command){
-            case "LOGIN": //cesarc 12345678
-//                if (restaurant.login(gui.getUsername(),gui.getPassword())){ //John Doe password
-//                    gui.login();
-//                }
-                gui.login();
+            case "LOGIN":
+                if (restaurant.login(gui.getUsername(),gui.getPassword())){ //John Doe password
+                    gui.login();
+                }else{
+                    gui.showJOptionPaneError("Contraseña/Usuario incorrecto");
+                }
                 break;
 
             case "GESTIONAR_PRODUCTOS":
