@@ -326,5 +326,16 @@ public class Restaurant {
     	return Connect.deleteProduct(productId);
     }
     
+    /**
+     * Busca ingredientes por nombre que contengan la cadena de búsqueda.
+     *
+     * @param keyword la cadena de búsqueda
+     * @return una lista de ingredientes que coinciden con la búsqueda
+     * @throws SQLException si ocurre algún error de base de datos
+     */
+    public ArrayList<Ingredient> searchIngredientsByName(String keyword){
+    	return Connect.searchIngredientsByName(keyword);
+    }
+    
 }
 

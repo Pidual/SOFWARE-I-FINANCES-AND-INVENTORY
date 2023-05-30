@@ -713,5 +713,37 @@ public class Connect {
 	 
 	    	return insertInto(query);
 	    }
+	    
+	    /**
+	     * Busca ingredientes por nombre que contengan la cadena de búsqueda.
+	     *
+	     * @param keyword la cadena de búsqueda
+	     * @return una lista de ingredientes que coinciden con la búsqueda
+	     * @throws SQLException si ocurre algún error de base de datos
+	     */
+	    public static ArrayList<Ingredient> searchIngredientsByName(String keyword){
+	    	ArrayList<Ingredient> ingredients = new ArrayList<>();
+	    	
+	    	// Preparar la consulta SQL
+	        String query = "SELECT * FROM INGREDIENTS WHERE NAME_INGREDIENTS LIKE '%"+ keyword +"%'";
+	        
+	        ResultSet resultSet = selectFromObject(query);
+	        
+	        try {
+				while (resultSet.next()) {
+				    int id = resultSet.getInt("ID_INGREDIENTS");
+				    String name = resultSet.getString("NAME_INGREDIENTS");
+				    float quantity = resultSet.getFloat("QUANTITY_INGREDIENTS");
+				    
+				    Ingredient ingredient = new Ingredient(id, name, quantity);
+				    ingredients.add(ingredient);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        
+	        return ingredients;
+	    }
 
 }
