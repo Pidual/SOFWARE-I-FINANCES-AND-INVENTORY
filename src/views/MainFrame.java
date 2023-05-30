@@ -1,8 +1,11 @@
 package views;
 
 import models.Ingredient;
+import models.ProductOrder;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import javax.swing.text.NumberFormatter;
 import java.awt.event.*;
 import java.text.NumberFormat;
@@ -370,20 +373,20 @@ public class MainFrame extends javax.swing.JFrame {
                         "ID", "NOMBRE", "PRECIO", "CANTIDAD"
                 }
         ));
+        TableColumn column = searchProductTable.getColumnModel().getColumn(0);
+        column.setPreferredWidth(10); // Set the desired width
+
         jScrollPane1.setViewportView(searchProductTable);
 
         searchProductModifyProductButton.setBackground(new java.awt.Color(148, 104, 70));
         searchProductModifyProductButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        searchProductModifyProductButton.setText("MODIFICAR PRODUCTO");
-        searchProductModifyProductButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchProductModifyProductButtonActionPerformed(evt);
-            }
-        });
+        searchProductModifyProductButton.setText("<html>MODIFICAR CANTIDAD<br>DE UN PRODUCTO<html>");
+        searchProductModifyProductButton.addActionListener(presenterListener);
+        searchProductModifyProductButton.setActionCommand("MODIFICAR_PRODUCTO");
 
         searchProductDeleteProductButton.setBackground(new java.awt.Color(148, 104, 70));
         searchProductDeleteProductButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        searchProductDeleteProductButton.setText("ELIMINAR PRODUCTO");
+        searchProductDeleteProductButton.setText("<html>ELIMINAR <br>PRODUCTO<html>");
 
         searchProductButton.setBackground(new java.awt.Color(148, 104, 70));
         searchProductButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -403,16 +406,16 @@ public class MainFrame extends javax.swing.JFrame {
                                         .addGroup(administrateProductsLayout.createSequentialGroup()
                                                 .addGap(60, 60, 60)
                                                 .addGroup(administrateProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                        .addGroup(administrateProductsLayout.createSequentialGroup()
-                                                                .addComponent(searchProductModifyProductButton)
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                .addComponent(searchProductDeleteProductButton))
                                                         .addGroup(administrateProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                                 .addGroup(administrateProductsLayout.createSequentialGroup()
                                                                         .addComponent(jLabel8)
                                                                         .addGap(26, 26, 26)
                                                                         .addComponent(searchProductTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addGroup(administrateProductsLayout.createSequentialGroup()
+                                                                .addComponent(searchProductModifyProductButton)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                .addComponent(searchProductDeleteProductButton)))))
                                 .addContainerGap(46, Short.MAX_VALUE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, administrateProductsLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
@@ -431,12 +434,12 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(searchProductButton)
                                 .addGap(18, 18, 18)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(42, 42, 42)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addGroup(administrateProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(searchProductDeleteProductButton)
-                                        .addComponent(searchProductModifyProductButton))
-                                .addContainerGap(136, Short.MAX_VALUE))
+                                        .addComponent(searchProductModifyProductButton)
+                                        .addComponent(searchProductDeleteProductButton))
+                                .addContainerGap(88, Short.MAX_VALUE))
         );
 
         Parent.add(administrateProducts, "card2");
@@ -953,15 +956,27 @@ public class MainFrame extends javax.swing.JFrame {
         addProductIngridientList.setModel(comboBoxModel);
     }
 
-    public void setSearchProductTable(){
-        searchProductTable.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null}},
-                new String [] {
-                        "ID", "NOMBRE", "PRECIO", "CANTIDAD"
-                }
-        ));
+    public void setSearchProductTable(ArrayList<ProductOrder> productOrders) {
+        DefaultTableModel tableModel = new DefaultTableModel(
+                new Object[][]{},
+                new String[]{"ID", "NOMBRE", "PRECIO", "CANTIDAD"}
+        );
+
+        for (ProductOrder product : productOrders) {
+            Object[] rowData = {
+                    String.valueOf(product.getId()),
+                    product.getName(),
+                    String.valueOf(product.getValue()),
+                    String.valueOf(product.getQuantity())
+            };
+            tableModel.addRow(rowData);
+        }
+        searchProductTable.setModel(tableModel);
+        TableColumn column = searchProductTable.getColumnModel().getColumn(0);
+        column.setPreferredWidth(10); // Set the desired width
     }
+
+
 
     public int getTypeProduct(){
         if(addProductIsCookedCheckBox.isSelected()){
@@ -1080,7 +1095,9 @@ public class MainFrame extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, s, "Error", JOptionPane.INFORMATION_MESSAGE);
     }
 
-
+    public String getIntegerJOptionPane(String s) {
+        return JOptionPane.showInputDialog(null, s);
+    }
 
 
     // End of variables declaration

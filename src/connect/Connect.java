@@ -665,7 +665,7 @@ public class Connect {
 	    	
 	    	String queryNoInventary = "SELECT ID_PRODUCTS, ID_TYPE_PRODUCT, NAME_PRODUCTS, VALUE_PRODUCTS\r\n"
 	    			+ "FROM PRODUCTS\r\n"
-	    			+ "WHERE NAME_PRODUCTS LIKE '%"+ keyword +"%'";
+	    			+ "WHERE NAME_PRODUCTS LIKE '%"+ keyword +"%' AND ID_TYPE_PRODUCT = 2";
 	    	
 	    	ResultSet resultSet = selectFromObject(query);
 	    	ResultSet resultSetNoInventary = selectFromObject(queryNoInventary);

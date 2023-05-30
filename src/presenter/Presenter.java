@@ -1,6 +1,8 @@
 package presenter;
 
 import models.Ingredient;
+import models.Product;
+import models.ProductOrder;
 import models.Restaurant;
 import views.MainFrame;
 
@@ -46,9 +48,13 @@ public class Presenter implements ActionListener{
                 }
                 break;
             case "BUSCAR_PRODUCTO":
-                //System.out.println("buscando producto...");
-                //ArrayList<ProductOrder> productOrders = restaurant.getProductOrdersByKeyword(gui.getSearchedProduct());
-
+                String productName = gui.getSearchedProduct();
+                if(Objects.equals(productName, "")){
+                    gui.showJOptionPaneError("El nombre esta vacio!");
+                    return;
+                }
+                ArrayList<ProductOrder> productOrders = restaurant.getProductOrdersByKeyword(gui.getSearchedProduct());
+                gui.setSearchProductTable(productOrders);
                 break;
 
             case "AGREGAR_PRODUCTOS":
@@ -92,8 +98,15 @@ public class Presenter implements ActionListener{
 
 
             case "MODIFICAR_PRODUCTO":
+                int id = Integer.parseInt(gui.getIntegerJOptionPane("Ingrese el ID del producto:"));
+                int quantity = Integer.parseInt(gui.getIntegerJOptionPane("Ingrese la cantidad a sumar a la cantidad de producto:"));
+                //restaurant.addQuantityIngredients(id,quantity);
 
                 break;
+
+//            case "MODIFICAR_PRODUCTO":
+//
+//                break;
 
 
 
