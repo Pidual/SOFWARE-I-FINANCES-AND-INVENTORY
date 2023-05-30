@@ -774,7 +774,7 @@ public class MainFrame extends javax.swing.JFrame {
         jScrollPane4.setViewportView(seeInventoryPanelProductTable);
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel9.setText("PRODUCTOS:");
+        jLabel9.setText("PRODUCTOS EN EL INVENTARIO:");
 
         seeIventoryPanelIngridientTable.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
@@ -790,7 +790,7 @@ public class MainFrame extends javax.swing.JFrame {
         jScrollPane6.setViewportView(seeIventoryPanelIngridientTable);
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel10.setText("INGREDIENTES:");
+        jLabel10.setText("INGREDIENTES EN EL INVENTARIO:");
 
         javax.swing.GroupLayout seeInventoryLayout = new javax.swing.GroupLayout(seeInventory);
         seeInventory.setLayout(seeInventoryLayout);
@@ -967,8 +967,6 @@ public class MainFrame extends javax.swing.JFrame {
         column.setPreferredWidth(10); // Set the desired width
     }
 
-
-
     public int getTypeProduct(){
         if(addProductIsCookedCheckBox.isSelected()){
             return 1;
@@ -1101,8 +1099,43 @@ public class MainFrame extends javax.swing.JFrame {
         Parent.revalidate();
     }
 
-    public void updateIventoryTables() {
-        //seeInventoryPanelProductTable
+    public void updateInventoryTables(ArrayList<ProductOrder> productOrders, ArrayList<Ingredient> ingredients) {
+        DefaultTableModel tableModelProducts = new DefaultTableModel(
+                new Object[][]{},
+                new String[]{"ID", "NOMBRE", "PRECIO", "CANTIDAD"}
+        );
+
+        for (ProductOrder product : productOrders) {
+            Object[] rowData = {
+                    String.valueOf(product.getId()),
+                    product.getName(),
+                    String.valueOf(product.getValue()),
+                    String.valueOf(product.getQuantity())
+            };
+            tableModelProducts.addRow(rowData);
+        }
+        seeInventoryPanelProductTable.setModel(tableModelProducts);
+        TableColumn column = seeInventoryPanelProductTable.getColumnModel().getColumn(0);
+        column.setPreferredWidth(10); // Set the desired width
+
+        //Siguiente tabla
+        DefaultTableModel tableModelIngridients = new DefaultTableModel(
+                new Object[][]{},
+                new String[]{"ID", "NOMBRE", "CANTIDAD"}
+        );
+        for (Ingredient ingredient : ingredients) {
+            Object[] rowData = {
+                    String.valueOf(ingredient.getId()),
+                    ingredient.getName(),
+                    String.valueOf(ingredient.getQuantity())
+            };
+            tableModelIngridients.addRow(rowData);
+        }
+        seeIventoryPanelIngridientTable.setModel(tableModelIngridients);
+        TableColumn column1 = seeIventoryPanelIngridientTable.getColumnModel().getColumn(0);
+        column1.setPreferredWidth(10); // Set the desired width
+
+
     }
 
 

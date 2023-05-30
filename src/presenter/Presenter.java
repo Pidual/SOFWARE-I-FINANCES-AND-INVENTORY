@@ -1,7 +1,6 @@
 package presenter;
 
 import models.Ingredient;
-import models.Product;
 import models.ProductOrder;
 import models.Restaurant;
 import views.MainFrame;
@@ -125,6 +124,7 @@ public class Presenter implements ActionListener{
                 break;
 
             case "BUSCAR_INGREDIENTE":
+                System.out.println("Buscar ingrediente triggered");
                 String searchedIngridient = gui.getSearchedIngridient();
                 if(Objects.equals(searchedIngridient, "")){
                     gui.showJOptionPaneError("El nombre esta vacio!");
@@ -140,7 +140,7 @@ public class Presenter implements ActionListener{
 
             case "MOSTRAR_INVENTARIO":
                 gui.showinventory();
-                gui.updateIventoryTables();
+                gui.updateInventoryTables(restaurant.getInventoryProducts(),restaurant.getInventoryIngredients());
                 break;
 
 
