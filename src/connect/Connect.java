@@ -699,5 +699,19 @@ public class Connect {
             
             return productOrders;
 	    }
+	    
+	    /**
+	     * Elimina un registro de producto de la base de datos.
+	     * 
+	     * @param productId el ID del producto a eliminar
+	     * @return true si se eliminó el registro correctamente, false en caso contrario
+	     * @throws SQLException si ocurre algún error de base de datos
+	     */
+	    public static boolean deleteProduct(int productId) {
+	    	String query = "DELETE FROM PRODUCTS WHERE ID_PRODUCTS = "+ productId;
+	    	
+	 
+	    	return insertInto(query);
+	    }
 
 }

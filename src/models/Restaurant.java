@@ -1,5 +1,6 @@
 package models;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -312,6 +313,17 @@ public class Restaurant {
     public ArrayList<ProductOrder> getProductOrdersByKeyword(String keyword){
 
         return Connect.getProductOrdersByKeyword(keyword);
+    }
+    
+    /**
+     * Elimina un registro de producto de la base de datos.
+     * 
+     * @param productId el ID del producto a eliminar
+     * @return true si se eliminó el registro correctamente, false en caso contrario
+     * @throws SQLException si ocurre algún error de base de datos
+     */
+    public boolean deleteProduct(int productId) {
+    	return Connect.deleteProduct(productId);
     }
     
 }
