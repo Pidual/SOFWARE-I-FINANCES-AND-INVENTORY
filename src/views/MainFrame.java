@@ -184,6 +184,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         showPasswordCheckBox.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         showPasswordCheckBox.setText("mostrar contraseña");
+        showPasswordCheckBox.setBackground(new java.awt.Color(217, 217, 217));
         showPasswordCheckBox.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -307,11 +308,8 @@ public class MainFrame extends javax.swing.JFrame {
         seeInventoryButton.setBackground(new java.awt.Color(255, 209, 102));
         seeInventoryButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         seeInventoryButton.setText("<html>VER<br>INVENTARIO<html>");
-        seeInventoryButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                seeInventoryButtonActionPerformed(evt);
-            }
-        });
+        seeInventoryButton.addActionListener(presenterListener);
+        seeInventoryButton.setActionCommand("MOSTRAR_INVENTARIO");
 
         javax.swing.GroupLayout BaseLayout = new javax.swing.GroupLayout(Base);
         Base.setLayout(BaseLayout);
@@ -387,6 +385,8 @@ public class MainFrame extends javax.swing.JFrame {
         searchProductDeleteProductButton.setBackground(new java.awt.Color(148, 104, 70));
         searchProductDeleteProductButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         searchProductDeleteProductButton.setText("<html>ELIMINAR <br>PRODUCTO<html>");
+        searchProductDeleteProductButton.addActionListener(presenterListener);
+        searchProductDeleteProductButton.setActionCommand("ELIMINAR_PRODUCTO");
 
         searchProductButton.setBackground(new java.awt.Color(148, 104, 70));
         searchProductButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -701,20 +701,14 @@ public class MainFrame extends javax.swing.JFrame {
         searchIngridientButton.setBackground(new java.awt.Color(148, 104, 70));
         searchIngridientButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         searchIngridientButton.setText("BUSCAR INGREDIENTE");
-        searchIngridientButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchIngridientButtonActionPerformed(evt);
-            }
-        });
+        searchIngridientButton.addActionListener(presenterListener);
+        searchIngridientButton.setActionCommand("BUSCAR_INGREDIENTE");
 
         searchIngridientModifyIngridientButton.setBackground(new java.awt.Color(148, 104, 70));
         searchIngridientModifyIngridientButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         searchIngridientModifyIngridientButton.setText("MODIFICAR INGREDIENTE");
-        searchIngridientModifyIngridientButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchIngridientModifyIngridientButtonActionPerformed(evt);
-            }
-        });
+        searchIngridientModifyIngridientButton.addActionListener(presenterListener);
+        searchIngridientModifyIngridientButton.setActionCommand("MODIFICAR_INGREDIENTE");
 
         javax.swing.GroupLayout administrateIngridientsPanelLayout = new javax.swing.GroupLayout(administrateIngridientsPanel);
         administrateIngridientsPanel.setLayout(administrateIngridientsPanelLayout);
@@ -780,7 +774,7 @@ public class MainFrame extends javax.swing.JFrame {
         jScrollPane4.setViewportView(seeInventoryPanelProductTable);
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel9.setText("PRODUCTOS:");
+        jLabel9.setText("PRODUCTOS EN EL INVENTARIO:");
 
         seeIventoryPanelIngridientTable.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
@@ -796,7 +790,7 @@ public class MainFrame extends javax.swing.JFrame {
         jScrollPane6.setViewportView(seeIventoryPanelIngridientTable);
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel10.setText("INGREDIENTES:");
+        jLabel10.setText("INGREDIENTES EN EL INVENTARIO:");
 
         javax.swing.GroupLayout seeInventoryLayout = new javax.swing.GroupLayout(seeInventory);
         seeInventory.setLayout(seeInventoryLayout);
@@ -805,11 +799,11 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, seeInventoryLayout.createSequentialGroup()
                                 .addContainerGap(54, Short.MAX_VALUE)
                                 .addGroup(seeInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(seeInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jLabel10)
+                                        .addComponent(jLabel9))
                                 .addGap(34, 34, 34))
         );
         seeInventoryLayout.setVerticalGroup(
@@ -905,10 +899,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     private void seeInventoryButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        Parent.removeAll();
-        Parent.add(seeInventory); //Monda wave
-        Parent.repaint();
-        Parent.revalidate();
+
     }
 
     private void searchIngridientDeleteIngridientActionPerformed(java.awt.event.ActionEvent evt) {
@@ -975,8 +966,6 @@ public class MainFrame extends javax.swing.JFrame {
         TableColumn column = searchProductTable.getColumnModel().getColumn(0);
         column.setPreferredWidth(10); // Set the desired width
     }
-
-
 
     public int getTypeProduct(){
         if(addProductIsCookedCheckBox.isSelected()){
@@ -1097,6 +1086,56 @@ public class MainFrame extends javax.swing.JFrame {
 
     public String getIntegerJOptionPane(String s) {
         return JOptionPane.showInputDialog(null, s);
+    }
+
+    public String getSearchedIngridient() {
+        return administrateIngridientsIngridientNameTextField.getText();
+    }
+
+    public void showinventory() {
+        Parent.removeAll();
+        Parent.add(seeInventory); //Monda wave
+        Parent.repaint();
+        Parent.revalidate();
+    }
+
+    public void updateInventoryTables(ArrayList<ProductOrder> productOrders, ArrayList<Ingredient> ingredients) {
+        DefaultTableModel tableModelProducts = new DefaultTableModel(
+                new Object[][]{},
+                new String[]{"ID", "NOMBRE", "PRECIO", "CANTIDAD"}
+        );
+
+        for (ProductOrder product : productOrders) {
+            Object[] rowData = {
+                    String.valueOf(product.getId()),
+                    product.getName(),
+                    String.valueOf(product.getValue()),
+                    String.valueOf(product.getQuantity())
+            };
+            tableModelProducts.addRow(rowData);
+        }
+        seeInventoryPanelProductTable.setModel(tableModelProducts);
+        TableColumn column = seeInventoryPanelProductTable.getColumnModel().getColumn(0);
+        column.setPreferredWidth(10); // Set the desired width
+
+        //Siguiente tabla
+        DefaultTableModel tableModelIngridients = new DefaultTableModel(
+                new Object[][]{},
+                new String[]{"ID", "NOMBRE", "CANTIDAD"}
+        );
+        for (Ingredient ingredient : ingredients) {
+            Object[] rowData = {
+                    String.valueOf(ingredient.getId()),
+                    ingredient.getName(),
+                    String.valueOf(ingredient.getQuantity())
+            };
+            tableModelIngridients.addRow(rowData);
+        }
+        seeIventoryPanelIngridientTable.setModel(tableModelIngridients);
+        TableColumn column1 = seeIventoryPanelIngridientTable.getColumnModel().getColumn(0);
+        column1.setPreferredWidth(10); // Set the desired width
+
+
     }
 
 

@@ -699,6 +699,7 @@ public class Connect {
             
             return productOrders;
 	    }
+<<<<<<< HEAD
 	    
 	    /**
 	     * Elimina un registro de producto de la base de datos.
@@ -714,4 +715,6 @@ public class Connect {
 	    	return insertInto(query);
 	    }
 
+=======
+>>>>>>> branch 'main' of https://github.com/Pidual/SOFWARE-I-FINANCES-AND-INVENTORY.git
 }

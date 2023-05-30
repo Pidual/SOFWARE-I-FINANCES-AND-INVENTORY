@@ -1,7 +1,6 @@
 package presenter;
 
 import models.Ingredient;
-import models.Product;
 import models.ProductOrder;
 import models.Restaurant;
 import views.MainFrame;
@@ -98,15 +97,52 @@ public class Presenter implements ActionListener{
 
 
             case "MODIFICAR_PRODUCTO":
-                int id = Integer.parseInt(gui.getIntegerJOptionPane("Ingrese el ID del producto:"));
-                int quantity = Integer.parseInt(gui.getIntegerJOptionPane("Ingrese la cantidad a sumar a la cantidad de producto:"));
-                //restaurant.addQuantityIngredients(id,quantity);
+                String idString = gui.getIntegerJOptionPane("Ingrese el ID del producto(Solo numeros):");
+                if(idString.isBlank() ){
+                    gui.showJOptionPaneError("El ID esta vacio");
+                    return;
+                } else if (!idString.matches("[0-9]+")) {
+                    gui.showJOptionPaneError("El ID ingresado contiene un caracter no numerico");
+                    return;
+                }
+                String quantityString = gui.getIntegerJOptionPane("Ingrese la cantidad a sumar a la cantidad de producto\n(para restar una cantidad use numeros negativos)");
+                if(quantityString.isBlank() ){
+                    gui.showJOptionPaneError("El ID esta vacio");
+                    return;
+                } else if (!quantityString.matches("-?[0-9]+")) {
+                    gui.showJOptionPaneError("Ingreso un caracter no numerico!");
+                    return;
+                }
+                restaurant.addQuantityProduct(Integer.parseInt(idString),Integer.parseInt(quantityString));
+                //gui.showJOptionPaneSuccess("Cantidad de producto modificada con exito");
+                break;
+
+            case "ELIMINAR_PRODUCTO":
+                System.out.println("MAIDJMSAIUDMUIASDAS"); //TODO Luis te toca miau miau :DDD
+
+                //restaurant.
+                break;
+
+            case "BUSCAR_INGREDIENTE":
+                System.out.println("Buscar ingrediente triggered");
+                String searchedIngridient = gui.getSearchedIngridient();
+                if(Objects.equals(searchedIngridient, "")){
+                    gui.showJOptionPaneError("El nombre esta vacio!");
+                    return;
+                }
+                //ArrayList<ProductOrder> productOrders = restaurant.getProductOrdersByKeyword(gui.getSearchedProduct());
+                //gui.setSearchProductTable(productOrders);
+                break;
+
+            case "MODIFICAR_INGREDIENTE":
 
                 break;
 
-//            case "MODIFICAR_PRODUCTO":
-//
-//                break;
+            case "MOSTRAR_INVENTARIO":
+                gui.showinventory();
+                gui.updateInventoryTables(restaurant.getInventoryProducts(),restaurant.getInventoryIngredients());
+                break;
+
 
 
 
