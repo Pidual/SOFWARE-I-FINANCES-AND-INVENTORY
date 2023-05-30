@@ -114,7 +114,7 @@ public class Presenter implements ActionListener{
                     return;
                 }
                 restaurant.addQuantityProduct(Integer.parseInt(idString),Integer.parseInt(quantityString));
-                //gui.showJOptionPaneSuccess("Cantidad de producto modificada con exito");
+                gui.showJOptionPaneSuccess("Cantidad de producto modificada con exito");
                 break;
 
             case "ELIMINAR_PRODUCTO":
@@ -145,7 +145,24 @@ public class Presenter implements ActionListener{
                 break;
 
             case "MODIFICAR_INGREDIENTE":
-
+                String ingredientID = gui.getIntegerJOptionPane("Ingrese el ID del ingrediente(Solo numeros):");
+                if(ingredientID.isBlank() ){
+                    gui.showJOptionPaneError("El ID esta vacio");
+                    return;
+                } else if (!ingredientID.matches("[0-9]+")) {
+                    gui.showJOptionPaneError("El ID ingresado contiene un caracter no numerico");
+                    return;
+                }
+                String ingredientValue = gui.getIntegerJOptionPane("Ingrese la cantidad a sumar a la cantidad de ingrediente\n(para restar una cantidad use numeros negativos)");
+                if(ingredientValue.isBlank() ){
+                    gui.showJOptionPaneError("El ID esta vacio");
+                    return;
+                } else if (!ingredientValue.matches("-?[0-9]+")) {
+                    gui.showJOptionPaneError("Ingreso un caracter no numerico!");
+                    return;
+                }
+                restaurant.addQuantityIngredients(Integer.parseInt(ingredientID),Integer.parseInt(ingredientValue));
+                gui.showJOptionPaneSuccess("Cantidad de ingrediente modificada con exito");
                 break;
 
             case "MOSTRAR_INVENTARIO":
@@ -153,7 +170,22 @@ public class Presenter implements ActionListener{
                 gui.updateInventoryTables(restaurant.getInventoryProducts(),restaurant.getInventoryIngredients());
                 break;
 
-
+            case "ELIMINAR_INGREDIENTE":
+                String ingredientDeletionID = gui.getIntegerJOptionPane("Ingrese el ID del ingrediente a eleminar");
+                if(ingredientDeletionID.isBlank() ){
+                    gui.showJOptionPaneError("El ID esta vacio");
+                    return;
+                } else if (!ingredientDeletionID.matches("[0-9]+")) {
+                    gui.showJOptionPaneError("El ID ingresado contiene un caracter no numerico");
+                    return;
+                }
+                if(gui.confirmDialog()){
+                    restaurant.deleteIngredientById(Integer.parseInt(ingredientDeletionID));
+                    gui.showJOptionPaneSuccess("Se elimino el ingrediente con exito");
+                }else{
+                    gui.showJOptionPaneError("No se elimino el ingrediente");
+                }
+                break;
 
 
         }

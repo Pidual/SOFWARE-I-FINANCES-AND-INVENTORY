@@ -760,7 +760,7 @@ public class Connect {
 	     */
 	    public static boolean deleteIngredientById(int ingredientId) {
 	    	 // Preparar la consulta SQL
-	        String query = "DELETE FROM INGREDIENTS WHERE ID_INGREDIENTS = ?";
+	        String query = "DELETE FROM INGREDIENTS WHERE ID_INGREDIENTS ="+ingredientId;
 	        
 	        return insertInto(query);
 	    }

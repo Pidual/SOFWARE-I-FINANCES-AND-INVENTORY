@@ -679,11 +679,8 @@ public class MainFrame extends javax.swing.JFrame {
         searchIngridientDeleteIngridient.setBackground(new java.awt.Color(148, 104, 70));
         searchIngridientDeleteIngridient.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         searchIngridientDeleteIngridient.setText("ELIMINAR INGREDIENTE");
-        searchIngridientDeleteIngridient.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchIngridientDeleteIngridientActionPerformed(evt);
-            }
-        });
+        searchIngridientDeleteIngridient.addActionListener(presenterListener);
+        searchIngridientDeleteIngridient.setActionCommand("ELIMINAR_INGREDIENTE");
 
         ingridientSearchJTable.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
