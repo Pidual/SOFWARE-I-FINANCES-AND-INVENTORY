@@ -337,5 +337,8 @@ public class Restaurant {
     	return Connect.searchIngredientsByName(keyword);
     }
     
+    public boolean deleteIngredientById(int ingredientId) {
+    	return Connect.deleteIngredientById(ingredientId);
+    }
 }
 

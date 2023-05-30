@@ -749,4 +749,19 @@ public class Connect {
 	        return ingredients;
 	    }
 
+	 // Constructor que inicializa la conexión a la base de datos
+	    
+	    /**
+	     * Elimina un registro de Ingredient basado en su ID.
+	     *
+	     * @param ingredientId el ID del ingrediente a eliminar
+	     * @return true si se eliminó correctamente, false en caso contrario
+	     * @throws SQLException si ocurre algún error de base de datos
+	     */
+	    public static boolean deleteIngredientById(int ingredientId) {
+	    	 // Preparar la consulta SQL
+	        String query = "DELETE FROM INGREDIENTS WHERE ID_INGREDIENTS = ?";
+	        
+	        return insertInto(query);
+	    }
 }
