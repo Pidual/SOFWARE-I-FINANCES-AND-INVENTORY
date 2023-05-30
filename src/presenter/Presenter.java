@@ -135,14 +135,13 @@ public class Presenter implements ActionListener{
                 break;
 
             case "BUSCAR_INGREDIENTE":
-                System.out.println("Buscar ingrediente triggered");
-                String searchedIngridient = gui.getSearchedIngridient();
-                if(Objects.equals(searchedIngridient, "")){
+                String searchedIngredient = gui.getSearchedIngridient();
+                if(Objects.equals(searchedIngredient, "")){
                     gui.showJOptionPaneError("El nombre esta vacio!");
                     return;
                 }
-                //ArrayList<ProductOrder> productOrders = restaurant.getProductOrdersByKeyword(gui.getSearchedProduct());
-                //gui.setSearchProductTable(productOrders);
+                ArrayList<Ingredient> ingredients = restaurant.searchIngredientsByName(searchedIngredient);
+                gui.setSearchIngridientTable(ingredients);
                 break;
 
             case "MODIFICAR_INGREDIENTE":

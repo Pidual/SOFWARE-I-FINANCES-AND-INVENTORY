@@ -1121,7 +1121,7 @@ public class MainFrame extends javax.swing.JFrame {
         //Siguiente tabla
         DefaultTableModel tableModelIngridients = new DefaultTableModel(
                 new Object[][]{},
-                new String[]{"ID", "NOMBRE", "CANTIDAD"}
+                new String[]{"ID", "NOMBRE", "PRECIO"}
         );
         for (Ingredient ingredient : ingredients) {
             Object[] rowData = {
@@ -1148,6 +1148,24 @@ public class MainFrame extends javax.swing.JFrame {
         } else {
             return false;
         }
+    }
+
+    public void setSearchIngridientTable(ArrayList<Ingredient> ingredients) {
+        DefaultTableModel tableModel = new DefaultTableModel(
+                new Object[][]{},
+                new String[]{"ID", "NOMBRE", "CANTIDAD"}
+        );
+        for (Ingredient ingrediente : ingredients) {
+            Object[] rowData = {
+                    String.valueOf(ingrediente.getId()),
+                    ingrediente.getName(),
+                    String.valueOf(ingrediente.getQuantity()),
+            };
+            tableModel.addRow(rowData);
+        }
+        ingridientSearchJTable.setModel(tableModel);
+        TableColumn column = ingridientSearchJTable.getColumnModel().getColumn(0);
+        column.setPreferredWidth(10); // Set the desired width
     }
 
 

@@ -736,7 +736,7 @@ public class Connect {
 				while (resultSet.next()) {
 				    int id = resultSet.getInt("ID_INGREDIENTS");
 				    String name = resultSet.getString("NAME_INGREDIENTS");
-				    float quantity = resultSet.getFloat("QUANTITY_INGREDIENTS");
+				    float quantity = resultSet.getFloat("QUANTITY_INGREDIENTS_INVENTORY");
 				    
 				    Ingredient ingredient = new Ingredient(id, name, quantity);
 				    ingredients.add(ingredient);
