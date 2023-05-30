@@ -458,20 +458,20 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        addProductIngridientQuantity.setEnabled(false);
+
         addProductIsCookedCheckBox.setText("¿Producto Cocinado?");
-        addProductIsCookedCheckBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addProductIsCookedCheckBoxActionPerformed(evt);
-            }
+        addProductIsCookedCheckBox.addItemListener(e -> {      // Activa los demas componentes si le da que es cocinado
+            boolean enabled = e.getStateChange() == ItemEvent.SELECTED;
+            addProductIngridientList.setEnabled(enabled);
+            addProductIngridientQuantity.setEnabled(enabled);
+            addProductAddIngridientButton.setEnabled(enabled);
         });
 
         addProductAddIngridientButton.setBackground(new java.awt.Color(148, 104, 70));
         addProductAddIngridientButton.setText("<html>AGREGAR<br>INGREDIENTE<html>");
-        addProductAddIngridientButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addProductAddIngridientButtonActionPerformed(evt);
-            }
-        });
+        addProductAddIngridientButton.addActionListener(presenterListener);
+        addProductAddIngridientButton.setEnabled(false);
 
         addIngridientsAddedIngridientsTextField.setColumns(20);
         addIngridientsAddedIngridientsTextField.setRows(3);
@@ -485,8 +485,11 @@ public class MainFrame extends javax.swing.JFrame {
 
         addProductIngridientList.setBackground(new java.awt.Color(236, 228, 183));
         addProductIngridientList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        addProductIngridientList.setEnabled(false);
 
+        jLabel17.setPreferredSize(getPreferredSize());
         jLabel17.setText("ingredientes del producto:");
+
 
         addProductAddProductButton.setBackground(new java.awt.Color(148, 104, 70));
         addProductAddProductButton.setText("<html>AGREGAR<br>PRODUCTO<html>");
