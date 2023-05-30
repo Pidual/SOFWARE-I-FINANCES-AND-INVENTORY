@@ -1,6 +1,6 @@
 package presenter;
 
-import models.User;
+import models.Restaurant;
 import views.MainFrame;
 
 import javax.swing.*;
@@ -9,10 +9,10 @@ import java.awt.event.ActionListener;
 
 public class Presenter implements ActionListener{
 
-    private User user;
+    private Restaurant restaurant;
     private MainFrame gui;
     public Presenter(){
-        user = new User("123","123");
+        restaurant = new Restaurant();
         gui = new MainFrame(this);
     }
 
@@ -20,8 +20,14 @@ public class Presenter implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
         switch (command){
-            case "LOGIN":
-                gui.login();
+            case "LOGIN": //cesarc 12345678
+                System.out.println(gui.getUsername());
+                System.out.println(gui.getPassword());
+                if (restaurant.login(gui.getUsername(),gui.getPassword())){ //John Doe password
+                    gui.login();
+                }else{
+                    System.out.println("login fallado");
+                }
                 break;
 
             case "GESTIONAR_PRODUCTOS":
