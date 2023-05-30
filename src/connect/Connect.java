@@ -660,9 +660,15 @@ public class Connect {
 	    	String query = "SELECT P.ID_PRODUCTS, P.ID_TYPE_PRODUCT, P.NAME_PRODUCTS, P.VALUE_PRODUCTS, PI.QUANTITY_PRODUCT_INVENTORY "
                     + "FROM PRODUCTS P "
                     + "JOIN PRODUCT_INVENTORY PI ON P.ID_PRODUCTS = PI.ID_PRODUCTS "
-                    + "WHERE P.NAME_PRODUCTS LIKE %"+ keyword +"%";
+                    + "WHERE P.NAME_PRODUCTS LIKE '%"+ keyword +"%'";
+	    	System.out.println(query);
+	    	
+	    	String queryNoInventary = "SELECT ID_PRODUCTS, ID_TYPE_PRODUCT, NAME_PRODUCTS, VALUE_PRODUCTS\r\n"
+	    			+ "FROM PRODUCTS\r\n"
+	    			+ "WHERE NAME_PRODUCTS LIKE '%"+ keyword +"%'";
 	    	
 	    	ResultSet resultSet = selectFromObject(query);
+	    	ResultSet resultSetNoInventary = selectFromObject(queryNoInventary);
 	    	
 	    	// Iterar sobre los resultados y construir objetos ProductOrder
             try {
@@ -674,6 +680,16 @@ public class Connect {
 				    int quantity = resultSet.getInt("QUANTITY_PRODUCT_INVENTORY");
 
 				    ProductOrder productOrder = new ProductOrder(id, typeProductId, name, value, quantity);
+				    productOrders.add(productOrder);
+				}
+				
+				while (resultSetNoInventary.next()) {
+				    int id = resultSetNoInventary.getInt("ID_PRODUCTS");
+				    int typeProductId = resultSetNoInventary.getInt("ID_TYPE_PRODUCT");
+				    String name = resultSetNoInventary.getString("NAME_PRODUCTS");
+				    double value = resultSetNoInventary.getDouble("VALUE_PRODUCTS");
+
+				    ProductOrder productOrder = new ProductOrder(id, typeProductId, name, value, 0);
 				    productOrders.add(productOrder);
 				}
 			} catch (SQLException e) {
