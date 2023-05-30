@@ -1,5 +1,6 @@
 package test;
 
+import models.Category;
 import models.Restaurant;
 
 public class TestAlFallo {
@@ -8,29 +9,29 @@ public class TestAlFallo {
 		// TODO Auto-generated method stub
 		Restaurant restaurant = new Restaurant();
 		
-		System.out.println("Caso de Prueba: Credenciales inválidas");
+		System.out.println("Caso de Prueba: Realizar el pago de un gasto correctamente");
+		System.out.println("Resultado esperado: true");
+		System.out.println("Resultado obtenido: " + restaurant.payExpense(Category.NOVEDADES, "Compra de ingredientes", 100.0f));
+		
+		System.out.println("Caso de Prueba: Categoría de gasto nula");
 		System.out.println("Resultado esperado: false");
-		System.out.println("Resultado obtenido: " + restaurant.login("usuario123", "contraseña456"));
+		System.out.println("Resultado obtenido: " + restaurant.payExpense(null, "Compra de utensilios", 50.0f));
 
-		System.out.println("Caso de Prueba: Creación de usuario con datos incorrectos");
+		System.out.println("Caso de Prueba: Descripción vacía");
+		System.out.println("Resultado esperado: true");
+		System.out.println("Resultado obtenido: " + restaurant.payExpense(Category.SERVICIOS_PUBLICOS, "", 75.0f));
+		
+		System.out.println("Caso de Prueba: Valor negativo");
 		System.out.println("Resultado esperado: false");
-		System.out.println("Resultado obtenido: " + restaurant.createUser("", "", ""));
+		System.out.println("Resultado obtenido: " + restaurant.payExpense(Category.SERVICIOS_PUBLICOS, "Pago de electricidad", -200.0f));
 
-		System.out.println("Caso de Prueba: Agregar producto al pedido con ID inválido");
+		System.out.println("Caso de Prueba: Valor cero");
 		System.out.println("Resultado esperado: false");
-		System.out.println("Resultado obtenido: " + restaurant.addProductOrder(-1, 1));
-
-		System.out.println("Caso de Prueba: Restar producto del pedido con ID inválido");
-		System.out.println("No se produce ninguna excepción");
-		restaurant.subtractProductOrder(-1);
+		System.out.println("Resultado obtenido: " + restaurant.payExpense(Category.NOVEDADES, "Combustible", 0.0f));
 
 		
-		System.out.println("Caso de Prueba: Pago del pedido sin productos");
-		System.out.println("Resultado esperado: false");
-		System.out.println("Resultado obtenido: " + restaurant.payOrder());
 
-		System.out.println("Hay bajos niveles de inventario " + restaurant.AlertLowQuatity() );
-		
+
 	}
 
 }

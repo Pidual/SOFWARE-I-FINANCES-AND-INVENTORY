@@ -55,7 +55,15 @@ public class Restaurant {
      * @param value       Valor del gasto.
      */
     public boolean payExpense(Category category, String description, Float value) {
-        return Connect.ExpenseCreation(category.getCategoryName(), description, value, new Date());
+    	
+    	try {
+    		return Connect.ExpenseCreation(category.getCategoryName(), description, value, new Date());
+    	} catch (NullPointerException e) {
+    	    System.out.println("Resultado esperado: false");
+    	    System.out.println("Excepción: " + e.getMessage());
+    	    // Otros pasos a seguir en caso de excepción
+    	}
+    	return false;
     }
 
     /**

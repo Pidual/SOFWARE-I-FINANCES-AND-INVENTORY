@@ -388,8 +388,16 @@ public class Connect {
 	 * @return true si la inserción se realiza correctamente, false en caso contrario.
 	 */
 	public static boolean insertUser(String name, String user, String password) {
-		String query = "INSERT INTO USER (ID_USER, NAME_USER, PASSWORD_USER) VALUES (' " + user + "', ' " + name +  "', ' " + password +  "')";
-
+		
+		String query;
+		
+		if(user != null && password != null) {
+			query = "INSERT INTO USER (ID_USER, NAME_USER, PASSWORD_USER) VALUES (' " + user + "', ' " 
+					+ name +  "', ' " + password +  "')";
+		}else {
+			return false;
+		}
+		
 		return insertInto(query);
 	}
 
