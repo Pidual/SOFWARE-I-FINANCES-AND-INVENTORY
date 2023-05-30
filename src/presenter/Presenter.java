@@ -80,6 +80,17 @@ public class Presenter implements ActionListener{
                 gui.addItemToTextFieldInAddProduct(ingridientsInventory.get(gui.getIndexFromIngridientList()).toString());
                 break;
 
+            case "AGREGAR_INGREDIENTE":
+                String ingridientName = gui.getAddIngridientName();
+                if(Objects.equals(ingridientName, "")){
+                    gui.showJOptionPaneError("El nombre esta vacio!");
+                    return;
+                }
+                restaurant.createIngredients(ingridientName,0);
+                gui.showJOptionPaneSuccess("Producto Agregado con exito!");
+                break;
+
+
             case "MODIFICAR_PRODUCTO":
 
                 break;

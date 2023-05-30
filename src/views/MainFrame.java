@@ -80,8 +80,10 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         addIngridientIngridientNameTextField = new javax.swing.JTextField();
+
+        addIngridientPriceFormatedField = new javax.swing.JFormattedTextField(formatter);
         addIngridientAddIngridientButton = new javax.swing.JButton();
-        addIngridientIngridientQuianity = new javax.swing.JSpinner();
+
         administrateIngridientsPanel = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -595,9 +597,6 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel18.setText("AGREGAR INGREDIENTE:");
 
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel14.setText("CANTIDAD:");
-
         jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel19.setText("NOMBRE INGREDIENTE:");
 
@@ -607,13 +606,8 @@ public class MainFrame extends javax.swing.JFrame {
         addIngridientAddIngridientButton.setBackground(new java.awt.Color(148, 104, 70));
         addIngridientAddIngridientButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         addIngridientAddIngridientButton.setText("AGREGAR INGREDIENTE");
-        addIngridientAddIngridientButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addIngridientAddIngridientButtonActionPerformed(evt);
-            }
-        });
-
-        addIngridientIngridientQuianity.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        addIngridientAddIngridientButton.addActionListener(presenterListener);
+        addIngridientAddIngridientButton.setActionCommand("AGREGAR_INGREDIENTE");
 
         javax.swing.GroupLayout addIngridientPanelLayout = new javax.swing.GroupLayout(addIngridientPanel);
         addIngridientPanel.setLayout(addIngridientPanelLayout);
@@ -621,20 +615,16 @@ public class MainFrame extends javax.swing.JFrame {
                 addIngridientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(addIngridientPanelLayout.createSequentialGroup()
                                 .addGap(83, 83, 83)
-                                .addGroup(addIngridientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel19)
-                                        .addComponent(jLabel14))
+                                .addComponent(jLabel19)
                                 .addGap(22, 22, 22)
-                                .addGroup(addIngridientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(addIngridientIngridientNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
-                                        .addComponent(addIngridientIngridientQuianity))
+                                .addComponent(addIngridientIngridientNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addIngridientPanelLayout.createSequentialGroup()
                                 .addContainerGap(164, Short.MAX_VALUE)
                                 .addComponent(jLabel18)
                                 .addGap(154, 154, 154))
                         .addGroup(addIngridientPanelLayout.createSequentialGroup()
-                                .addGap(176, 176, 176)
+                                .addGap(173, 173, 173)
                                 .addComponent(addIngridientAddIngridientButton)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -648,13 +638,29 @@ public class MainFrame extends javax.swing.JFrame {
                                         .addComponent(jLabel19)
                                         .addComponent(addIngridientIngridientNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addGroup(addIngridientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(addIngridientIngridientQuianity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel14))
-                                .addGap(34, 34, 34)
                                 .addComponent(addIngridientAddIngridientButton)
-                                .addContainerGap(226, Short.MAX_VALUE))
+                                .addContainerGap(291, Short.MAX_VALUE))
         );
+
+        Parent.add(addIngridientPanel, "card4");
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel6.setText("BUSCAR INGREDIENTE:");
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel7.setText("NOMBRE INGREDIENTE:");
+
+        administrateIngridientsIngridientNameTextField.setBackground(new java.awt.Color(236, 228, 183));
+        administrateIngridientsIngridientNameTextField.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        searchIngridientDeleteIngridient.setBackground(new java.awt.Color(148, 104, 70));
+        searchIngridientDeleteIngridient.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        searchIngridientDeleteIngridient.setText("ELIMINAR INGREDIENTE");
+        searchIngridientDeleteIngridient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchIngridientDeleteIngridientActionPerformed(evt);
+            }
+        });
 
         Parent.add(addIngridientPanel, "card4");
 
@@ -980,6 +986,10 @@ public class MainFrame extends javax.swing.JFrame {
         return addProductIngridientList.getSelectedIndex();
     }
 
+    public String getAddIngridientName() {
+        return addIngridientIngridientNameTextField.getText();
+    }
+
     // Variables declaration - do not modify
     private javax.swing.JButton AddProductButton;
     private javax.swing.JLabel AddProductLabel;
@@ -990,7 +1000,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel Parent;
     private javax.swing.JButton addIngridientAddIngridientButton;
     private javax.swing.JTextField addIngridientIngridientNameTextField;
-    private javax.swing.JSpinner addIngridientIngridientQuianity;
+    private javax.swing.JFormattedTextField addIngridientPriceFormatedField;
     private javax.swing.JPanel addIngridientPanel;
     private javax.swing.JButton addIngridients;
     private javax.swing.JTextArea addIngridientsAddedIngridientsTextField;
@@ -1069,6 +1079,8 @@ public class MainFrame extends javax.swing.JFrame {
     public void showJOptionPaneSuccess(String s) {
         JOptionPane.showMessageDialog(null, s, "Error", JOptionPane.INFORMATION_MESSAGE);
     }
+
+
 
 
     // End of variables declaration
