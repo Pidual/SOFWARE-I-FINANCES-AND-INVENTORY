@@ -1,74 +1,103 @@
 package views;
 
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 public class MainFrame extends javax.swing.JFrame {
     public MainFrame(ActionListener presenterListener) {
         initComponents(presenterListener);
-        setVisible(true);
+        setLocationRelativeTo(null);
+        this.setVisible(true);
+
     }
 
-    public void login(){
-        PanelLoginAndMainMenu.removeAll();
-        PanelLoginAndMainMenu.add(MainMenu);
-        PanelLoginAndMainMenu.repaint();
-        PanelLoginAndMainMenu.revalidate();
-        }
-
     private void initComponents(ActionListener presenterListener) {
+
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
         PanelLoginAndMainMenu = new javax.swing.JPanel();
         Loggin = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         loginButton = new javax.swing.JButton();
         exitButtonLongin = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        userTextField = new javax.swing.JTextField();
+        logginUsernameTextField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        paswordPaswordField = new javax.swing.JPasswordField();
+        logginPaswordTextField = new javax.swing.JPasswordField();
+        showPasswordCheckBox = new javax.swing.JCheckBox();
         MainMenu = new javax.swing.JPanel();
-        HeaderLabel = new javax.swing.JLabel();
+        headerLabel = new javax.swing.JLabel();
         Base = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        showAdministrateProductsButton = new javax.swing.JButton();
         AddProductButton = new javax.swing.JButton();
         addIngridients = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
+        administrateIngridientsButton = new javax.swing.JButton();
+        seeInventoryButton = new javax.swing.JButton();
         Parent = new javax.swing.JPanel();
         administrateProducts = new javax.swing.JPanel();
         searchProductLabel = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        codigoProductoLabel = new javax.swing.JLabel();
-        productoNameTextField = new javax.swing.JTextField();
-        productIDTextField = new javax.swing.JTextField();
+        searchProductTextField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        resultTable = new javax.swing.JTable();
-        editProduct = new javax.swing.JButton();
-        deleteProduct = new javax.swing.JButton();
+        searchProductTable = new javax.swing.JTable();
+        searchProductModifyProductButton = new javax.swing.JButton();
+        searchProductDeleteProductButton = new javax.swing.JButton();
+        searchProductButton = new javax.swing.JButton();
         addProductos = new javax.swing.JPanel();
         AddProductLabel = new javax.swing.JLabel();
         productNameLabel = new javax.swing.JLabel();
-        productName = new javax.swing.JTextField();
+        addProductNameTextField = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        PriceTextField = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        addIngriedientoTheTheDB = new javax.swing.JButton();
+        addProductPriceTextField = new javax.swing.JTextField();
+        addProductIsCookedCheckBox = new javax.swing.JCheckBox();
+        addProductAddIngridientButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        addedIngridientsTextField = new javax.swing.JTextArea();
+        addIngridientsAddedIngridientsTextField = new javax.swing.JTextArea();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        ingridientList = new javax.swing.JComboBox<>();
+        addProductIngridientList = new javax.swing.JComboBox<>();
         jLabel17 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
-        ingridientQuantity = new javax.swing.JSpinner();
+        addProductQuantitySpinner = new javax.swing.JSpinner();
+        addProductIngridientQuantity = new javax.swing.JSpinner();
         addIngridientPanel = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
-        jButton10 = new javax.swing.JButton();
-        jSpinner2 = new javax.swing.JSpinner();
+        addIngridientIngridientNameTextField = new javax.swing.JTextField();
+        addIngridientAddIngridientButton = new javax.swing.JButton();
+        addIngridientIngridientQuianity = new javax.swing.JSpinner();
+        administrateIngridientsPanel = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        administrateIngridientsIngridientNameTextField = new javax.swing.JTextField();
+        searchIngridientDeleteIngridient = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        ingridientSearchJTable = new javax.swing.JTable();
+        searchIngridientButton = new javax.swing.JButton();
+        searchIngridientModifyIngridientButton = new javax.swing.JButton();
+        seeInventory = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        seeInventoryPanelProductTable = new javax.swing.JTable();
+        jLabel9 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        seeIventoryPanelIngridientTable = new javax.swing.JTable();
+        jLabel10 = new javax.swing.JLabel();
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+                new Object [][] {
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null}
+                },
+                new String [] {
+                        "Title 1", "Title 2", "Title 3", "Title 4"
+                }
+        ));
+        jScrollPane5.setViewportView(jTable3);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(700, 500));
@@ -87,21 +116,30 @@ public class MainFrame extends javax.swing.JFrame {
         loginButton.setBackground(new java.awt.Color(255, 209, 102));
         loginButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         loginButton.setText("INGRESAR");
-        loginButton.addActionListener(presenterListener);
         loginButton.setActionCommand("LOGIN");
+        loginButton.addActionListener(presenterListener);
 
         exitButtonLongin.setBackground(new java.awt.Color(255, 209, 102));
         exitButtonLongin.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         exitButtonLongin.setText("SALIR");
-        exitButtonLongin.setActionCommand("EXIT");
-        exitButtonLongin.addActionListener(presenterListener);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel3.setText("USUARIO:");
 
-        userTextField.setBackground(new java.awt.Color(236, 228, 183));
-        userTextField.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        userTextField.setText("USUARIO");
+        logginUsernameTextField.setBackground(new java.awt.Color(236, 228, 183));
+        logginUsernameTextField.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        logginUsernameTextField.setText("USUARIO");
+        logginUsernameTextField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                logginUsernameTextField.setText(""); // Clear the text field
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                // Do nothing when focus is lost
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel4.setText("CONTRASEÑA:");
@@ -114,35 +152,48 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel2.setText("Restaurante Guaranii Sistema de Informacion");
         jLabel2.setOpaque(true);
 
-        paswordPaswordField.setBackground(new java.awt.Color(236, 228, 183));
-        paswordPaswordField.setText("jPasswordField1");
+        logginPaswordTextField.setBackground(new java.awt.Color(236, 228, 183));
+        logginPaswordTextField.setText("jPasswordField1");
+        logginPaswordTextField.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                logginPaswordTextField.setText(""); // Clear the password field
+            }
+        });
+
+        showPasswordCheckBox.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        showPasswordCheckBox.setText("mostrar contraseña");
 
         javax.swing.GroupLayout LogginLayout = new javax.swing.GroupLayout(Loggin);
         Loggin.setLayout(LogginLayout);
         LogginLayout.setHorizontalGroup(
                 LogginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(LogginLayout.createSequentialGroup()
                                 .addGroup(LogginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(LogginLayout.createSequentialGroup()
                                                 .addGap(171, 171, 171)
-                                                .addGroup(LogginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                        .addComponent(jLabel4)
-                                                        .addComponent(jLabel3)
-                                                        .addComponent(exitButtonLongin, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(69, 69, 69)
                                                 .addGroup(LogginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(loginButton)
-                                                        .addComponent(userTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                        .addGroup(LogginLayout.createSequentialGroup()
+                                                                .addGroup(LogginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                                        .addComponent(jLabel4)
+                                                                        .addComponent(jLabel3)
+                                                                        .addComponent(exitButtonLongin, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                .addGap(53, 53, 53)
+                                                                .addComponent(loginButton))
+                                                        .addGroup(LogginLayout.createSequentialGroup()
+                                                                .addGap(51, 51, 51)
+                                                                .addComponent(jLabel1))))
                                         .addGroup(LogginLayout.createSequentialGroup()
                                                 .addGap(311, 311, 311)
                                                 .addComponent(jLabel5))
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                        .addGroup(LogginLayout.createSequentialGroup()
-                                .addGap(214, 214, 214)
-                                .addGroup(LogginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(paswordPaswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(LogginLayout.createSequentialGroup()
+                                                .addGap(368, 368, 368)
+                                                .addGroup(LogginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(showPasswordCheckBox)
+                                                        .addGroup(LogginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                                .addComponent(logginUsernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addComponent(logginPaswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         LogginLayout.setVerticalGroup(
@@ -151,44 +202,46 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel5)
-                                .addGap(26, 26, 26)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(20, 20, 20)
                                 .addGroup(LogginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel3)
-                                        .addComponent(userTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(logginUsernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(29, 29, 29)
                                 .addGroup(LogginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(paswordPaswordField))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                                        .addComponent(logginPaswordTextField))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(showPasswordCheckBox)
+                                .addGap(37, 37, 37)
                                 .addGroup(LogginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(loginButton)
                                         .addComponent(exitButtonLongin))
-                                .addGap(47, 47, 47))
+                                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         PanelLoginAndMainMenu.add(Loggin, "card2");
 
         MainMenu.setLayout(null);
 
-        HeaderLabel.setBackground(new java.awt.Color(148, 104, 70));
-        HeaderLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        HeaderLabel.setForeground(new java.awt.Color(255, 255, 255));
-        HeaderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        HeaderLabel.setText("Menu Principal");
-        HeaderLabel.setOpaque(true);
-        MainMenu.add(HeaderLabel);
-        HeaderLabel.setBounds(0, -4, 700, 40);
+        headerLabel.setBackground(new java.awt.Color(148, 104, 70));
+        headerLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        headerLabel.setForeground(new java.awt.Color(255, 255, 255));
+        headerLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        headerLabel.setText("Menu Principal");
+        headerLabel.setOpaque(true);
+        MainMenu.add(headerLabel);
+        headerLabel.setBounds(0, -4, 700, 40);
 
         Base.setBackground(new java.awt.Color(185, 184, 153));
 
-        jButton1.setBackground(new java.awt.Color(255, 209, 102));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setText("<html>BUSCAR<br>PRODUCTOS<html>");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        showAdministrateProductsButton.setBackground(new java.awt.Color(255, 209, 102));
+        showAdministrateProductsButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        showAdministrateProductsButton.setText("<html>GESTIONAR<br>PRODUCTOS<html>");
+        showAdministrateProductsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                showAdministrateProductsButtonActionPerformed(evt);
             }
         });
 
@@ -213,8 +266,29 @@ public class MainFrame extends javax.swing.JFrame {
         exitButton.setBackground(new java.awt.Color(255, 209, 102));
         exitButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         exitButton.setText("SALIR");
-        exitButton.addActionListener(presenterListener);
-        exitButton.setActionCommand("EXIT");
+        exitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitButtonActionPerformed(evt);
+            }
+        });
+
+        administrateIngridientsButton.setBackground(new java.awt.Color(255, 209, 102));
+        administrateIngridientsButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        administrateIngridientsButton.setText("<html>GESTIONAR<br>INGREDIENTES<html>");
+        administrateIngridientsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                administrateIngridientsButtonActionPerformed(evt);
+            }
+        });
+
+        seeInventoryButton.setBackground(new java.awt.Color(255, 209, 102));
+        seeInventoryButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        seeInventoryButton.setText("<html>VER<br>INVENTARIO<html>");
+        seeInventoryButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                seeInventoryButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout BaseLayout = new javax.swing.GroupLayout(Base);
         Base.setLayout(BaseLayout);
@@ -223,27 +297,31 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGroup(BaseLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(BaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(addIngridients, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                        .addGroup(BaseLayout.createSequentialGroup()
-                                                .addGroup(BaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(AddProductButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(0, 3, Short.MAX_VALUE))
-                                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                                .addContainerGap())
+                                        .addComponent(AddProductButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(addIngridients, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(showAdministrateProductsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(BaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(administrateIngridientsButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                                .addComponent(seeInventoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap(9, Short.MAX_VALUE))
         );
         BaseLayout.setVerticalGroup(
                 BaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(BaseLayout.createSequentialGroup()
                                 .addGap(72, 72, 72)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(showAdministrateProductsButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(AddProductButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(addIngridients, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(administrateIngridientsButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(seeInventoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                                 .addComponent(exitButton)
-                                .addGap(99, 99, 99))
+                                .addGap(60, 60, 60))
         );
 
         MainMenu.add(Base);
@@ -260,26 +338,15 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel8.setText("NOMBRE PRODUCTO:");
 
-        codigoProductoLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        codigoProductoLabel.setText("CODIGO PRODUCTO:");
-
-        productoNameTextField.setBackground(new java.awt.Color(236, 228, 183));
-        productoNameTextField.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        productoNameTextField.addActionListener(new java.awt.event.ActionListener() {
+        searchProductTextField.setBackground(new java.awt.Color(236, 228, 183));
+        searchProductTextField.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        searchProductTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                productoNameTextFieldActionPerformed(evt);
+                searchProductTextFieldActionPerformed(evt);
             }
         });
 
-        productIDTextField.setBackground(new java.awt.Color(236, 228, 183));
-        productIDTextField.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        productIDTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                productIDTextFieldActionPerformed(evt);
-            }
-        });
-
-        resultTable.setModel(new javax.swing.table.DefaultTableModel(
+        searchProductTable.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
                         {null, null, null, null},
                         {null, null, null, null},
@@ -290,20 +357,24 @@ public class MainFrame extends javax.swing.JFrame {
                         "Title 1", "Title 2", "Title 3", "Title 4"
                 }
         ));
-        jScrollPane1.setViewportView(resultTable);
+        jScrollPane1.setViewportView(searchProductTable);
 
-        editProduct.setBackground(new java.awt.Color(148, 104, 70));
-        editProduct.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        editProduct.setText("MODIFICAR PRODUCTO");
-        editProduct.addActionListener(new java.awt.event.ActionListener() {
+        searchProductModifyProductButton.setBackground(new java.awt.Color(148, 104, 70));
+        searchProductModifyProductButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        searchProductModifyProductButton.setText("MODIFICAR PRODUCTO");
+        searchProductModifyProductButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editProductActionPerformed(evt);
+                searchProductModifyProductButtonActionPerformed(evt);
             }
         });
 
-        deleteProduct.setBackground(new java.awt.Color(148, 104, 70));
-        deleteProduct.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        deleteProduct.setText("ELIMINAR PRODUCTO");
+        searchProductDeleteProductButton.setBackground(new java.awt.Color(148, 104, 70));
+        searchProductDeleteProductButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        searchProductDeleteProductButton.setText("ELIMINAR PRODUCTO");
+
+        searchProductButton.setBackground(new java.awt.Color(148, 104, 70));
+        searchProductButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        searchProductButton.setText("BUSCAR PRODUCTO");
 
         javax.swing.GroupLayout administrateProductsLayout = new javax.swing.GroupLayout(administrateProducts);
         administrateProducts.setLayout(administrateProductsLayout);
@@ -312,46 +383,45 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGroup(administrateProductsLayout.createSequentialGroup()
                                 .addGroup(administrateProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(administrateProductsLayout.createSequentialGroup()
-                                                .addGap(72, 72, 72)
-                                                .addGroup(administrateProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(administrateProductsLayout.createSequentialGroup()
-                                                                .addGroup(administrateProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addComponent(codigoProductoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addComponent(jLabel8))
-                                                                .addGap(18, 18, 18)
-                                                                .addGroup(administrateProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                                        .addComponent(productoNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
-                                                                        .addComponent(productIDTextField)))
-                                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGroup(administrateProductsLayout.createSequentialGroup()
-                                                                .addComponent(editProduct)
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(deleteProduct))))
-                                        .addGroup(administrateProductsLayout.createSequentialGroup()
                                                 .addGap(170, 170, 170)
-                                                .addComponent(searchProductLabel)))
-                                .addContainerGap(56, Short.MAX_VALUE))
+                                                .addComponent(searchProductLabel))
+                                        .addGroup(administrateProductsLayout.createSequentialGroup()
+                                                .addGap(60, 60, 60)
+                                                .addGroup(administrateProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addGroup(administrateProductsLayout.createSequentialGroup()
+                                                                .addComponent(searchProductModifyProductButton)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                .addComponent(searchProductDeleteProductButton))
+                                                        .addGroup(administrateProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                                .addGroup(administrateProductsLayout.createSequentialGroup()
+                                                                        .addComponent(jLabel8)
+                                                                        .addGap(26, 26, 26)
+                                                                        .addComponent(searchProductTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addContainerGap(46, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, administrateProductsLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(searchProductButton)
+                                .addGap(193, 193, 193))
         );
         administrateProductsLayout.setVerticalGroup(
                 administrateProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(administrateProductsLayout.createSequentialGroup()
                                 .addGap(38, 38, 38)
                                 .addComponent(searchProductLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(45, 45, 45)
+                                .addGap(20, 20, 20)
                                 .addGroup(administrateProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(codigoProductoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(productIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(administrateProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(productoNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(searchProductTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(searchProductButton)
+                                .addGap(18, 18, 18)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(32, 32, 32)
+                                .addGap(42, 42, 42)
                                 .addGroup(administrateProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(editProduct)
-                                        .addComponent(deleteProduct))
-                                .addGap(101, 101, 101))
+                                        .addComponent(searchProductDeleteProductButton)
+                                        .addComponent(searchProductModifyProductButton))
+                                .addContainerGap(136, Short.MAX_VALUE))
         );
 
         Parent.add(administrateProducts, "card2");
@@ -364,11 +434,11 @@ public class MainFrame extends javax.swing.JFrame {
         productNameLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         productNameLabel.setText("NOMBRE:");
 
-        productName.setBackground(new java.awt.Color(236, 228, 183));
-        productName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        productName.addActionListener(new java.awt.event.ActionListener() {
+        addProductNameTextField.setBackground(new java.awt.Color(236, 228, 183));
+        addProductNameTextField.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        addProductNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                productNameActionPerformed(evt);
+                addProductNameTextFieldActionPerformed(evt);
             }
         });
 
@@ -378,32 +448,32 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel13.setText("PRECIO:");
 
-        PriceTextField.setBackground(new java.awt.Color(236, 228, 183));
-        PriceTextField.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        PriceTextField.addActionListener(new java.awt.event.ActionListener() {
+        addProductPriceTextField.setBackground(new java.awt.Color(236, 228, 183));
+        addProductPriceTextField.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        addProductPriceTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PriceTextFieldActionPerformed(evt);
+                addProductPriceTextFieldActionPerformed(evt);
             }
         });
 
-        jCheckBox1.setText("¿Producto Cocinado?");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        addProductIsCookedCheckBox.setText("¿Producto Cocinado?");
+        addProductIsCookedCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                addProductIsCookedCheckBoxActionPerformed(evt);
             }
         });
 
-        addIngriedientoTheTheDB.setBackground(new java.awt.Color(148, 104, 70));
-        addIngriedientoTheTheDB.setText("<html>AGREGAR<br>INGREDIENTE<html>");
-        addIngriedientoTheTheDB.addActionListener(new java.awt.event.ActionListener() {
+        addProductAddIngridientButton.setBackground(new java.awt.Color(148, 104, 70));
+        addProductAddIngridientButton.setText("<html>AGREGAR<br>INGREDIENTE<html>");
+        addProductAddIngridientButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addIngriedientoTheTheDBActionPerformed(evt);
+                addProductAddIngridientButtonActionPerformed(evt);
             }
         });
 
-        addedIngridientsTextField.setColumns(20);
-        addedIngridientsTextField.setRows(5);
-        jScrollPane2.setViewportView(addedIngridientsTextField);
+        addIngridientsAddedIngridientsTextField.setColumns(20);
+        addIngridientsAddedIngridientsTextField.setRows(5);
+        jScrollPane2.setViewportView(addIngridientsAddedIngridientsTextField);
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel15.setText("INGREDIENTE:");
@@ -411,8 +481,8 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel16.setText("CANTIDAD:");
 
-        ingridientList.setBackground(new java.awt.Color(236, 228, 183));
-        ingridientList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        addProductIngridientList.setBackground(new java.awt.Color(236, 228, 183));
+        addProductIngridientList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel17.setText("ingredientes agregados:");
 
@@ -440,14 +510,14 @@ public class MainFrame extends javax.swing.JFrame {
                                                         .addComponent(jLabel16))
                                                 .addGap(18, 18, 18)
                                                 .addGroup(addProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(addIngriedientoTheTheDB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(addProductAddIngridientButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addGroup(addProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                                .addComponent(productName)
-                                                                .addComponent(PriceTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                                                                .addComponent(jCheckBox1)
-                                                                .addComponent(ingridientList, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                .addComponent(jSpinner1)
-                                                                .addComponent(ingridientQuantity, javax.swing.GroupLayout.Alignment.TRAILING)))))
+                                                                .addComponent(addProductNameTextField)
+                                                                .addComponent(addProductPriceTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                                                                .addComponent(addProductIsCookedCheckBox)
+                                                                .addComponent(addProductIngridientList, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                .addComponent(addProductQuantitySpinner)
+                                                                .addComponent(addProductIngridientQuantity, javax.swing.GroupLayout.Alignment.TRAILING)))))
                                 .addContainerGap(24, Short.MAX_VALUE))
         );
         addProductosLayout.setVerticalGroup(
@@ -458,27 +528,27 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(addProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(productNameLabel)
-                                        .addComponent(productName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(addProductNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(addProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel13)
-                                        .addComponent(PriceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(addProductPriceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(addProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel12)
-                                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(addProductQuantitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBox1)
+                                .addComponent(addProductIsCookedCheckBox)
                                 .addGap(30, 30, 30)
                                 .addGroup(addProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel15)
-                                        .addComponent(ingridientList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(addProductIngridientList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(6, 6, 6)
                                 .addGroup(addProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel16)
-                                        .addComponent(ingridientQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(addProductIngridientQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(addIngriedientoTheTheDB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(addProductAddIngridientButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel17)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -499,19 +569,19 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel19.setText("NOMBRE INGREDIENTE:");
 
-        jTextField9.setBackground(new java.awt.Color(236, 228, 183));
-        jTextField9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        addIngridientIngridientNameTextField.setBackground(new java.awt.Color(236, 228, 183));
+        addIngridientIngridientNameTextField.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        jButton10.setBackground(new java.awt.Color(148, 104, 70));
-        jButton10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton10.setText("AGREGAR INGREDIENTE");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        addIngridientAddIngridientButton.setBackground(new java.awt.Color(148, 104, 70));
+        addIngridientAddIngridientButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        addIngridientAddIngridientButton.setText("AGREGAR INGREDIENTE");
+        addIngridientAddIngridientButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                addIngridientAddIngridientButtonActionPerformed(evt);
             }
         });
 
-        jSpinner2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        addIngridientIngridientQuianity.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout addIngridientPanelLayout = new javax.swing.GroupLayout(addIngridientPanel);
         addIngridientPanel.setLayout(addIngridientPanelLayout);
@@ -524,8 +594,8 @@ public class MainFrame extends javax.swing.JFrame {
                                         .addComponent(jLabel14))
                                 .addGap(22, 22, 22)
                                 .addGroup(addIngridientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jTextField9, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
-                                        .addComponent(jSpinner2))
+                                        .addComponent(addIngridientIngridientNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                                        .addComponent(addIngridientIngridientQuianity))
                                 .addGap(0, 0, Short.MAX_VALUE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addIngridientPanelLayout.createSequentialGroup()
                                 .addContainerGap(164, Short.MAX_VALUE)
@@ -533,7 +603,7 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addGap(154, 154, 154))
                         .addGroup(addIngridientPanelLayout.createSequentialGroup()
                                 .addGap(176, 176, 176)
-                                .addComponent(jButton10)
+                                .addComponent(addIngridientAddIngridientButton)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         addIngridientPanelLayout.setVerticalGroup(
@@ -544,17 +614,178 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(addIngridientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel19)
-                                        .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(addIngridientIngridientNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(addIngridientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(addIngridientIngridientQuianity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel14))
                                 .addGap(34, 34, 34)
-                                .addComponent(jButton10)
+                                .addComponent(addIngridientAddIngridientButton)
                                 .addContainerGap(226, Short.MAX_VALUE))
         );
 
         Parent.add(addIngridientPanel, "card4");
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel6.setText("BUSCAR INGREDIENTE:");
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel7.setText("NOMBRE INGREDIENTE:");
+
+        administrateIngridientsIngridientNameTextField.setBackground(new java.awt.Color(236, 228, 183));
+        administrateIngridientsIngridientNameTextField.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        searchIngridientDeleteIngridient.setBackground(new java.awt.Color(148, 104, 70));
+        searchIngridientDeleteIngridient.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        searchIngridientDeleteIngridient.setText("ELIMINAR INGREDIENTE");
+        searchIngridientDeleteIngridient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchIngridientDeleteIngridientActionPerformed(evt);
+            }
+        });
+
+        ingridientSearchJTable.setModel(new javax.swing.table.DefaultTableModel(
+                new Object [][] {
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null}
+                },
+                new String [] {
+                        "Title 1", "Title 2", "Title 3", "Title 4"
+                }
+        ));
+        jScrollPane3.setViewportView(ingridientSearchJTable);
+
+        searchIngridientButton.setBackground(new java.awt.Color(148, 104, 70));
+        searchIngridientButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        searchIngridientButton.setText("BUSCAR INGREDIENTE");
+        searchIngridientButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchIngridientButtonActionPerformed(evt);
+            }
+        });
+
+        searchIngridientModifyIngridientButton.setBackground(new java.awt.Color(148, 104, 70));
+        searchIngridientModifyIngridientButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        searchIngridientModifyIngridientButton.setText("MODIFICAR INGREDIENTE");
+        searchIngridientModifyIngridientButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchIngridientModifyIngridientButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout administrateIngridientsPanelLayout = new javax.swing.GroupLayout(administrateIngridientsPanel);
+        administrateIngridientsPanel.setLayout(administrateIngridientsPanelLayout);
+        administrateIngridientsPanelLayout.setHorizontalGroup(
+                administrateIngridientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, administrateIngridientsPanelLayout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel6)
+                                .addGap(187, 187, 187))
+                        .addGroup(administrateIngridientsPanelLayout.createSequentialGroup()
+                                .addGroup(administrateIngridientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(administrateIngridientsPanelLayout.createSequentialGroup()
+                                                .addGap(38, 38, 38)
+                                                .addGroup(administrateIngridientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, administrateIngridientsPanelLayout.createSequentialGroup()
+                                                                .addGap(26, 26, 26)
+                                                                .addComponent(jLabel7)
+                                                                .addGap(18, 18, 18)
+                                                                .addComponent(administrateIngridientsIngridientNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, administrateIngridientsPanelLayout.createSequentialGroup()
+                                                                .addComponent(searchIngridientModifyIngridientButton)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                .addComponent(searchIngridientDeleteIngridient))
+                                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)))
+                                        .addGroup(administrateIngridientsPanelLayout.createSequentialGroup()
+                                                .addGap(167, 167, 167)
+                                                .addComponent(searchIngridientButton)))
+                                .addContainerGap(59, Short.MAX_VALUE))
+        );
+        administrateIngridientsPanelLayout.setVerticalGroup(
+                administrateIngridientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(administrateIngridientsPanelLayout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addComponent(jLabel6)
+                                .addGap(29, 29, 29)
+                                .addGroup(administrateIngridientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel7)
+                                        .addComponent(administrateIngridientsIngridientNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(searchIngridientButton)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addGroup(administrateIngridientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(searchIngridientDeleteIngridient)
+                                        .addComponent(searchIngridientModifyIngridientButton))
+                                .addContainerGap(140, Short.MAX_VALUE))
+        );
+
+        Parent.add(administrateIngridientsPanel, "card5");
+
+        seeInventoryPanelProductTable.setModel(new javax.swing.table.DefaultTableModel(
+                new Object [][] {
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null}
+                },
+                new String [] {
+                        "Title 1", "Title 2", "Title 3", "Title 4"
+                }
+        ));
+        jScrollPane4.setViewportView(seeInventoryPanelProductTable);
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel9.setText("PRODUCTOS:");
+
+        seeIventoryPanelIngridientTable.setModel(new javax.swing.table.DefaultTableModel(
+                new Object [][] {
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null}
+                },
+                new String [] {
+                        "Title 1", "Title 2", "Title 3", "Title 4"
+                }
+        ));
+        jScrollPane6.setViewportView(seeIventoryPanelIngridientTable);
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel10.setText("INGREDIENTES:");
+
+        javax.swing.GroupLayout seeInventoryLayout = new javax.swing.GroupLayout(seeInventory);
+        seeInventory.setLayout(seeInventoryLayout);
+        seeInventoryLayout.setHorizontalGroup(
+                seeInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, seeInventoryLayout.createSequentialGroup()
+                                .addContainerGap(54, Short.MAX_VALUE)
+                                .addGroup(seeInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(seeInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(34, 34, 34))
+        );
+        seeInventoryLayout.setVerticalGroup(
+                seeInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(seeInventoryLayout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel10)
+                                .addGap(8, 8, 8)
+                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(27, Short.MAX_VALUE))
+        );
+
+        Parent.add(seeInventory, "card6");
 
         MainMenu.add(Parent);
         Parent.setBounds(120, 30, 580, 450);
@@ -562,12 +793,16 @@ public class MainFrame extends javax.swing.JFrame {
         PanelLoginAndMainMenu.add(MainMenu, "card3");
 
         getContentPane().add(PanelLoginAndMainMenu);
-        PanelLoginAndMainMenu.setBounds(0, 0, 700, 450);
+        PanelLoginAndMainMenu.setBounds(0, 0, 700, 480);
 
         pack();
+    }// </editor-fold>
+
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO JOPTION PANE JAJAJAJJA
     }
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void showAdministrateProductsButtonActionPerformed(java.awt.event.ActionEvent evt) {
         Parent.removeAll();
         Parent.add(administrateProducts);
         Parent.repaint();
@@ -575,35 +810,31 @@ public class MainFrame extends javax.swing.JFrame {
 
     }
 
-    private void productoNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
+    private void searchProductTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 
-    private void productIDTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
+    private void searchProductModifyProductButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 
-    private void editProductActionPerformed(java.awt.event.ActionEvent evt) {
+    private void addProductNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 
-    private void productNameActionPerformed(java.awt.event.ActionEvent evt) {
+    private void addProductPriceTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 
-    private void PriceTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
+    private void addProductIsCookedCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void addProductAddIngridientButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 
-    private void addIngriedientoTheTheDBActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void addIngridientAddIngridientButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 
@@ -624,33 +855,81 @@ public class MainFrame extends javax.swing.JFrame {
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
+
+    private void administrateIngridientsButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        Parent.removeAll();
+        Parent.add(administrateIngridientsPanel); //Monda wave
+        Parent.repaint();
+        Parent.revalidate();
+    }
+
+    private void seeInventoryButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        Parent.removeAll();
+        Parent.add(seeInventory); //Monda wave
+        Parent.repaint();
+        Parent.revalidate();
+    }
+
+    private void searchIngridientDeleteIngridientActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
+
+    private void searchIngridientButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
+
+    private void searchIngridientModifyIngridientButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
+
+
+    public void login(){
+        PanelLoginAndMainMenu.removeAll();
+        PanelLoginAndMainMenu.add(MainMenu); //Monda wave
+        PanelLoginAndMainMenu.repaint();
+        PanelLoginAndMainMenu.revalidate();
+    }
+
+    public String getUsername(){
+        return logginUsernameTextField.getText();
+    }
+
+    public String getPassword(){
+        return new String( logginPaswordTextField.getPassword());
+    }
+
     // Variables declaration - do not modify
     private javax.swing.JButton AddProductButton;
     private javax.swing.JLabel AddProductLabel;
     private javax.swing.JPanel Base;
-    private javax.swing.JLabel HeaderLabel;
     private javax.swing.JPanel Loggin;
     private javax.swing.JPanel MainMenu;
     private javax.swing.JPanel PanelLoginAndMainMenu;
     private javax.swing.JPanel Parent;
-    private javax.swing.JTextField PriceTextField;
+    private javax.swing.JButton addIngridientAddIngridientButton;
+    private javax.swing.JTextField addIngridientIngridientNameTextField;
+    private javax.swing.JSpinner addIngridientIngridientQuianity;
     private javax.swing.JPanel addIngridientPanel;
     private javax.swing.JButton addIngridients;
-    private javax.swing.JButton addIngriedientoTheTheDB;
+    private javax.swing.JTextArea addIngridientsAddedIngridientsTextField;
+    private javax.swing.JButton addProductAddIngridientButton;
+    private javax.swing.JComboBox<String> addProductIngridientList;
+    private javax.swing.JSpinner addProductIngridientQuantity;
+    private javax.swing.JCheckBox addProductIsCookedCheckBox;
+    private javax.swing.JTextField addProductNameTextField;
+    private javax.swing.JTextField addProductPriceTextField;
+    private javax.swing.JSpinner addProductQuantitySpinner;
     private javax.swing.JPanel addProductos;
-    private javax.swing.JTextArea addedIngridientsTextField;
+    private javax.swing.JButton administrateIngridientsButton;
+    private javax.swing.JTextField administrateIngridientsIngridientNameTextField;
+    private javax.swing.JPanel administrateIngridientsPanel;
     private javax.swing.JPanel administrateProducts;
-    private javax.swing.JLabel codigoProductoLabel;
-    private javax.swing.JButton deleteProduct;
-    private javax.swing.JButton editProduct;
     private javax.swing.JButton exitButton;
     private javax.swing.JButton exitButtonLongin;
-    private javax.swing.JComboBox<String> ingridientList;
-    private javax.swing.JSpinner ingridientQuantity;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JLabel headerLabel;
+    private javax.swing.JTable ingridientSearchJTable;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -663,20 +942,35 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JTable jTable3;
+    private javax.swing.JPasswordField logginPaswordTextField;
+    private javax.swing.JTextField logginUsernameTextField;
     private javax.swing.JButton loginButton;
-    private javax.swing.JPasswordField paswordPaswordField;
-    private javax.swing.JTextField productIDTextField;
-    private javax.swing.JTextField productName;
     private javax.swing.JLabel productNameLabel;
-    private javax.swing.JTextField productoNameTextField;
-    private javax.swing.JTable resultTable;
+    private javax.swing.JButton searchIngridientButton;
+    private javax.swing.JButton searchIngridientDeleteIngridient;
+    private javax.swing.JButton searchIngridientModifyIngridientButton;
+    private javax.swing.JButton searchProductButton;
+    private javax.swing.JButton searchProductDeleteProductButton;
     private javax.swing.JLabel searchProductLabel;
-    private javax.swing.JTextField userTextField;
+    private javax.swing.JButton searchProductModifyProductButton;
+    private javax.swing.JTable searchProductTable;
+    private javax.swing.JTextField searchProductTextField;
+    private javax.swing.JPanel seeInventory;
+    private javax.swing.JButton seeInventoryButton;
+    private javax.swing.JTable seeInventoryPanelProductTable;
+    private javax.swing.JTable seeIventoryPanelIngridientTable;
+    private javax.swing.JButton showAdministrateProductsButton;
+    private javax.swing.JCheckBox showPasswordCheckBox;
     // End of variables declaration
 }
