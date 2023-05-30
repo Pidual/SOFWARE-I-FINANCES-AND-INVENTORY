@@ -648,6 +648,41 @@ public class Connect {
 	  }
 
 	  
-	  
+	  /**
+	     * Recupera una lista de ProductOrder cuyo nombre de producto contiene las palabras clave.
+	     * 
+	     * @param keyword la palabra clave para la búsqueda
+	     * @return una lista de ProductOrder que coinciden con la palabra clave
+	     * @throws SQLException si ocurre un error de base de datos
+	     */
+	    public ArrayList<ProductOrder> getProductOrdersByKeyword(String keyword){
+	    	ArrayList<ProductOrder> productOrders = new ArrayList<>();
+	    	
+	    	String query = "SELECT P.ID_PRODUCTS, P.ID_TYPE_PRODUCT, P.NAME_PRODUCTS, P.VALUE_PRODUCTS, PI.QUANTITY_PRODUCT_INVENTORY "
+                    + "FROM PRODUCTS P "
+                    + "JOIN PRODUCT_INVENTORY PI ON P.ID_PRODUCTS = PI.ID_PRODUCTS "
+                    + "WHERE P.NAME_PRODUCTS LIKE %"+ keyword +"%";
+	    	
+	    	ResultSet resultSet = selectFromObject(query);
+	    	
+	    	// Iterar sobre los resultados y construir objetos ProductOrder
+            try {
+				while (resultSet.next()) {
+				    int id = resultSet.getInt("ID_PRODUCTS");
+				    int typeProductId = resultSet.getInt("ID_TYPE_PRODUCT");
+				    String name = resultSet.getString("NAME_PRODUCTS");
+				    double value = resultSet.getDouble("VALUE_PRODUCTS");
+				    int quantity = resultSet.getInt("QUANTITY_PRODUCT_INVENTORY");
+
+				    ProductOrder productOrder = new ProductOrder(id, typeProductId, name, value, quantity);
+				    productOrders.add(productOrder);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            
+            return productOrders;
+	    }
 
 }
