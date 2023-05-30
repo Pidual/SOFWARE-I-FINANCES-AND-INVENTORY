@@ -43,7 +43,7 @@ public class TestSearchProduct {
 
 		System.out.println("Caso de Prueba: Palabra clave vacía");
 		System.out.println("Palabra clave: 'Cerv'");
-		productOrders = Connect.getProductOrdersByKeyword("Cerv");
+		productOrders = Connect.getProductOrdersByKeyword("Cerveza");
 		if (productOrders.isEmpty()) {
 		    System.out.println("No se encontraron resultados.");
 		} else {
