@@ -118,9 +118,31 @@ public class Presenter implements ActionListener{
                 //gui.showJOptionPaneSuccess("Cantidad de producto modificada con exito");
                 break;
 
-//            case "MODIFICAR_PRODUCTO":
-//
-//                break;
+            case "ELIMINAR_PRODUCTO":
+                System.out.println("MAIDJMSAIUDMUIASDAS"); //TODO Luis te toca miau miau :DDD
+
+                //restaurant.
+                break;
+
+            case "BUSCAR_INGREDIENTE":
+                String searchedIngridient = gui.getSearchedIngridient();
+                if(Objects.equals(searchedIngridient, "")){
+                    gui.showJOptionPaneError("El nombre esta vacio!");
+                    return;
+                }
+                //ArrayList<ProductOrder> productOrders = restaurant.getProductOrdersByKeyword(gui.getSearchedProduct());
+                //gui.setSearchProductTable(productOrders);
+                break;
+
+            case "MODIFICAR_INGREDIENTE":
+
+                break;
+
+            case "MOSTRAR_INVENTARIO":
+                gui.showinventory();
+                gui.updateIventoryTables();
+                break;
+
 
 
 

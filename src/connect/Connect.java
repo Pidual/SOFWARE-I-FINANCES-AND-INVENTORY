@@ -699,5 +699,4 @@ public class Connect {
             
             return productOrders;
 	    }
-
 }
