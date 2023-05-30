@@ -122,6 +122,8 @@ public class MainFrame extends javax.swing.JFrame {
         exitButtonLongin.setBackground(new java.awt.Color(255, 209, 102));
         exitButtonLongin.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         exitButtonLongin.setText("SALIR");
+        exitButtonLongin.addActionListener(presenterListener);
+        exitButtonLongin.setActionCommand("EXIT");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel3.setText("USUARIO:");
@@ -153,7 +155,8 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel2.setOpaque(true);
 
         logginPaswordTextField.setBackground(new java.awt.Color(236, 228, 183));
-        logginPaswordTextField.setText("jPasswordField1");
+        logginPaswordTextField.setFont(new java.awt.Font("Segoe UI", 0, 18));
+        logginPaswordTextField.setText("contraseña");
         logginPaswordTextField.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -163,6 +166,15 @@ public class MainFrame extends javax.swing.JFrame {
 
         showPasswordCheckBox.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         showPasswordCheckBox.setText("mostrar contraseña");
+        showPasswordCheckBox.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    logginPaswordTextField.setEchoChar((char) 0);
+                } else {
+                    logginPaswordTextField.setEchoChar('\u2022'); // Bullet character
+                }
+            }
+        });
 
         javax.swing.GroupLayout LogginLayout = new javax.swing.GroupLayout(Loggin);
         Loggin.setLayout(LogginLayout);
@@ -266,11 +278,8 @@ public class MainFrame extends javax.swing.JFrame {
         exitButton.setBackground(new java.awt.Color(255, 209, 102));
         exitButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         exitButton.setText("SALIR");
-        exitButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exitButtonActionPerformed(evt);
-            }
-        });
+        exitButton.addActionListener(presenterListener);
+        exitButton.setActionCommand("EXIT");
 
         administrateIngridientsButton.setBackground(new java.awt.Color(255, 209, 102));
         administrateIngridientsButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -340,21 +349,14 @@ public class MainFrame extends javax.swing.JFrame {
 
         searchProductTextField.setBackground(new java.awt.Color(236, 228, 183));
         searchProductTextField.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        searchProductTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchProductTextFieldActionPerformed(evt);
-            }
-        });
+        searchProductTextField.addActionListener(presenterListener);
+        searchProductTextField.setActionCommand("BUSCAR_PRODUCTO");
 
         searchProductTable.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null}
-                },
+                        {null, null, null, null}},
                 new String [] {
-                        "Title 1", "Title 2", "Title 3", "Title 4"
+                        "ID", "NOMBRE", "PRECIO", "CANTIDAD"
                 }
         ));
         jScrollPane1.setViewportView(searchProductTable);
@@ -375,6 +377,8 @@ public class MainFrame extends javax.swing.JFrame {
         searchProductButton.setBackground(new java.awt.Color(148, 104, 70));
         searchProductButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         searchProductButton.setText("BUSCAR PRODUCTO");
+        searchProductButton.setActionCommand("BUSCAR_PRODUCTO");
+        searchProductButton.addActionListener(presenterListener);
 
         javax.swing.GroupLayout administrateProductsLayout = new javax.swing.GroupLayout(administrateProducts);
         administrateProducts.setLayout(administrateProductsLayout);
@@ -896,6 +900,25 @@ public class MainFrame extends javax.swing.JFrame {
 
     public String getPassword(){
         return new String( logginPaswordTextField.getPassword());
+    }
+
+    public void changeHeader(String text){
+        headerLabel.setText(text);
+        headerLabel.repaint();
+    }
+
+    public String getSearchedProduct(){
+        return searchProductTextField.getText();
+    }
+
+    public void setSearchProductTable(){
+        searchProductTable.setModel(new javax.swing.table.DefaultTableModel(
+                new Object [][] {
+                        {null, null, null, null}},
+                new String [] {
+                        "ID", "NOMBRE", "PRECIO", "CANTIDAD"
+                }
+        ));
     }
 
     // Variables declaration - do not modify

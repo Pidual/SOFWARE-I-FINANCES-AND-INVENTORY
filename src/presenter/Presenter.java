@@ -1,11 +1,15 @@
 package presenter;
 
+import models.ProductOrder;
 import models.Restaurant;
 import views.MainFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import static connect.Connect.getProductOrdersByKeyword;
 
 public class Presenter implements ActionListener{
 
@@ -21,16 +25,14 @@ public class Presenter implements ActionListener{
         String command = e.getActionCommand();
         switch (command){
             case "LOGIN": //cesarc 12345678
-                System.out.println(gui.getUsername());
-                System.out.println(gui.getPassword());
-                if (restaurant.login(gui.getUsername(),gui.getPassword())){ //John Doe password
-                    gui.login();
-                }else{
-                    System.out.println("login fallado");
-                }
+//                if (restaurant.login(gui.getUsername(),gui.getPassword())){ //John Doe password
+//                    gui.login();
+//                }
+                gui.login();
                 break;
 
             case "GESTIONAR_PRODUCTOS":
+                    gui.changeHeader("GESTIONAR_PRODUCTOS");
                     break;
             case "EXIT":
                 JOptionPane JOptionPane = null;
@@ -40,12 +42,20 @@ public class Presenter implements ActionListener{
                 }
                 break;
             case "BUSCAR_PRODUCTO":
+                //System.out.println("buscando producto...");
+                //ArrayList<ProductOrder> productOrders = restaurant.getProductOrdersByKeyword(gui.getSearchedProduct());
 
                 break;
 
             case "AGREGAR_PRODUCTOS":
 
                 break;
+
+            case "MODIFICAR_PRODUCTO":
+
+                break;
+
+
 
         }
     }

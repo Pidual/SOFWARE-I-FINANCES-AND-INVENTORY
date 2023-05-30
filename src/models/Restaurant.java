@@ -308,6 +308,11 @@ public class Restaurant {
     public boolean AlertLowQuatity() {
     	return (Connect.hasRowsWithLowInventoryProducts() || Connect.hasRowsWithLowQuantityIngredients());
     }
+
+    public ArrayList<ProductOrder> getProductOrdersByKeyword(String keyword){
+
+        return Connect.getProductOrdersByKeyword(keyword);
+    }
     
 }
 

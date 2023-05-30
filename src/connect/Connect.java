@@ -407,7 +407,6 @@ public class Connect {
 	 * @param typeProduct  el ID del tipo de producto.
 	 * @param nameProduct  el nombre del producto.
 	 * @param valueProduct el valor del producto.
-	 * @param ...
 	 * @return true si la inserción se realiza correctamente, false en caso contrario.
 	 */
 	public static boolean insertProduct( int typeProduct, String nameProduct, float valueProduct,
@@ -655,7 +654,7 @@ public class Connect {
 	     * @return una lista de ProductOrder que coinciden con la palabra clave
 	     * @throws SQLException si ocurre un error de base de datos
 	     */
-	    public ArrayList<ProductOrder> getProductOrdersByKeyword(String keyword){
+	    public static ArrayList<ProductOrder> getProductOrdersByKeyword(String keyword){
 	    	ArrayList<ProductOrder> productOrders = new ArrayList<>();
 	    	
 	    	String query = "SELECT P.ID_PRODUCTS, P.ID_TYPE_PRODUCT, P.NAME_PRODUCTS, P.VALUE_PRODUCTS, PI.QUANTITY_PRODUCT_INVENTORY "
