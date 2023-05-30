@@ -118,9 +118,20 @@ public class Presenter implements ActionListener{
                 break;
 
             case "ELIMINAR_PRODUCTO":
-                System.out.println("MAIDJMSAIUDMUIASDAS"); //TODO Luis te toca miau miau :DDD
-
-                //restaurant.
+                String deletionID = gui.getIntegerJOptionPane("Ingrese el ID del producto a eleminar");
+                if(deletionID.isBlank() ){
+                    gui.showJOptionPaneError("El ID esta vacio");
+                    return;
+                } else if (!deletionID.matches("[0-9]+")) {
+                    gui.showJOptionPaneError("El ID ingresado contiene un caracter no numerico");
+                    return;
+                }
+                if(gui.confirmDialog()){
+                    restaurant.deleteProduct(Integer.parseInt(deletionID));
+                    gui.showJOptionPaneSuccess("Se elimino el producto con exito");
+                }else{
+                    gui.showJOptionPaneError("No se elimino el producto");
+                }
                 break;
 
             case "BUSCAR_INGREDIENTE":

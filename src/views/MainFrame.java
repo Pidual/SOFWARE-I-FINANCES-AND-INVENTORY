@@ -1138,6 +1138,18 @@ public class MainFrame extends javax.swing.JFrame {
 
     }
 
+    public boolean confirmDialog() {
+        int choice = JOptionPane.showOptionDialog(null, "Esta seguro de borrar el producto?", "CONFIRMACION",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+        if (choice == JOptionPane.YES_OPTION) {
+            return true;
+        } else if (choice == JOptionPane.NO_OPTION) {
+            return false;
+        } else {
+            return false;
+        }
+    }
+
 
     // End of variables declaration
 }
