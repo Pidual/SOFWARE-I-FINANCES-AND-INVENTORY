@@ -725,7 +725,10 @@ public class Connect {
 	    	ArrayList<Ingredient> ingredients = new ArrayList<>();
 	    	
 	    	// Preparar la consulta SQL
-	        String query = "SELECT * FROM INGREDIENTS WHERE NAME_INGREDIENTS LIKE '%"+ keyword +"%'";
+	        String query = "SELECT I.ID_INGREDIENTS, I.NAME_INGREDIENTS, II.QUANTITY_INGREDIENTS_INVENTORY " +
+	                "FROM INGREDIENTS I " +
+	                "JOIN INGREDIENS_INVENTORY II ON I.ID_INGREDIENTS = II.ID_INGREDIENTS " +
+	                "WHERE I.NAME_INGREDIENTS LIKE '%"+ keyword +"%'";
 	        
 	        ResultSet resultSet = selectFromObject(query);
 	        
