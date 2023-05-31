@@ -21,7 +21,7 @@ import models.TypeProduct;
 
 public class Connect {
 	
-	static String url ="jdbc:sqlite:src/connect/database/database.db";
+	static String url ="jdbc:sqlite:resources/database.db";
 	static Connection connection;
 	static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 

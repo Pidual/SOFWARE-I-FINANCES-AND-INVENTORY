@@ -13,9 +13,10 @@ import java.util.ArrayList;
 
 public class MainFrame extends javax.swing.JFrame {
     public MainFrame(ActionListener presenterListener) {
+        this.setUndecorated(true);
         initComponents(presenterListener);
-        setLocationRelativeTo(null);
-        this.setSize(700,500);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
 
     }
