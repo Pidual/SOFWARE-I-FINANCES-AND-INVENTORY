@@ -4,6 +4,7 @@ import models.Ingredient;
 import models.ProductOrder;
 import models.Restaurant;
 import views.MainFrame;
+import views.NewMainFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -23,6 +24,8 @@ public class Presenter implements ActionListener{
         gui = new MainFrame(this);
         ingridientsInventory = restaurant.getInventoryIngredients();
         gui.setAddProductIngredientListModel(ingridientsInventory);
+
+
     }
 
     @Override

@@ -1,30 +1,22 @@
 package views;
 
-import models.Ingredient;
-import models.ProductOrder;
-
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
-import javax.swing.text.NumberFormatter;
-import java.awt.event.*;
-import java.text.NumberFormat;
-import java.util.ArrayList;
 
-public class MainFrame extends javax.swing.JFrame {
-    public MainFrame(ActionListener presenterListener) {
+public class NewMainFrame extends javax.swing.JFrame {
+    public NewMainFrame() {
         this.setUndecorated(true);
-        initComponents(presenterListener);
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setLocationRelativeTo(null);
-        //this.setVisible(true);
-
+        initComponents();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setVisible(true);
     }
-
-    private void initComponents(ActionListener presenterListener) {
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">
+    private void initComponents() {
 
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
         PanelLoginAndMainMenu = new javax.swing.JPanel();
         Loggin = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -38,7 +30,6 @@ public class MainFrame extends javax.swing.JFrame {
         logginPaswordTextField = new javax.swing.JPasswordField();
         showPasswordCheckBox = new javax.swing.JCheckBox();
         MainMenu = new javax.swing.JPanel();
-        headerLabel = new javax.swing.JLabel();
         Base = new javax.swing.JPanel();
         showAdministrateProductsButton = new javax.swing.JButton();
         AddProductButton = new javax.swing.JButton();
@@ -46,6 +37,7 @@ public class MainFrame extends javax.swing.JFrame {
         exitButton = new javax.swing.JButton();
         administrateIngridientsButton = new javax.swing.JButton();
         seeInventoryButton = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
         Parent = new javax.swing.JPanel();
         administrateProducts = new javax.swing.JPanel();
         searchProductLabel = new javax.swing.JLabel();
@@ -60,34 +52,21 @@ public class MainFrame extends javax.swing.JFrame {
         AddProductLabel = new javax.swing.JLabel();
         productNameLabel = new javax.swing.JLabel();
         addProductNameTextField = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        NumberFormat numberFormat = NumberFormat.getNumberInstance();
-        NumberFormatter formatter = new NumberFormatter(numberFormat);
-        formatter.setValueClass(Float.class);
-        formatter.setAllowsInvalid(false);
-        formatter.setCommitsOnValidEdit(true);
-        addProductPriceFormatedTextField = new javax.swing.JFormattedTextField(formatter);
+        addProductPriceTextField = new javax.swing.JTextField();
         addProductIsCookedCheckBox = new javax.swing.JCheckBox();
         addProductAddIngridientButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         addIngridientsAddedIngridientsTextField = new javax.swing.JTextArea();
-        addProductAddProductButton = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
         addProductIngridientList = new javax.swing.JComboBox<>();
         jLabel17 = new javax.swing.JLabel();
-        addProductQuantitySpinner = new javax.swing.JSpinner();
-        addProductIngridientQuantity = new javax.swing.JSpinner();
+        addProductAddProductButton = new javax.swing.JButton();
         addIngridientPanel = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         addIngridientIngridientNameTextField = new javax.swing.JTextField();
-
-        addIngridientPriceFormatedField = new javax.swing.JFormattedTextField(formatter);
         addIngridientAddIngridientButton = new javax.swing.JButton();
-
         administrateIngridientsPanel = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -119,9 +98,11 @@ public class MainFrame extends javax.swing.JFrame {
         jScrollPane5.setViewportView(jTable3);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        this.setPreferredSize(new java.awt.Dimension(1920, 1080));
-        this.setResizable(true);
-        getContentPane().setLayout(null);
+        setMaximizedBounds(getMaximizedBounds());
+        setPreferredSize(new java.awt.Dimension(900, 700));
+        setResizable(false);
+
+        jPanel1.setBackground(new java.awt.Color(217, 217, 217));
 
         PanelLoginAndMainMenu.setLayout(new java.awt.CardLayout());
 
@@ -135,14 +116,15 @@ public class MainFrame extends javax.swing.JFrame {
         loginButton.setBackground(new java.awt.Color(255, 209, 102));
         loginButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         loginButton.setText("INGRESAR");
-        loginButton.setActionCommand("LOGIN");
-        loginButton.addActionListener(presenterListener);
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
 
         exitButtonLongin.setBackground(new java.awt.Color(255, 209, 102));
         exitButtonLongin.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         exitButtonLongin.setText("SALIR");
-        exitButtonLongin.addActionListener(presenterListener);
-        exitButtonLongin.setActionCommand("EXIT");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel3.setText("USUARIO:");
@@ -150,17 +132,6 @@ public class MainFrame extends javax.swing.JFrame {
         logginUsernameTextField.setBackground(new java.awt.Color(236, 228, 183));
         logginUsernameTextField.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         logginUsernameTextField.setText("USUARIO");
-        logginUsernameTextField.addFocusListener(new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                logginUsernameTextField.setText(""); // Clear the text field
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                // Do nothing when focus is lost
-            }
-        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel4.setText("CONTRASEÑA:");
@@ -174,35 +145,17 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel2.setOpaque(true);
 
         logginPaswordTextField.setBackground(new java.awt.Color(236, 228, 183));
-        logginPaswordTextField.setFont(new java.awt.Font("Segoe UI", 0, 18));
-        logginPaswordTextField.setText("contraseña");
-        logginPaswordTextField.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                logginPaswordTextField.setText(""); // Clear the password field
-            }
-        });
+        logginPaswordTextField.setText("jPasswordField1");
 
         showPasswordCheckBox.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         showPasswordCheckBox.setText("mostrar contraseña");
-        showPasswordCheckBox.setBackground(new java.awt.Color(217, 217, 217));
-        showPasswordCheckBox.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent e) {
-                if (e.getStateChange() == ItemEvent.SELECTED) {
-                    logginPaswordTextField.setEchoChar((char) 0);
-                } else {
-                    logginPaswordTextField.setEchoChar('\u2022'); // Bullet character
-                }
-            }
-        });
 
         javax.swing.GroupLayout LogginLayout = new javax.swing.GroupLayout(Loggin);
         Loggin.setLayout(LogginLayout);
         LogginLayout.setHorizontalGroup(
                 LogginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LogginLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(LogginLayout.createSequentialGroup()
                                 .addGroup(LogginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(LogginLayout.createSequentialGroup()
                                                 .addGap(171, 171, 171)
@@ -227,7 +180,7 @@ public class MainFrame extends javax.swing.JFrame {
                                                         .addGroup(LogginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                                 .addComponent(logginUsernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                 .addComponent(logginPaswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                .addGap(151, 151, 151))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         LogginLayout.setVerticalGroup(
                 LogginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,45 +189,38 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1)
                                 .addGap(20, 20, 20)
                                 .addGroup(LogginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addGroup(LogginLayout.createSequentialGroup()
-                                                .addGap(6, 6, 6)
-                                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addComponent(logginUsernameTextField))
+                                        .addComponent(jLabel3)
+                                        .addComponent(logginUsernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(29, 29, 29)
-                                .addGroup(LogginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(LogginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(logginPaswordTextField))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(showPasswordCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(showPasswordCheckBox)
                                 .addGap(37, 37, 37)
                                 .addGroup(LogginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(loginButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(exitButtonLongin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(60, 60, 60))
+                                        .addComponent(loginButton)
+                                        .addComponent(exitButtonLongin))
+                                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         PanelLoginAndMainMenu.add(Loggin, "card2");
 
-        MainMenu.setLayout(null);
-
-        headerLabel.setBackground(new java.awt.Color(148, 104, 70));
-        headerLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        headerLabel.setForeground(new java.awt.Color(255, 255, 255));
-        headerLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        headerLabel.setText("Menu Principal");
-        headerLabel.setOpaque(true);
-        MainMenu.add(headerLabel);
-        headerLabel.setBounds(0, -4, 700, 40);
+        MainMenu.setLayout(new java.awt.BorderLayout());
 
         Base.setBackground(new java.awt.Color(185, 184, 153));
 
         showAdministrateProductsButton.setBackground(new java.awt.Color(255, 209, 102));
         showAdministrateProductsButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         showAdministrateProductsButton.setText("<html>GESTIONAR<br>PRODUCTOS<html>");
-        showAdministrateProductsButton.addActionListener(this::showAdministrateProductsButtonActionPerformed);
+        showAdministrateProductsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showAdministrateProductsButtonActionPerformed(evt);
+            }
+        });
 
         AddProductButton.setBackground(new java.awt.Color(255, 209, 102));
         AddProductButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -297,8 +243,11 @@ public class MainFrame extends javax.swing.JFrame {
         exitButton.setBackground(new java.awt.Color(255, 209, 102));
         exitButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         exitButton.setText("SALIR");
-        exitButton.addActionListener(presenterListener);
-        exitButton.setActionCommand("EXIT");
+        exitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitButtonActionPerformed(evt);
+            }
+        });
 
         administrateIngridientsButton.setBackground(new java.awt.Color(255, 209, 102));
         administrateIngridientsButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -312,8 +261,11 @@ public class MainFrame extends javax.swing.JFrame {
         seeInventoryButton.setBackground(new java.awt.Color(255, 209, 102));
         seeInventoryButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         seeInventoryButton.setText("<html>VER<br>INVENTARIO<html>");
-        seeInventoryButton.addActionListener(presenterListener);
-        seeInventoryButton.setActionCommand("MOSTRAR_INVENTARIO");
+        seeInventoryButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                seeInventoryButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout BaseLayout = new javax.swing.GroupLayout(Base);
         Base.setLayout(BaseLayout);
@@ -349,8 +301,7 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addGap(60, 60, 60))
         );
 
-        MainMenu.add(Base);
-        Base.setBounds(0, 20, 120, 460);
+        MainMenu.add(Base, java.awt.BorderLayout.WEST);
 
         Parent.setBackground(new java.awt.Color(217, 217, 217));
         Parent.setLayout(new java.awt.CardLayout());
@@ -365,38 +316,41 @@ public class MainFrame extends javax.swing.JFrame {
 
         searchProductTextField.setBackground(new java.awt.Color(236, 228, 183));
         searchProductTextField.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        searchProductTextField.addActionListener(presenterListener);
-        searchProductTextField.setActionCommand("BUSCAR_PRODUCTO");
+        searchProductTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchProductTextFieldActionPerformed(evt);
+            }
+        });
 
         searchProductTable.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
-                        {null, null, null, null}},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null}
+                },
                 new String [] {
-                        "ID", "NOMBRE", "PRECIO", "CANTIDAD"
+                        "Title 1", "Title 2", "Title 3", "Title 4"
                 }
         ));
-        TableColumn column = searchProductTable.getColumnModel().getColumn(0);
-        column.setPreferredWidth(10); // Set the desired width
-
         jScrollPane1.setViewportView(searchProductTable);
 
         searchProductModifyProductButton.setBackground(new java.awt.Color(148, 104, 70));
         searchProductModifyProductButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        searchProductModifyProductButton.setText("<html>MODIFICAR CANTIDAD<br>DE UN PRODUCTO<html>");
-        searchProductModifyProductButton.addActionListener(presenterListener);
-        searchProductModifyProductButton.setActionCommand("MODIFICAR_PRODUCTO");
+        searchProductModifyProductButton.setText("MODIFICAR PRODUCTO");
+        searchProductModifyProductButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchProductModifyProductButtonActionPerformed(evt);
+            }
+        });
 
         searchProductDeleteProductButton.setBackground(new java.awt.Color(148, 104, 70));
         searchProductDeleteProductButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        searchProductDeleteProductButton.setText("<html>ELIMINAR <br>PRODUCTO<html>");
-        searchProductDeleteProductButton.addActionListener(presenterListener);
-        searchProductDeleteProductButton.setActionCommand("ELIMINAR_PRODUCTO");
+        searchProductDeleteProductButton.setText("ELIMINAR PRODUCTO");
 
         searchProductButton.setBackground(new java.awt.Color(148, 104, 70));
         searchProductButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         searchProductButton.setText("BUSCAR PRODUCTO");
-        searchProductButton.setActionCommand("BUSCAR_PRODUCTO");
-        searchProductButton.addActionListener(presenterListener);
 
         javax.swing.GroupLayout administrateProductsLayout = new javax.swing.GroupLayout(administrateProducts);
         administrateProducts.setLayout(administrateProductsLayout);
@@ -464,61 +418,51 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel12.setText("CANTIDAD:");
-
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel13.setText("PRECIO:");
 
-        addProductPriceFormatedTextField.setBackground(new java.awt.Color(236, 228, 183));
-        addProductPriceFormatedTextField.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-
-        addProductIngridientQuantity.setEnabled(false);
+        addProductPriceTextField.setBackground(new java.awt.Color(236, 228, 183));
+        addProductPriceTextField.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        addProductPriceTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addProductPriceTextFieldActionPerformed(evt);
+            }
+        });
 
         addProductIsCookedCheckBox.setText("¿Producto Cocinado?");
-        addProductIsCookedCheckBox.addItemListener(e -> {      // Activa los demas componentes si le da que es cocinado
-            boolean enabled = e.getStateChange() == ItemEvent.SELECTED;
-            addProductIngridientList.setEnabled(enabled);
-            addProductIngridientQuantity.setEnabled(enabled);
-            addProductAddIngridientButton.setEnabled(enabled);
-            jLabel15.setEnabled(enabled);
-            jLabel16.setEnabled(enabled);
-            jLabel17.setEnabled(enabled);
-            addIngridientsAddedIngridientsTextField.setEnabled(enabled);
+        addProductIsCookedCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addProductIsCookedCheckBoxActionPerformed(evt);
+            }
         });
 
         addProductAddIngridientButton.setBackground(new java.awt.Color(148, 104, 70));
         addProductAddIngridientButton.setText("<html>AGREGAR<br>INGREDIENTE<html>");
-        addProductAddIngridientButton.addActionListener(presenterListener);
-        addProductAddIngridientButton.setActionCommand("AGREGAR_INGREDIENTE_A_PRODUCTO_EN_CREACION");
-        addProductAddIngridientButton.setEnabled(false);
+        addProductAddIngridientButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addProductAddIngridientButtonActionPerformed(evt);
+            }
+        });
 
         addIngridientsAddedIngridientsTextField.setColumns(20);
-        addIngridientsAddedIngridientsTextField.setRows(3);
-        addIngridientsAddedIngridientsTextField.setEditable(false);
+        addIngridientsAddedIngridientsTextField.setRows(5);
         jScrollPane2.setViewportView(addIngridientsAddedIngridientsTextField);
-        addIngridientsAddedIngridientsTextField.setEnabled(false);
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel15.setText("INGREDIENTE:");
-        jLabel15.setEnabled(false);
-
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel16.setText("CANTIDAD:");
-        jLabel16.setEnabled(false);
 
         addProductIngridientList.setBackground(new java.awt.Color(236, 228, 183));
-        addProductIngridientList.setEnabled(false);
+        addProductIngridientList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-
-        jLabel17.setPreferredSize(getPreferredSize());
         jLabel17.setText("ingredientes del producto:");
-        jLabel17.setEnabled(false);
 
         addProductAddProductButton.setBackground(new java.awt.Color(148, 104, 70));
         addProductAddProductButton.setText("<html>AGREGAR<br>PRODUCTO<html>");
-        addProductAddProductButton.addActionListener(presenterListener);
-        addProductAddProductButton.setActionCommand("AGREGAR_PRODUCTOS");
+        addProductAddProductButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addProductAddProductButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout addProductosLayout = new javax.swing.GroupLayout(addProductos);
         addProductos.setLayout(addProductosLayout);
@@ -537,7 +481,7 @@ public class MainFrame extends javax.swing.JFrame {
                                                 .addGap(0, 0, Short.MAX_VALUE))
                                         .addGroup(addProductosLayout.createSequentialGroup()
                                                 .addGroup(addProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(addProductPriceFormatedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(addProductPriceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(addProductIsCookedCheckBox)
                                                         .addGroup(addProductosLayout.createSequentialGroup()
                                                                 .addComponent(addProductIngridientList, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -574,7 +518,7 @@ public class MainFrame extends javax.swing.JFrame {
                                         .addComponent(addProductNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(23, 23, 23)
                                 .addGroup(addProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(addProductPriceFormatedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(addProductPriceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel13))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(addProductIsCookedCheckBox)
@@ -585,11 +529,10 @@ public class MainFrame extends javax.swing.JFrame {
                                                         .addComponent(jLabel15)
                                                         .addComponent(addProductIngridientList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE))
+                                                .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 19, Short.MAX_VALUE))
                                         .addGroup(addProductosLayout.createSequentialGroup()
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(addProductAddIngridientButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                                .addComponent(addProductAddIngridientButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(34, 34, 34)
@@ -613,8 +556,11 @@ public class MainFrame extends javax.swing.JFrame {
         addIngridientAddIngridientButton.setBackground(new java.awt.Color(148, 104, 70));
         addIngridientAddIngridientButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         addIngridientAddIngridientButton.setText("AGREGAR INGREDIENTE");
-        addIngridientAddIngridientButton.addActionListener(presenterListener);
-        addIngridientAddIngridientButton.setActionCommand("AGREGAR_INGREDIENTE");
+        addIngridientAddIngridientButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addIngridientAddIngridientButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout addIngridientPanelLayout = new javax.swing.GroupLayout(addIngridientPanel);
         addIngridientPanel.setLayout(addIngridientPanelLayout);
@@ -627,7 +573,7 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addComponent(addIngridientIngridientNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addIngridientPanelLayout.createSequentialGroup()
-                                .addContainerGap(164, Short.MAX_VALUE)
+                                .addContainerGap(168, Short.MAX_VALUE)
                                 .addComponent(jLabel18)
                                 .addGap(154, 154, 154))
                         .addGroup(addIngridientPanelLayout.createSequentialGroup()
@@ -669,23 +615,6 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        Parent.add(addIngridientPanel, "card4");
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel6.setText("BUSCAR INGREDIENTE:");
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel7.setText("NOMBRE INGREDIENTE:");
-
-        administrateIngridientsIngridientNameTextField.setBackground(new java.awt.Color(236, 228, 183));
-        administrateIngridientsIngridientNameTextField.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-
-        searchIngridientDeleteIngridient.setBackground(new java.awt.Color(148, 104, 70));
-        searchIngridientDeleteIngridient.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        searchIngridientDeleteIngridient.setText("ELIMINAR INGREDIENTE");
-        searchIngridientDeleteIngridient.addActionListener(presenterListener);
-        searchIngridientDeleteIngridient.setActionCommand("ELIMINAR_INGREDIENTE");
-
         ingridientSearchJTable.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
                         {null, null, null, null},
@@ -702,14 +631,20 @@ public class MainFrame extends javax.swing.JFrame {
         searchIngridientButton.setBackground(new java.awt.Color(148, 104, 70));
         searchIngridientButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         searchIngridientButton.setText("BUSCAR INGREDIENTE");
-        searchIngridientButton.addActionListener(presenterListener);
-        searchIngridientButton.setActionCommand("BUSCAR_INGREDIENTE");
+        searchIngridientButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchIngridientButtonActionPerformed(evt);
+            }
+        });
 
         searchIngridientModifyIngridientButton.setBackground(new java.awt.Color(148, 104, 70));
         searchIngridientModifyIngridientButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         searchIngridientModifyIngridientButton.setText("MODIFICAR INGREDIENTE");
-        searchIngridientModifyIngridientButton.addActionListener(presenterListener);
-        searchIngridientModifyIngridientButton.setActionCommand("MODIFICAR_INGREDIENTE");
+        searchIngridientModifyIngridientButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchIngridientModifyIngridientButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout administrateIngridientsPanelLayout = new javax.swing.GroupLayout(administrateIngridientsPanel);
         administrateIngridientsPanel.setLayout(administrateIngridientsPanelLayout);
@@ -737,7 +672,7 @@ public class MainFrame extends javax.swing.JFrame {
                                         .addGroup(administrateIngridientsPanelLayout.createSequentialGroup()
                                                 .addGap(167, 167, 167)
                                                 .addComponent(searchIngridientButton)))
-                                .addContainerGap(59, Short.MAX_VALUE))
+                                .addContainerGap(69, Short.MAX_VALUE))
         );
         administrateIngridientsPanelLayout.setVerticalGroup(
                 administrateIngridientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -823,28 +758,56 @@ public class MainFrame extends javax.swing.JFrame {
 
         Parent.add(seeInventory, "card6");
 
-        MainMenu.add(Parent);
-        Parent.setBounds(120, 30, 580, 450);
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 580, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(Parent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel3Layout.setVerticalGroup(
+                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 450, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(Parent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        MainMenu.add(jPanel3, java.awt.BorderLayout.CENTER);
 
         PanelLoginAndMainMenu.add(MainMenu, "card3");
 
-        getContentPane().add(PanelLoginAndMainMenu);
-        PanelLoginAndMainMenu.setBounds(0, 0, 700, 480);
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 700, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(PanelLoginAndMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel1Layout.setVerticalGroup(
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 480, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(PanelLoginAndMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>
-
-    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO JOPTION PANE JAJAJAJJA
-    }
-
-    private void showAdministrateProductsButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        Parent.removeAll();
-        Parent.add(administrateProducts);
-        Parent.repaint();
-        Parent.revalidate();
-
-    }
 
     private void searchProductTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
@@ -855,10 +818,6 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     private void addProductNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    private void addProductPriceTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 
@@ -874,33 +833,11 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }
 
-    private void AddProductButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        Parent.removeAll();
-        Parent.add(addProductos); //Monda wave
-        Parent.repaint();
-        Parent.revalidate();
-    }
-
-    private void addIngridientsActionPerformed(java.awt.event.ActionEvent evt) {
-        Parent.removeAll();
-        Parent.add(addIngridientPanel); //Monda wave
-        Parent.repaint();
-        Parent.revalidate();
-    }
-
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    private void administrateIngridientsButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        Parent.removeAll();
-        Parent.add(administrateIngridientsPanel); //Monda wave
-        Parent.repaint();
-        Parent.revalidate();
-    }
-
-    private void seeInventoryButtonActionPerformed(java.awt.event.ActionEvent evt) {
-
+        PanelLoginAndMainMenu.removeAll();
+        PanelLoginAndMainMenu.add(MainMenu); //Monda wave
+        PanelLoginAndMainMenu.repaint();
+        PanelLoginAndMainMenu.revalidate();
     }
 
     private void searchIngridientDeleteIngridientActionPerformed(java.awt.event.ActionEvent evt) {
@@ -915,87 +852,54 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }
 
-
-    public void login(){
-        PanelLoginAndMainMenu.removeAll();
-        PanelLoginAndMainMenu.add(MainMenu); //Monda wave
-        PanelLoginAndMainMenu.repaint();
-        PanelLoginAndMainMenu.revalidate();
+    private void addProductAddProductButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
     }
 
-    public String getUsername(){
-        return logginUsernameTextField.getText();
+    private void addProductPriceTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
     }
 
-    public String getPassword(){
-        return new String( logginPaswordTextField.getPassword());
+    private void seeInventoryButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        Parent.removeAll();
+        Parent.add(seeInventory); //Monda wave
+        Parent.repaint();
+        Parent.revalidate();
     }
 
-    public void changeHeader(String text){
-        headerLabel.setText(text);
-        headerLabel.repaint();
+    private void administrateIngridientsButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        Parent.removeAll();
+        Parent.add(administrateIngridientsPanel); //Monda wave
+        Parent.repaint();
+        Parent.revalidate();
     }
 
-    public String getSearchedProduct(){
-        return searchProductTextField.getText();
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO JOPTION PANE JAJAJAJJA
     }
 
-    public void setAddProductIngredientListModel(ArrayList<Ingredient> ingredients) {
-        DefaultComboBoxModel<String> comboBoxModel = new DefaultComboBoxModel<>();
-        for (Ingredient ingredient : ingredients) {
-            comboBoxModel.addElement(ingredient.toString());
-        }
-        addProductIngridientList.setModel(comboBoxModel);
-
-        new NewMainFrame();
+    private void addIngridientsActionPerformed(java.awt.event.ActionEvent evt) {
+        Parent.removeAll();
+        Parent.add(addIngridientPanel); //Monda wave
+        Parent.repaint();
+        Parent.revalidate();
     }
 
-    public void setSearchProductTable(ArrayList<ProductOrder> productOrders) {
-        DefaultTableModel tableModel = new DefaultTableModel(
-                new Object[][]{},
-                new String[]{"ID", "NOMBRE", "PRECIO", "CANTIDAD"}
-        );
-
-        for (ProductOrder product : productOrders) {
-            Object[] rowData = {
-                    String.valueOf(product.getId()),
-                    product.getName(),
-                    String.valueOf(product.getValue()),
-                    String.valueOf(product.getQuantity())
-            };
-            tableModel.addRow(rowData);
-        }
-        searchProductTable.setModel(tableModel);
-        TableColumn column = searchProductTable.getColumnModel().getColumn(0);
-        column.setPreferredWidth(10); // Set the desired width
+    private void AddProductButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        Parent.removeAll();
+        Parent.add(addProductos); //Monda wave
+        Parent.repaint();
+        Parent.revalidate();
     }
 
-    public int getTypeProduct(){
-        if(addProductIsCookedCheckBox.isSelected()){
-            return 1;
-        }else{
-            return 2;
-        }
-    }
+    private void showAdministrateProductsButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        Parent.removeAll();
+        Parent.add(administrateProducts);
+        Parent.repaint();
+        Parent.revalidate();
 
-    public String getAddProductName(){
-        return addProductNameTextField.getText();
     }
-
-    public float getPriceForAddingProduct(){
-        if(addProductPriceFormatedTextField.getValue() == null){
-            return 0;
-        }
-        return (float) addProductPriceFormatedTextField.getValue();
-    }
-
-    public int getIndexFromIngridientList() { //TODO esto podria ser una oportunidad para usar la clase Ingridient
-        return addProductIngridientList.getSelectedIndex();
-    }
-
-    public String getAddIngridientName() {
-        return addIngridientIngridientNameTextField.getText();
-    }
+    
 
     // Variables declaration - do not modify
     private javax.swing.JButton AddProductButton;
@@ -1007,17 +911,15 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel Parent;
     private javax.swing.JButton addIngridientAddIngridientButton;
     private javax.swing.JTextField addIngridientIngridientNameTextField;
-    private javax.swing.JFormattedTextField addIngridientPriceFormatedField;
     private javax.swing.JPanel addIngridientPanel;
     private javax.swing.JButton addIngridients;
     private javax.swing.JTextArea addIngridientsAddedIngridientsTextField;
     private javax.swing.JButton addProductAddIngridientButton;
+    private javax.swing.JButton addProductAddProductButton;
     private javax.swing.JComboBox<String> addProductIngridientList;
-    private javax.swing.JSpinner addProductIngridientQuantity;
     private javax.swing.JCheckBox addProductIsCookedCheckBox;
     private javax.swing.JTextField addProductNameTextField;
-    private javax.swing.JFormattedTextField addProductPriceFormatedTextField;
-    private javax.swing.JSpinner addProductQuantitySpinner;
+    private javax.swing.JTextField addProductPriceTextField;
     private javax.swing.JPanel addProductos;
     private javax.swing.JButton administrateIngridientsButton;
     private javax.swing.JTextField administrateIngridientsIngridientNameTextField;
@@ -1025,15 +927,11 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel administrateProducts;
     private javax.swing.JButton exitButton;
     private javax.swing.JButton exitButtonLongin;
-    private javax.swing.JLabel headerLabel;
     private javax.swing.JTable ingridientSearchJTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -1045,6 +943,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -1054,14 +954,11 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTable jTable3;
     private javax.swing.JPasswordField logginPaswordTextField;
     private javax.swing.JTextField logginUsernameTextField;
-
-    private javax.swing.JButton addProductAddProductButton;
     private javax.swing.JButton loginButton;
     private javax.swing.JLabel productNameLabel;
     private javax.swing.JButton searchIngridientButton;
     private javax.swing.JButton searchIngridientDeleteIngridient;
     private javax.swing.JButton searchIngridientModifyIngridientButton;
-
     private javax.swing.JButton searchProductButton;
     private javax.swing.JButton searchProductDeleteProductButton;
     private javax.swing.JLabel searchProductLabel;
@@ -1074,103 +971,5 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTable seeIventoryPanelIngridientTable;
     private javax.swing.JButton showAdministrateProductsButton;
     private javax.swing.JCheckBox showPasswordCheckBox;
-
-    public void addItemToTextFieldInAddProduct(String ingridient) {
-        addIngridientsAddedIngridientsTextField.setText(addIngridientsAddedIngridientsTextField.getText()+ingridient+",");
-    }
-
-    public void showJOptionPaneError(String s) {
-        JOptionPane.showMessageDialog(null, s, "Error", JOptionPane.ERROR_MESSAGE);
-    }
-
-    public void showJOptionPaneSuccess(String s) {
-        JOptionPane.showMessageDialog(null, s, "Error", JOptionPane.INFORMATION_MESSAGE);
-    }
-
-    public String getIntegerJOptionPane(String s) {
-        return JOptionPane.showInputDialog(null, s);
-    }
-
-    public String getSearchedIngridient() {
-        return administrateIngridientsIngridientNameTextField.getText();
-    }
-
-    public void showinventory() {
-        Parent.removeAll();
-        Parent.add(seeInventory); //Monda wave
-        Parent.repaint();
-        Parent.revalidate();
-    }
-
-    public void updateInventoryTables(ArrayList<ProductOrder> productOrders, ArrayList<Ingredient> ingredients) {
-        DefaultTableModel tableModelProducts = new DefaultTableModel(
-                new Object[][]{},
-                new String[]{"ID", "NOMBRE", "PRECIO", "CANTIDAD"}
-        );
-
-        for (ProductOrder product : productOrders) {
-            Object[] rowData = {
-                    String.valueOf(product.getId()),
-                    product.getName(),
-                    String.valueOf(product.getValue()),
-                    String.valueOf(product.getQuantity())
-            };
-            tableModelProducts.addRow(rowData);
-        }
-        seeInventoryPanelProductTable.setModel(tableModelProducts);
-        TableColumn column = seeInventoryPanelProductTable.getColumnModel().getColumn(0);
-        column.setPreferredWidth(10); // Set the desired width
-
-        //Siguiente tabla
-        DefaultTableModel tableModelIngridients = new DefaultTableModel(
-                new Object[][]{},
-                new String[]{"ID", "NOMBRE", "PRECIO"}
-        );
-        for (Ingredient ingredient : ingredients) {
-            Object[] rowData = {
-                    String.valueOf(ingredient.getId()),
-                    ingredient.getName(),
-                    String.valueOf(ingredient.getQuantity())
-            };
-            tableModelIngridients.addRow(rowData);
-        }
-        seeIventoryPanelIngridientTable.setModel(tableModelIngridients);
-        TableColumn column1 = seeIventoryPanelIngridientTable.getColumnModel().getColumn(0);
-        column1.setPreferredWidth(10); // Set the desired width
-
-
-    }
-
-    public boolean confirmDialog() {
-        int choice = JOptionPane.showOptionDialog(null, "Esta seguro de borrar el producto?", "CONFIRMACION",
-                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
-        if (choice == JOptionPane.YES_OPTION) {
-            return true;
-        } else if (choice == JOptionPane.NO_OPTION) {
-            return false;
-        } else {
-            return false;
-        }
-    }
-
-    public void setSearchIngridientTable(ArrayList<Ingredient> ingredients) {
-        DefaultTableModel tableModel = new DefaultTableModel(
-                new Object[][]{},
-                new String[]{"ID", "NOMBRE", "CANTIDAD"}
-        );
-        for (Ingredient ingrediente : ingredients) {
-            Object[] rowData = {
-                    String.valueOf(ingrediente.getId()),
-                    ingrediente.getName(),
-                    String.valueOf(ingrediente.getQuantity()),
-            };
-            tableModel.addRow(rowData);
-        }
-        ingridientSearchJTable.setModel(tableModel);
-        TableColumn column = ingridientSearchJTable.getColumnModel().getColumn(0);
-        column.setPreferredWidth(10); // Set the desired width
-    }
-
-
     // End of variables declaration
 }
